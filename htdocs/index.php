@@ -20,8 +20,8 @@ if(isset($_POST['userid'], $_POST['name'])){
 
 
 	require 'db.php';
-        protected $table = 'user1';
-        protected $table = 'reserve1';
+#        protected $table = 'user1';
+#       protected $table = 'reserve1';
 	//検索実行
 	$sql = 'select * from user1 where userid = "'.$userid.'" && name = "'.$name.'"';
 	$prepare = $db->prepare($sql);
