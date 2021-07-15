@@ -6,8 +6,8 @@ $message='ログインしてください';
 
 
 if(isset($_POST['userid'], $_POST['name'])){
-#   	$userid=$_POST['userid'];
-#   	$name=$_POST['name'];
+   	$userid=$_POST['userid'];
+  	$name=$_POST['name'];
 
 #	$dbServer = '127.0.0.1';
 #	$dbName = 'mydb';
