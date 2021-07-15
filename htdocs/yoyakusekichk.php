@@ -13,7 +13,7 @@ echo $name. 'さんがログインしています';
 <!DOCTYPE html>
 <html>
 <head>
-	<form method="get" action="yoyakusekichk.php"  id="f1">
+	<form method="get" action=""  id="f1">
 	<link rel="stylesheet" href="clickyoyaku.css">
 	<meta http-equiv="Content-Style-Type" content="text/css">
 	<title>座席選択フォーム</title>
@@ -44,19 +44,12 @@ echo $name. 'さんがログインしています';
 	$j=0;
 	foreach($result as $row){
 		$chk = array_search($row['sheet'], $seki);
-		echo $row['sheet']; 
-		echo $chk; 
-		$work[$j]=$row['sheet'];
+		echo 'すでに'.$row['sheet'].'は、予約済みです';?><br> 
+<?php		$work[$j]=$row['sheet'];
 	}
 
-
-   	for($i=0 ; $i < 143; $i++) {
-	if(isset($_POST['.$seki[$i].'])) {
-        	$work[$j]=$_POST['.$seki[$i].'];
-		echo $work[$j];    	
-	} 
-    }?>
-			    <br>
+?>
+	<br>
 
 <!--	<table border="0" style="font-size: 20pt; line-height: 200%;>-->
 	<table border="0" >
@@ -66,7 +59,8 @@ echo $name. 'さんがログインしています';
 	<tr>
 <?php		for($j = 0; $j < 11; $j++){ 
 			$num=$seki[$lop+$j];?>
-			<td align="center"><input type="submit" name="<?php echo $nam;?>" value="<?php echo $num;?>"></td>
+
+			<td><a href="goodjob.php?name=<?php echo $name; ?>&day=<?php echo $getday; ?>&time=<?php echo $gettime?>&seki=<?php echo $num;?>"><input type="button"  name="seki[]" value="<?php echo $num;?>"></td>
 <?php		}?>
 <?php		$lop=$j*($i+1);?>
 		</tr>
@@ -74,7 +68,6 @@ echo $name. 'さんがログインしています';
 	</table>
 	
 	<br><br>
-	<input type="submit" value="確認"><br>
  	<a href="hyout.php" align="center">予約画面へ戻る</a><br>
 </p>
 </div>
