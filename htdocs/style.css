@@ -1,4 +1,173 @@
-h1{
-    color:brown;
-    font-size: 100px;
+*{margin:0;padding:0}
+
+/*2ページ以降の「ホームへ戻る」ボタン*/
+div.nav{
+    width: 100%;
+    height: 20px;
+    color: black;
+    font-size: 20px;
+    background-color: rgb(231, 235, 227);
+}
+
+/*タイトル背景デザイン*/
+div.top{
+    width: 100%;
+    height: 215px;
+    text-align: center;
+    font-size: 25px;
+    background-color: rgb(231, 235, 227);
+}
+
+/*タイトルデザイン*/
+h1.top{
+    color: black;
+    border: 2px solid rgb(231, 235, 227);
+    padding: 3px;
+    background-color:rgb(231, 235, 227);
+    border-radius: 5px;
+}
+
+/*全体デザイン（1,2枚目）*/
+div.al{
+    display: flow-root;
+    width: 100%;
+}
+
+/*「あなたは今どんな気分」*/
+div.c{
+    width: 100%;
+    height: 45px;
+    background-color:rgb(60, 190, 240);
+}
+
+/*1枚目の下デザイン*/
+div.sh{
+    display: flex;
+    text-align: center;
+    width: 100%;/*幅*/
+    height: 270px;/*高さ*/
+    background: rgb(231, 235, 227);/*背景色*/
+}
+
+/*「飲みたい！」デザイン*/
+div.nomitai{
+    width: 100%;
+    text-align: center;
+    color:black;
+    font-size: 30px;
+    background-image: url(飲み（テスト）.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+a.nomi{
+    color: black;
+    border: 2px solid rgb(231, 235, 227);
+    padding: 5px;
+    background-color:rgb(231, 235, 227);
+    border-radius: 5px;
+}
+
+/*「食べたい！」デザイン*/
+div.tabetai{
+    width: 100%;
+    text-align: center;
+    color:black;
+    font-size: 30px;
+    background-image:url(食事（テスト）.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+a.taberu{
+    color: black;
+    border: 2px solid rgb(231, 235, 227);
+    padding: 5px;
+    background-color:rgb(231, 235, 227);
+    border-radius: 5px;
+}
+
+/*「遊びたい！」デザイン*/
+div.asobitai{
+    width: 100%;
+    text-align: center;
+    color:black;
+    font-size: 30px;
+    background-image:url(遊び（テスト）.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+a.asobi{
+    color: black;
+    border: 2px solid rgb(231, 235, 227);
+    padding: 5px;
+    background-color:rgb(231, 235, 227);
+    border-radius: 5px;
+}
+
+
+/*2枚目（居酒屋）デザイン*/
+div.sh2{
+    display: flex;
+    text-align: center;
+    width: 100%;/*幅*/
+    height: 270px;/*高さ*/
+    background: rgb(70, 80, 100);/*背景色*/
+}
+
+/*村さ来*/
+div.murasaki{
+    width: 100%;
+    text-align: center;
+    color:black;
+    font-size: 30px;
+    
+}
+
+a.murasaki{
+    color: black;
+    border: 2px solid rgb(231, 235, 227);
+    padding: 5px;
+    background-color:rgb(231, 235, 227);
+    border-radius: 5px;
+}
+
+/*居酒屋行くなら俺んち来る？*/
+div.orenchi{
+    width: 100%;
+    text-align: center;
+    color:black;
+    font-size: 30px;
+}
+
+a.orenchi{
+    color: black;
+    border: 2px solid rgb(231, 235, 227);
+    padding: 5px;
+    background-color:rgb(231, 235, 227);
+    border-radius: 5px;
+}
+
+/*シーシャもくもく*/
+div.si-sha{
+    width: 100%;
+    text-align: center;
+    color:black;
+    font-size: 30px;
+}
+
+a.si-sha{
+    color: black;
+    border: 2px solid rgb(231, 235, 227);
+    padding: 5px;
+    background-color:rgb(231, 235, 227);
+    border-radius: 5px;
+}
+
+/*3枚目（村さ来）デザイン*/
+div.al2{
+    
 }
