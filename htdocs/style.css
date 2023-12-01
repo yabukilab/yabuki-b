@@ -1,14 +1,47 @@
 *{margin:0;padding:0}
 
-/*2ページ以降の「ホームへ戻る」ボタン*/
-div.nav{
-    width: 100%;
-    height: 25px;
-    color: black;
-    font-size: 20px;
+<<<<<<< HEAD
+=======
+/*上のホームバー*/
+body {
+    margin: 0;
     background-color: rgb(231, 235, 227);
-    padding: 5px;
-}
+    }
+div.nav {
+    max-width: 100%;
+    margin: 0 auto;
+    }
+    .menu {
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    display: flex;
+    }
+    .menu li {
+    background-color: rgb(231, 235, 227);
+    box-sizing: border-box;
+    padding: 4px;
+    width: 25%;
+    border-top : 1px solid white;
+    border-right : 2.5px solid white;
+    border-left: 2.5px solid white;
+    border-bottom : 5px solid white;
+    }
+    .menu li:first-child {
+    border-left:1px solid black;
+    }
+    .menu li:hover {
+    background-color: coral;
+    }
+    a {
+    text-decoration: none;
+    }
+    a:link, a:visited, a:hover, a:active {
+    color: black;
+    }
+>>>>>>> 8be68e2bc7356e5295e67dd73c4ec046ab6955d5
 
 /*タイトル背景デザイン*/
 div.top{
