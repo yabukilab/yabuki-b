@@ -1,7 +1,5 @@
 *{margin:0;padding:0}
 
-<<<<<<< HEAD
-=======
 /*上のホームバー*/
 body {
     margin: 0;
@@ -41,7 +39,6 @@ div.nav {
     a:link, a:visited, a:hover, a:active {
     color: black;
     }
->>>>>>> 8be68e2bc7356e5295e67dd73c4ec046ab6955d5
 
 /*タイトル背景デザイン*/
 div.top{
@@ -238,19 +235,19 @@ div.pt{
     display: flex;
     padding: 5px;
     height: 200px;
+    font-size: 40px;
 }
 
 /*おすすめポイント*/
 div.point{
-    font-size: 75px;
     width: 80%;
+    font-size: 40px;
 }
 
 /*時間，定休日，場所*/
 div.jikan{
     display: flow-root;
     width: 20%;
-    font-size: 50px;
 }
 /*感想（右下）*/
 div.kansou{
