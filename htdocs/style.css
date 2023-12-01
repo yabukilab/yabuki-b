@@ -235,11 +235,11 @@ div.pt{
     display: flex;
     padding: 5px;
     height: 200px;
+    font-size: 40px;
 }
 
 /*おすすめポイント*/
 div.osusume{
-    font-size:50px;
     width: 80%;
 }
 
@@ -247,7 +247,6 @@ div.osusume{
 div.jikan{
     display: flow-root;
     width: 20%;
-    font-size: 50px;
 }
 /*感想（右下）*/
 div.kansou{
