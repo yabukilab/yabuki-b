@@ -239,8 +239,9 @@ div.pt{
 }
 
 /*おすすめポイント*/
-div.osusume{
+div.point{
     width: 80%;
+    font-size: 40px;
 }
 
 /*時間，定休日，場所*/
