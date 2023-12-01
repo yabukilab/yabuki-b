@@ -247,6 +247,7 @@ div.point{
 div.jikan{
     display: flow-root;
     width: 20%;
+    font-size: 30px;
 }
 /*感想（右下）*/
 div.kansou{
