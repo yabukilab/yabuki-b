@@ -239,7 +239,7 @@ div.pt{
 
 /*おすすめポイント*/
 div.point{
-    font-size:10px;
+    font-size:10px !important;
     width: 80%;
 }
 
