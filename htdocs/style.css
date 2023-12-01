@@ -239,14 +239,15 @@ div.pt{
 
 /*おすすめポイント*/
 div.point{
-    width: 80%;
+    width: 70%;
     font-size: 40px;
 }
 
 /*時間，定休日，場所*/
 div.jikan{
     display: flow-root;
-    width: 20%;
+    width: 30%;
+    font-size: 30px;
 }
 /*感想（右下）*/
 div.kansou{
