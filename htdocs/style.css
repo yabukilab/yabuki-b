@@ -258,7 +258,6 @@ table {
 td {
     border: 3px solid white; /* セルの枠線の太さと色を指定 */
     padding: 8px; /* セル内の余白を調整 */
-    text-align: center; /* テキストを中央揃えにする */
     font-size: 20px; /* テキストの大きさを指定 */
     background-color: rgb(231, 235, 227);
 }
@@ -467,7 +466,6 @@ table2{
 td2{
     border: 3px solid black; /* セルの枠線の太さと色を指定 */
     padding: 8px; /* セル内の余白を調整 */
-    text-align: center; /* テキストを中央揃えにする */
     font-size: 20px; /* テキストの大きさを指定 */
     background-color: rgb(231, 235, 227);
 }
