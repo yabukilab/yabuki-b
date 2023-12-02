@@ -406,7 +406,7 @@ a.gachagacha{
 }
 /*ここまで2枚目（遊び場）*/
 
-/*3枚目（必勝軒）デザイン*/
+/*3枚目（ラーメン屋）デザイン*/
 div.al3{
     display:flex;
     width: 100%;
@@ -442,20 +442,20 @@ div.shousai2{
 div.pt2{
     display: flex;
     padding: 5px;
-    height: 400px;
+    height: 350px;
     font-size: 40px;
 }
 
 /*おすすめポイント*/
 div.point2{
-    width: 50%;
+    width: 45%;
     font-size: 35px;
 }
 
 /*時間，定休日，場所*/
 div.jikan2{
     display: flow-root;
-    width: 50%;
+    width: 55%;
 }
 table2{
     border-collapse: collapse; /* テーブルの枠線を重ねる */
@@ -494,4 +494,4 @@ div.kansou3{
     padding: 15px;
     width: 33%;
 }
-/*ここまで3枚目（居酒屋）*/
+/*ここまで3枚目（ラーメン屋）*/
