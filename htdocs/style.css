@@ -345,3 +345,62 @@ a.naritake{
     border-radius: 5px;
 }
 /*ここまで2枚目（ラーメン）*/
+
+/*2枚目（遊び場）デザイン*/
+div.sh4{
+    display: flex;
+    text-align: center;
+    width: 100%;/*幅*/
+    height: 270px;/*高さ*/
+    background: rgb(158, 211, 216);/*背景色*/
+}
+
+/*レインボー*/
+div.rainbow{
+    width: 100%;
+    text-align: center;
+    color:black;
+    font-size: 30px;
+    
+}
+
+a.rainbow{
+    color: black;
+    border: 2px solid rgb(231, 235, 227);
+    padding: 5px;
+    background-color:rgb(231, 235, 227);
+    border-radius: 5px;
+}
+
+/*駄菓子屋*/
+div.dagasiya{
+    width: 100%;
+    text-align: center;
+    color:black;
+    font-size: 30px;
+}
+
+a.dagasiya{
+    color: black;
+    border: 2px solid rgb(231, 235, 227);
+    padding: 5px;
+    background-color:rgb(231, 235, 227);
+    border-radius: 5px;
+}
+
+/*ガチャガチャ*/
+div.gachagacha{
+    width: 100%;
+    text-align: center;
+    color:black;
+    font-size: 30px;
+}
+
+a.gachagacha{
+    color: black;
+    border: 2px solid rgb(231, 235, 227);
+    padding: 5px;
+    background-color:rgb(231, 235, 227);
+    border-radius: 5px;
+}
+/*ここまで2枚目（遊び場）*/
