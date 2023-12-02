@@ -239,15 +239,25 @@ div.pt{
 
 /*おすすめポイント*/
 div.point{
-    width: 70%;
-    font-size: 40px;
+    width: 60%;
+    font-size: 35px;
 }
 
 /*時間，定休日，場所*/
 div.jikan{
     display: flow-root;
-    width: 30%;
-    font-size: 30px;
+    width: 40%;
+}
+table {
+    border-collapse: collapse; /* テーブルの枠線を重ねる */
+    width: 100%; /* テーブルの幅を調整 */
+}
+
+td {
+    border: 1px solid black; /* セルの枠線の太さと色を指定 */
+    padding: 8px; /* セル内の余白を調整 */
+    text-align: center; /* テキストを中央揃えにする */
+    font-size: 20px; /* テキストの大きさを指定 */
 }
 /*感想（右下）*/
 div.kansou{
