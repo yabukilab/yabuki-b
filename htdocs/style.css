@@ -141,21 +141,6 @@ a.asobi{
 /*ここまで1枚目*/
 
 /*2枚目（居酒屋）デザイン*/
-div.sh2{
-    display: flex;
-    text-align: center;
-    width: 100%;/*幅*/
-    height: 270px;/*高さ*/
-    background: rgb(70, 80, 100);/*背景色*/
-}
-
-/*村さ来*/
-div.murasaki{
-    width: 100%;
-    text-align: center;
-    color:black;
-}
-
 /*村さ来（2枚目）スマホ用*/
 @media (max-width: 599px){
     div.sh2{
@@ -173,6 +158,21 @@ div.murasaki{
     div.sh2{
         font-size: 30px;
     }
+}
+
+div.sh2{
+    display: flex;
+    text-align: center;
+    width: 100%;/*幅*/
+    height: 270px;/*高さ*/
+    background: rgb(70, 80, 100);/*背景色*/
+}
+
+/*村さ来*/
+div.murasaki{
+    width: 100%;
+    text-align: center;
+    color:black;
 }
 
 a.murasaki{
