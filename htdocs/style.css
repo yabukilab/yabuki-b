@@ -242,23 +242,35 @@ div.pt {
     padding: 5px;
     height: 200px;
 }
-
-/*おすすめポイント*/
-div.point{
-    width: 50%;
-    font-size: 35px;
-}
-
 @media only screen and (max-width: 1000px) {
     div.pt {
         flex-direction: column; /* 縦方向に並べる */
         height: auto; /* 必要に応じて高さを自動調整する */
     }
 }
+
+/*おすすめポイント*/
+div.point{
+    width: 50%;
+    font-size: 35px;
+}
+@media only screen and (max-width: 1000px) {
+    div.point{
+        width: 100%;
+        font-size: 10px;
+    }
+}
+
 /*時間，定休日，場所*/
 div.jikan{
     display: flow-root;
     width: 50%;
+}
+@media only screen and (max-width: 1000px) {
+    div.jikan{
+        display: flow-root;
+        width: 100%;
+    }
 }
 table {
     border-collapse: collapse; /* テーブルの枠線を重ねる */
