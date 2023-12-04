@@ -143,19 +143,19 @@ a.asobi{
 /*2枚目（居酒屋）デザイン*/
 /*村さ来（2枚目）スマホ用*/
 @media (max-width: 599px){
-    div.sh2{
+    div.orenchi{
         font-size: 10px;
     }
 }
 /*村さ来（2枚目）タブレット用*/
 @media (min-width: 600px) and (max-width: 768px){
-    div.sh2{
+    div.orenchi{
         font-size: 27px;
     }
 }
 /*村さ来（3枚目）PC用*/
 @media (min-width: 769px){
-    div.sh2{
+    div.orenchi{
         font-size: 30px;
     }
 }
