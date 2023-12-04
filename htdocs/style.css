@@ -439,10 +439,20 @@ div.shousai2{
 }
 
 /*3枚目（右上）*/
+
+/*必勝軒*/
 div.pt2{
     display: flex;
     padding: 5px;
-    height: 350px;
+    height: 400px;
+    font-size: 40px;
+}
+
+/*夢を語れ*/
+div.pt22{
+    display: flex;
+    padding: 5px;
+    height: 300px;
     font-size: 40px;
 }
 
@@ -522,7 +532,7 @@ a.menu{
 div.shousai3{
     height: 1000px;
     display: flow-root;
-    background: rgb(229, 227, 88);
+    background: rgb(158, 211, 216);
     padding: 5px;
     color: black;
     width: 75%;
