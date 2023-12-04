@@ -1,7 +1,7 @@
 *{margin:0;padding:0}
 
 img {
-    max-width: 100%;
+    max-width: 100%; /*画像の幅を枠を超えないようにする*/
     height: auto; /* アスペクト比を維持するために height: auto; を追加 */
 }
 
@@ -83,6 +83,15 @@ div.sh{
     width: 100%;/*幅*/
     height: 270px;/*高さ*/
     background: rgb(231, 235, 227);/*背景色*/
+}
+@media only screen and (max-width: 1000px) {
+    div.sh{
+        display: flow-root;
+        text-align: center;
+        width: 100%;/*幅*/
+        height: 270px;/*高さ*/
+        background: rgb(231, 235, 227);/*背景色*/
+    }
 }
 
 /*「飲みたい！」デザイン*/
@@ -257,7 +266,7 @@ div.point{
 @media only screen and (max-width: 1000px) {
     div.point{
         width: 100%;
-        font-size: 10px;
+        font-size: 40px;
     }
 }
 
