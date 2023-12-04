@@ -144,7 +144,7 @@ a.asobi{
 
 @media only screen and (max-width: 600px) {
     div.sh2 {
-        font-size: 10px;
+        font-size: 10px !important;
     }
 }
 
