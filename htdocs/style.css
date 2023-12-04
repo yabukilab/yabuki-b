@@ -142,6 +142,12 @@ a.asobi{
 
 /*2枚目（居酒屋）デザイン*/
 
+@media only screen and (max-width: 600px) {
+    div.sh2 {
+        font-size: 10px;
+    }
+}
+
 div.sh2{
     display: flex;
     text-align: center;
@@ -149,29 +155,13 @@ div.sh2{
     height: 270px;/*高さ*/
     background: rgb(70, 80, 100);/*背景色*/
 }
-@media only screen and (max-width: 600px) {
-    /* スマホ用スタイル */
-    div.sh2 {
-        font-size: 10px;
-    }
 
-    /* スマホ用居酒屋名スタイル */
-    div.murasaki, div.orenchi, div.si-sha {
-        font-size: 20px;
-    }
-}
-
-@media only screen and (min-width: 601px) {
-    /* PC用スタイル */
-    div.sh2 {
-        font-size: 30px;
-    }
-}
 /*村さ来*/
 div.murasaki{
     width: 100%;
     text-align: center;
     color:black;
+    font-size: 25px;
 }
 
 a.murasaki{
@@ -187,6 +177,7 @@ div.orenchi{
     width: 100%;
     text-align: center;
     color:black;
+    font-size: 25px;
 }
 
 a.orenchi{
@@ -202,6 +193,7 @@ div.si-sha{
     width: 100%;
     text-align: center;
     color:black;
+    font-size: 25px;
 }
 
 a.si-sha{
@@ -316,8 +308,7 @@ div.hissyoken{
     width: 100%;
     text-align: center;
     color:black;
-    font-size: 30px;
-    
+    font-size: 25px;
 }
 
 a.hissyoken{
@@ -333,7 +324,7 @@ div.yumekata{
     width: 100%;
     text-align: center;
     color:black;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 a.yumekata{
@@ -349,7 +340,7 @@ div.naritake{
     width: 100%;
     text-align: center;
     color:black;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 a.naritake{
@@ -375,7 +366,7 @@ div.rainbow{
     width: 100%;
     text-align: center;
     color:black;
-    font-size: 30px;
+    font-size: 25px;
     
 }
 
@@ -392,7 +383,7 @@ div.dagasiya{
     width: 100%;
     text-align: center;
     color:black;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 a.dagasiya{
@@ -408,7 +399,7 @@ div.gachagacha{
     width: 100%;
     text-align: center;
     color:black;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 a.gachagacha{
