@@ -159,7 +159,7 @@ div.murasaki{
 /*村さ来（2枚目）スマホ用*/
 @media (max-width: 599px){
     div.sh2{
-        font-size: 24px;
+        font-size: 10px;
     }
 }
 /*村さ来（2枚目）タブレット用*/
