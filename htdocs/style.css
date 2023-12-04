@@ -1,8 +1,10 @@
 *{margin:0;padding:0}
-*img{
+
+img {
     max-width: 100%;
-    height: auto;
+    height: auto; /* アスペクト比を維持するために height: auto; を追加 */
 }
+
 /*上のホームバー*/
 body {
     margin: 0;
