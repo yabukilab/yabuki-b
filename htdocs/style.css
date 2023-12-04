@@ -237,19 +237,10 @@ div.shousai{
 }
 
 /*3枚目（右上）*/
-/* 通常のスタイル */
 div.pt {
     display: flex;
     padding: 5px;
     height: 200px;
-}
-
-/* スマートフォンの場合のスタイル */
-@media only screen and (max-width: 500px) {
-    div.pt {
-        flex-direction: column; /* 縦方向に並べる */
-        height: auto; /* 必要に応じて高さを自動調整する */
-    }
 }
 
 /*おすすめポイント*/
@@ -257,7 +248,6 @@ div.point{
     width: 50%;
     font-size: 35px;
 }
-
 
 /*時間，定休日，場所*/
 div.jikan{
