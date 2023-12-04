@@ -154,8 +154,25 @@ div.murasaki{
     width: 100%;
     text-align: center;
     color:black;
-    font-size: 30px;
-    
+}
+
+/*村さ来（2枚目）スマホ用*/
+@media (max-width: 599px){
+    div.sh2{
+        font-size: 24px;
+    }
+}
+/*村さ来（2枚目）タブレット用*/
+@media (min-width: 600px) and (max-width: 768px){
+    div.sh2{
+        font-size: 27px;
+    }
+}
+/*村さ来（3枚目）PC用*/
+@media (min-width: 769px){
+    div.sh2{
+        font-size: 30px;
+    }
 }
 
 a.murasaki{
@@ -171,7 +188,6 @@ div.orenchi{
     width: 100%;
     text-align: center;
     color:black;
-    font-size: 30px;
 }
 
 a.orenchi{
@@ -187,7 +203,6 @@ div.si-sha{
     width: 100%;
     text-align: center;
     color:black;
-    font-size: 30px;
 }
 
 a.si-sha{
