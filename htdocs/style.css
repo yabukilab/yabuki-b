@@ -602,7 +602,7 @@ div.shousai3{
 
 /*3枚目（右上）*/
 div.pt3{
-    display: flex;
+    flex-direction: column;
     padding: 5px;
     height: auto;
     font-size: 40px;
