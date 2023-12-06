@@ -452,7 +452,7 @@ td {
     background-color: rgb(231, 235, 227);
 }
 td.left{
-    width: 150px;
+    width: auto;
 }
 /*感想（右下）*/
 div.kansou{
