@@ -451,6 +451,9 @@ td {
     font-size: 20px; /* テキストの大きさを指定 */
     background-color: rgb(231, 235, 227);
 }
+td.left{
+    width: 200px;
+}
 /*感想（右下）*/
 div.kansou{
     display: flex;
