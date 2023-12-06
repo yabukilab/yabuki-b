@@ -489,12 +489,6 @@ div.al3{
     background: rgb(231, 235, 227);
 }
 
-/*店名紹介（左）*/
-div.tenmei{
-    background: rgb(231, 235, 227);
-    width: 25%;
-}
-
 a.mise{
     padding: 5px;
 }
@@ -578,12 +572,6 @@ div.al3{
     width: 100%;
     height: auto;
     background: rgb(231, 235, 227);
-}
-
-/*店名紹介（左）*/
-div.tenmei{
-    background: rgb(231, 235, 227);
-    width: 25%;
 }
 
 a.mise{
