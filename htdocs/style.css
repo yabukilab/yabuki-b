@@ -454,6 +454,10 @@ td {
 td.left{
     width: 150px;
 }
+
+a.ao{
+    color: blue;
+}
 /*感想（右下）*/
 div.kansou{
     display: flex;
