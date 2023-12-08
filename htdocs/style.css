@@ -412,7 +412,7 @@ div.shousai{
 
 /*3枚目（右上）*/
 div.pt {
-    flex-direction: column;
+    display: flow-root;
     padding: 5px;
     height: auto
 }
@@ -506,7 +506,7 @@ div.shousai2{
 
 /*必勝軒*/
 div.pt2{
-    flex-direction: column;
+    display: flow-root;
     padding: 5px;
     height: auto;
 }
@@ -589,7 +589,7 @@ div.shousai3{
 
 /*3枚目（右上）*/
 div.pt3{
-    flex-direction: column;
+    display: flow-root;
     padding: 5px;
     height: auto;
     font-size: 40px;
