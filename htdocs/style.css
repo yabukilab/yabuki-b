@@ -99,9 +99,9 @@ div.nomitai img {
 }
 a.nomi{
     color: black;
-    border: 2px solid rgb(231, 235, 227);
+    border: 2px solid white;
     padding: 5px;
-    background-color:rgb(231, 235, 227);
+    background-color:white;
     border-radius: 5px;
 }
 
