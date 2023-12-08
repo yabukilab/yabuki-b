@@ -568,7 +568,13 @@ div.al3{
     height: auto;
     background: rgb(231, 235, 227);
 }
-
+h1.nedan{
+    font-size: 15px;
+}
+a.nedan{
+    color: blue;
+    text-decoration: underline;
+}
 a.mise{
     padding: 5px;
 }
