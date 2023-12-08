@@ -59,20 +59,20 @@ div.top{
 h1.top{
     color: black; /*文字のカラー*/
     border: 2px solid rgb(231, 235, 227);
-    padding: 3px;
+    padding: 3px; 
     background-color:rgb(231, 235, 227);
     border-radius: 5px;
 }
 
 /*全体デザイン（1,2枚目）*/
 div.al{
-    display: flow-root;
-    width: 100%;
+    display: flow-root; /*要素を縦に並べる*/
+    width: 100%; /*横幅*/
 }
 
 /*「あなたは今どんな気分」*/
 div.c{
-    width: 100%;
+    width: 100%; 
     height: 45px;
     background-color:rgb(60, 190, 240);
 }
@@ -80,7 +80,7 @@ div.c{
 /*1枚目の下デザイン*/
 div.sh{
     display: flex;
-    text-align: center;
+    text-align: center; /*中央揃え*/
     width: 100%;/*幅*/
     height: 270px;/*高さ*/
     background: rgb(231, 235, 227);/*背景色*/
@@ -92,10 +92,6 @@ div.nomitai{
     text-align: center;
     color:black;
     font-size: 30px;
-    background-image: url(飲み（テスト）.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 div.nomitai img {
     width: 300px;
