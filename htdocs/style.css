@@ -102,7 +102,7 @@ a.nomi{
     border: 2px solid white;
     padding: 5px;
     background-color:white;
-    border-radius: 5px;
+    border-radius: 5px; /*角を丸める*/
 }
 
 /*「食べたい！」デザイン*/
@@ -111,10 +111,6 @@ div.tabetai{
     text-align: center;
     color:black;
     font-size: 30px;
-    background-image:url(食事（テスト）.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 div.tabetai img {
     width: 300px;
@@ -122,10 +118,10 @@ div.tabetai img {
 }
 a.taberu{
     color: black;
-    border: 2px solid rgb(231, 235, 227);
+    border: 2px solid white;
     padding: 5px;
-    background-color:rgb(231, 235, 227);
-    border-radius: 5px;
+    background-color:white;
+    border-radius: 5px; /*角を丸める*/
 }
 
 /*「遊びたい！」デザイン*/
@@ -134,10 +130,6 @@ div.asobitai{
     text-align: center;
     color:black;
     font-size: 30px;
-    background-image:url(遊び（テスト）.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 div.asobitai img {
     width: 300px;
@@ -145,10 +137,10 @@ div.asobitai img {
 }
 a.asobi{
     color: black;
-    border: 2px solid rgb(231, 235, 227);
+    border: 2px solid white;
     padding: 5px;
-    background-color:rgb(231, 235, 227);
-    border-radius: 5px;
+    background-color:white;
+    border-radius: 5px; /*角を丸める*/
 }
 /*ここまで1枚目*/
 
@@ -162,6 +154,7 @@ div.sh2{
     background: rgb(70, 80, 100);/*背景色*/
     font-size: 30px;
 }
+/*スマホ対応*/
 @media only screen and (max-width: 1000px) {
     div.sh2{
         display: flex;
@@ -460,6 +453,7 @@ div.kansou{
     display: flex;
     padding: 5px;
     font-size: 10px;
+    height: auto;
 }
 
 /*感想（１～３）*/
