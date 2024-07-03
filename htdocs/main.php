@@ -83,6 +83,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画像選択プログラム</title>
+    <style>
+        #image {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>画像選択プログラム</h1>
+    <select id="imageSelector">
+        <option value="">選択してください</option>
+        <option value="1塁.jpg">1塁</option>
+        <option value="2塁.jpg">2塁</option>
+        <option value="3塁.jpg">3塁</option>
+        <option value="1.2塁.jpg">1.2塁</option>
+        <option value="1.3塁.jpg">1.3塁</option>
+        <option value="2.3塁.jpg">2.3塁</option>
+        <option value="満塁.jpg">満塁</option>
+    </select>
+    <div>
+        <img id="image" src="" alt="選択された画像がここに表示されます">
+    </div>
+
+    <script>
+        document.getElementById('imageSelector').addEventListener('change', function() {
+            var selectedValue = this.value;
+            var image = document.getElementById('image');
+            if (selectedValue) {
+                image.src = selectedValue;
+            } else {
+                image.src = '';
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>データ入力と表示</title>

@@ -9,8 +9,8 @@
 <body>
     <div class="header">ここに文字が入ります</div>
     <div class="links">
-        <a href="https://example1.com">リンク1</a>
-        <a href="https://example2.com">リンク2</a>
+        <a href="https://example1.com">試合情報の入力（チーム関係者はこちら）</a>
+        <a href="https://example2.com">試合情報の閲覧（ご家族,ご親戚の方はこちら）</a>
     </div>
 </body>
 </html>
