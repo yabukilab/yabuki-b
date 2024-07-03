@@ -1,0 +1,36 @@
+body {
+    background-color: black;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-size: 2em;
+}
+
+.centered-text {
+    text-align: center;
+}
+
+.centered-button {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    text-align: center;
+    width: 100%;
+}
+
+button {
+    background-color: black;
+    color: red;
+    border: 2px solid red;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: red;
+    color: black;
+}
