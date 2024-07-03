@@ -116,6 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <table>
     <tr>
         <th>ID</th>
+        <th>Team</th>
         <th>Inning1</th>
         <th>Inning2</th>
         <th>Inning3</th>
@@ -136,6 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         while($row = $result->fetch_assoc()) {
             echo "<tr>";
             echo "<td>" . $row["id"] . "</td>";
+            echo "<td>" . $row["Team"] . "</td>";
             echo "<td>" . $row["Inning1"] . "</td>";
             echo "<td>" . $row["Inning2"] . "</td>";
             echo "<td>" . $row["Inning3"] . "</td>";
@@ -148,10 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "</tr>";
         }
     } else {
-        // データがない場合でも空の行を表示
-        echo "<tr>";
-        echo "<td colspan='10'>No data found</td>";
-        echo "</tr>";
+        echo "<tr><td colspan='11'>No data found</td></tr>";
     }
     $conn->close();
     ?>
