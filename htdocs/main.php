@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 break;
             } elseif (empty($row['Inning9'])) {
                 $next_field = 'Inning9';
-       <         $record_id = $row['id'];
+               $record_id = $row['id'];
                 break;
             }
         }
