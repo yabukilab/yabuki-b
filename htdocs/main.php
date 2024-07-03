@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 break;
             } elseif (empty($row['Inning9'])) {
                 $next_field = 'Inning9';
-                $record_id = $row['id'];
+       <         $record_id = $row['id'];
                 break;
             }
         }
@@ -89,7 +89,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>画像選択プログラム</title>
     <style>
-        #image {
+        .image-container {
+            display: none;
+        }
+        #option1:checked ~ .image1,
+        #option2:checked ~ .image2,
+        #option3:checked ~ .image3,
+        #option4:checked ~ .image4,
+        #option5:checked ~ .image5,
+        #option6:checked ~ .image6,
+        #option7:checked ~ .image7 {
+            display: block;
+        }
+        .image-container img {
             max-width: 100%;
             height: auto;
         }
@@ -97,33 +109,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <h1>画像選択プログラム</h1>
-    <select id="imageSelector">
-        <option value="">選択してください</option>
-        <option value="1塁.jpg">1塁</option>
-        <option value="2塁.jpg">2塁</option>
-        <option value="3塁.jpg">3塁</option>
-        <option value="1.2塁.jpg">1.2塁</option>
-        <option value="1.3塁.jpg">1.3塁</option>
-        <option value="2.3塁.jpg">2.3塁</option>
-        <option value="満塁.jpg">満塁</option>
-    </select>
-    <div>
-        <img id="image" src="" alt="選択された画像がここに表示されます">
-    </div>
+    <input type="radio" id="option1" name="image" hidden>
+    <input type="radio" id="option2" name="image" hidden>
+    <input type="radio" id="option3" name="image" hidden>
+    <input type="radio" id="option4" name="image" hidden>
+    <input type="radio" id="option5" name="image" hidden>
+    <input type="radio" id="option6" name="image" hidden>
+    <input type="radio" id="option7" name="image" hidden>
 
-    <script>
-        document.getElementById('imageSelector').addEventListener('change', function() {
-            var selectedValue = this.value;
-            var image = document.getElementById('image');
-            if (selectedValue) {
-                image.src = selectedValue;
-            } else {
-                image.src = '';
-            }
-        });
-    </script>
+    <label for="option1">1塁</label>
+    <label for="option2">2塁</label>
+    <label for="option3">3塁</label>
+    <label for="option4">1.2塁</label>
+    <label for="option5">1.3塁</label>
+    <label for="option6">2.3塁</label>
+    <label for="option7">満塁</label>
+
+    <div class="image-container image1">
+        <img src="1塁.jpg" alt="1塁">
+    </div>
+    <div class="image-container image2">
+        <img src="2塁.jpg" alt="2塁">
+    </div>
+    <div class="image-container image3">
+        <img src="3塁.jpg" alt="3塁">
+    </div>
+    <div class="image-container image4">
+        <img src="1.2塁.jpg" alt="1.2塁">
+    </div>
+    <div class="image-container image5">
+        <img src="1.3塁.jpg" alt="1.3塁">
+    </div>
+    <div class="image-container image6">
+        <img src="2.3塁.jpg" alt="2.3塁">
+    </div>
+    <div class="image-container image7">
+        <img src="満塁.jpg" alt="満塁">
+    </div>
 </body>
 </html>
+
 
 <!DOCTYPE html>
 <html>
