@@ -1,8 +1,11 @@
 .container {
+    position: relative;
     text-align: right; /* ボタンと画像を右寄せ */
 }
 .image-container {
     display: none;
+    position: absolute;
+    right: 0; /* 画面の右端に配置 */
     margin-top: 10px; /* ボタンと画像の間に少しスペースを追加 */
 }
 #option1:checked ~ .label-container .image1,
@@ -15,12 +18,14 @@
     display: block;
 }
 .image-container img {
-    max-width: 100%; /* 画像の大きさを半分に */
+    max-width: 50%; /* 画像の大きさを半分に */
     height: auto;
 }
 .label-container {
     display: inline-block; /* ラベルをインラインブロックにする */
     text-align: right; /* ラベルを右寄りに */
+    position: relative;
+    right: 0; /* 画面の右端に配置 */
 }
 label {
     display: inline-block;

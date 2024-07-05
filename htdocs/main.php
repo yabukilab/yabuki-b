@@ -144,28 +144,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     <title>画像選択プログラム</title>
     <style>
         .container {
+            position: relative;
             text-align: right; /* ボタンと画像を右寄せ */
         }
         .image-container {
             display: none;
+            position: absolute;
+            right: 0; /* 画面の右端に配置 */
             margin-top: 10px; /* ボタンと画像の間に少しスペースを追加 */
         }
-        #option1:checked ~ .image1,
-        #option2:checked ~ .image2,
-        #option3:checked ~ .image3,
-        #option4:checked ~ .image4,
-        #option5:checked ~ .image5,
-        #option6:checked ~ .image6,
-        #option7:checked ~ .image7 {
+        #option1:checked ~ .label-container .image1,
+        #option2:checked ~ .label-container .image2,
+        #option3:checked ~ .label-container .image3,
+        #option4:checked ~ .label-container .image4,
+        #option5:checked ~ .label-container .image5,
+        #option6:checked ~ .label-container .image6,
+        #option7:checked ~ .label-container .image7 {
             display: block;
         }
         .image-container img {
-            max-width: 75%; /* 画像の大きさを半分に */
+            max-width: 50%; /* 画像の大きさを半分に */
             height: auto;
         }
         .label-container {
             display: inline-block; /* ラベルをインラインブロックにする */
             text-align: right; /* ラベルを右寄りに */
+            position: relative;
+            right: 0; /* 画面の右端に配置 */
         }
         label {
             display: inline-block;
@@ -217,4 +222,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     </div>
 </body>
 </html>
-
