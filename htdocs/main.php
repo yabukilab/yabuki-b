@@ -160,25 +160,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
             max-width: 100%;
             height: auto;
         }
+        .label-container {
+            text-align: right; /* ラベルを右寄りに */
+        }
+        label {
+            display: inline-block;
+            margin: 0 5px;
+        }
     </style>
 </head>
 <body>
     <h1>画像選択プログラム</h1>
-    <input type="radio" id="option1" name="image" hidden>
-    <input type="radio" id="option2" name="image" hidden>
-    <input type="radio" id="option3" name="image" hidden>
-    <input type="radio" id="option4" name="image" hidden>
-    <input type="radio" id="option5" name="image" hidden>
-    <input type="radio" id="option6" name="image" hidden>
-    <input type="radio" id="option7" name="image" hidden>
-
-    <label for="option1">1塁</label>
-    <label for="option2">2塁</label>
-    <label for="option3">3塁</label>
-    <label for="option4">1.2塁</label>
-    <label for="option5">1.3塁</label>
-    <label for="option6">2.3塁</label>
-    <label for="option7">満塁</label>
+    <div class="label-container">
+        <input type="radio" id="option1" name="image" hidden>
+        <label for="option1">1塁</label>
+        <input type="radio" id="option2" name="image" hidden>
+        <label for="option2">2塁</label>
+        <input type="radio" id="option3" name="image" hidden>
+        <label for="option3">3塁</label>
+        <input type="radio" id="option4" name="image" hidden>
+        <label for="option4">1.2塁</label>
+        <input type="radio" id="option5" name="image" hidden>
+        <label for="option5">1.3塁</label>
+        <input type="radio" id="option6" name="image" hidden>
+        <label for="option6">2.3塁</label>
+        <input type="radio" id="option7" name="image" hidden>
+        <label for="option7">満塁</label>
+    </div>
 
     <div class="image-container image1">
         <img src="1塁.jpg" alt="1塁">
