@@ -191,29 +191,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
             <label for="option6">2.3塁</label>
             <input type="radio" id="option7" name="image" hidden>
             <label for="option7">満塁</label>
-        </div>
 
-        <div class="image-container image1">
-            <img src="1塁.jpg" alt="1塁">
-        </div>
-        <div class="image-container image2">
-            <img src="2塁.jpg" alt="2塁">
-        </div>
-        <div class="image-container image3">
-            <img src="3塁.jpg" alt="3塁">
-        </div>
-        <div class="image-container image4">
-            <img src="1.2塁.jpg" alt="1.2塁">
-        </div>
-        <div class="image-container image5">
-            <img src="1.3塁.jpg" alt="1.3塁">
-        </div>
-        <div class="image-container image6">
-            <img src="2.3塁.jpg" alt="2.3塁">
-        </div>
-        <div class="image-container image7">
-            <img src="満塁.jpg" alt="満塁">
+            <div class="image-container image1">
+                <img src="1塁.jpg" alt="1塁">
+            </div>
+            <div class="image-container image2">
+                <img src="2塁.jpg" alt="2塁">
+            </div>
+            <div class="image-container image3">
+                <img src="3塁.jpg" alt="3塁">
+            </div>
+            <div class="image-container image4">
+                <img src="1.2塁.jpg" alt="1.2塁">
+            </div>
+            <div class="image-container image5">
+                <img src="1.3塁.jpg" alt="1.3塁">
+            </div>
+            <div class="image-container image6">
+                <img src="2.3塁.jpg" alt="2.3塁">
+            </div>
+            <div class="image-container image7">
+                <img src="満塁.jpg" alt="満塁">
+            </div>
         </div>
     </div>
 </body>
 </html>
+
