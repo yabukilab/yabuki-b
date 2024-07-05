@@ -211,9 +211,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     </div>
 </body>
 </html>
-
- <!-- リセットCSS -->
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@3.0.2/destyle.css">
-  
-  <!-- style.css -->
-  <link rel="stylesheet" href="./css/style.css">
