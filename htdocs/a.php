@@ -14,74 +14,23 @@ if ($conn->connect_error) {
 }
 
 // フォームが送信された場合、データベースにデータを挿入
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['image'])) {
     $new_value = $_POST['inning'];
     $image = $_FILES['image']['tmp_name'];
     $imgData = addslashes(file_get_contents($image));
 
-    // 次の空のフィールドを持つ最初のレコードを取得
-    $next_field = '';
-    $record_id = null;
-
-    $sql = "SELECT * FROM my_table ORDER BY id ASC";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            if (empty($row['Inning1'])) {
-                $next_field = 'Inning1';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning2'])) {
-                $next_field = 'Inning2';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning3'])) {
-                $next_field = 'Inning3';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning4'])) {
-                $next_field = 'Inning4';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning5'])) {
-                $next_field = 'Inning5';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning6'])) {
-                $next_field = 'Inning6';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning7'])) {
-                $next_field = 'Inning7';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning8'])) {
-                $next_field = 'Inning8';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning9'])) {
-                $next_field = 'Inning9';
-               $record_id = $row['id'];
-                break;
-            }
-        }
-    }
-
-    if ($next_field) {
-        // 次の空のフィールドにデータを挿入
-        $sql = "UPDATE my_table SET $next_field='$new_value', image='$imgData' WHERE id=$record_id";
-    } else {
-        // すべてのフィールドが埋まっている場合、新しいレコードを作成
-        $sql = "INSERT INTO my_table (Inning1, image) VALUES ('$new_value', '$imgData')";
-    }
+    // 画像とInningのデータをimages_tableに挿入
+    $sql = "INSERT INTO images_table (inning, image) VALUES ('$new_value', '$imgData')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "データが正常に更新されました";
+        echo "画像が正常にアップロードされました";
     } else {
         echo "エラー: " . $sql . "<br>" . $conn->error;
     }
 }
+
+// データベース接続を閉じる
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -194,29 +143,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <table>
     <tr>
         <th>ID</th>
-        <th>Team</th>
-        <th>Inning1</th>
-        <th>Inning2</th>
-        <th>Inning3</th>
-        <th>Inning4</th>
-        <th>Inning5</th>
-        <th>Inning6</th>
-        <th>Inning7</th>
-        <th>Inning8</th>
-        <th>Inning9</th>
+        <th>Inning</th>
         <th>Image</th>
     </tr>
     <?php
     // データを取得するSQLクエリ
-    $sql = "SELECT * FROM my_table ORDER BY id ASC";
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT * FROM images_table ORDER BY id ASC";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         // データ出力
-        while($
+        while($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row["id"] . "</td>";
+            echo "<td>" . $row["inning"] . "</td>";
+            echo '<td><img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" width="100"/></td>';
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='3'>No data found</td></tr>";
+    }
+    $conn->close();
+    ?>
+</table>
 
-
-
-
-
-
+</body>
+</html>
