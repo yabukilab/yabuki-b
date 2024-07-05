@@ -1,24 +1,4 @@
-html {
-    font-family: 'Noto Sans JP', sans-serif;
-  }
-  
-  .pop {font-family: 'Poppins', sans-serif;}
-  
-  .container {
-    width: 90%;
-    max-width: 1120px;
-    margin: 0 auto;
-    position: relative;
-  }
-  
-  .flex {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .image-container {
+.image-container {
     display: none;
     text-align: right; /* コンテナ内の内容を右寄りに */
 }
