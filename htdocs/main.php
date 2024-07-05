@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
             display: block;
         }
         .image-container img {
-            max-width: 50%; /* 画像の大きさを半分に */
+            max-width: 75%; /* 画像の大きさを半分に */
             height: auto;
         }
         .label-container {
