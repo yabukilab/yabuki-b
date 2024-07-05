@@ -14,141 +14,50 @@ if ($conn->connect_error) {
 }
 
 // フォームが送信された場合、データベースにデータを挿入
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     $new_value = $_POST['inning'];
 
-    // 次の空のフィールドを持つ最初のレコードを取得
-    $next_field = '';
-    $record_id = null;
+    // フィールドの順番
+    $fields = ['Inning1', 'Inning2', 'Inning3', 'Inning4', 'Inning5', 'Inning6', 'Inning7', 'Inning8', 'Inning9'];
 
+    // 現在の入力位置を追跡するためのクエリ
     $sql = "SELECT * FROM my_table ORDER BY id ASC";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            if (empty($row['Inning1'])) {
-                $next_field = 'Inning1';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning2'])) {
-                $next_field = 'Inning2';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning3'])) {
-                $next_field = 'Inning3';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning4'])) {
-                $next_field = 'Inning4';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning5'])) {
-                $next_field = 'Inning5';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning6'])) {
-                $next_field = 'Inning6';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning7'])) {
-                $next_field = 'Inning7';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning8'])) {
-                $next_field = 'Inning8';
-                $record_id = $row['id'];
-                break;
-            } elseif (empty($row['Inning9'])) {
-                $next_field = 'Inning9';
-               $record_id = $row['id'];
-                break;
+    $updated = false;
+    foreach ($fields as $field) {
+        if ($result->num_rows > 0) {
+            $result->data_seek(0); // 結果セットのポインタを最初に戻す
+            while ($row = $result->fetch_assoc()) {
+                if (empty($row[$field])) {
+                    $record_id = $row['id'];
+                    $sql_update = "UPDATE my_table SET $field='$new_value' WHERE id=$record_id";
+                    if ($conn->query($sql_update) === TRUE) {
+                        $updated = true;
+                        break 2; // 内側と外側のループを終了
+                    } else {
+                        echo "エラー: " . $sql_update . "<br>" . $conn->error;
+                    }
+                }
             }
         }
     }
 
-    if ($next_field) {
-        // 次の空のフィールドにデータを挿入
-        $sql = "UPDATE my_table SET $next_field='$new_value' WHERE id=$record_id";
-    } else {
+    if (!$updated) {
         // すべてのフィールドが埋まっている場合、新しいレコードを作成
-        $sql = "INSERT INTO my_table (Inning1) VALUES ('$new_value')";
+        $sql_insert = "INSERT INTO my_table (Inning1) VALUES ('$new_value')";
+        if ($conn->query($sql_insert) === TRUE) {
+            echo "新しいレコードが正常に作成されました";
+        } else {
+            echo "エラー: " . $sql_insert . "<br>" . $conn->error;
+        }
     }
 
-    if ($conn->query($sql) === TRUE) {
-        echo "データが正常に更新されました";
-    } else {
-        echo "エラー: " . $sql . "<br>" . $conn->error;
-    }
+    // ページをリロードしてPOSTデータをクリア
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>画像選択プログラム</title>
-    <style>
-        .image-container {
-            display: none;
-        }
-        #option1:checked ~ .image1,
-        #option2:checked ~ .image2,
-        #option3:checked ~ .image3,
-        #option4:checked ~ .image4,
-        #option5:checked ~ .image5,
-        #option6:checked ~ .image6,
-        #option7:checked ~ .image7 {
-            display: block;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
-</head>
-<body>
-    <h1>画像選択プログラム</h1>
-    <input type="radio" id="option1" name="image" hidden>
-    <input type="radio" id="option2" name="image" hidden>
-    <input type="radio" id="option3" name="image" hidden>
-    <input type="radio" id="option4" name="image" hidden>
-    <input type="radio" id="option5" name="image" hidden>
-    <input type="radio" id="option6" name="image" hidden>
-    <input type="radio" id="option7" name="image" hidden>
-
-    <label for="option1">1塁</label>
-    <label for="option2">2塁</label>
-    <label for="option3">3塁</label>
-    <label for="option4">1.2塁</label>
-    <label for="option5">1.3塁</label>
-    <label for="option6">2.3塁</label>
-    <label for="option7">満塁</label>
-
-    <div class="image-container image1">
-        <img src="1塁.jpg" alt="1塁">
-    </div>
-    <div class="image-container image2">
-        <img src="2塁.jpg" alt="2塁">
-    </div>
-    <div class="image-container image3">
-        <img src="3塁.jpg" alt="3塁">
-    </div>
-    <div class="image-container image4">
-        <img src="1.2塁.jpg" alt="1.2塁">
-    </div>
-    <div class="image-container image5">
-        <img src="1.3塁.jpg" alt="1.3塁">
-    </div>
-    <div class="image-container image6">
-        <img src="2.3塁.jpg" alt="2.3塁">
-    </div>
-    <div class="image-container image7">
-        <img src="満塁.jpg" alt="満塁">
-    </div>
-</body>
-</html>
-
 
 <!DOCTYPE html>
 <html>
