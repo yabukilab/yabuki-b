@@ -135,3 +135,70 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画像選択プログラム</title>
+    <style>
+        .image-container {
+            display: none;
+        }
+        #option1:checked ~ .image1,
+        #option2:checked ~ .image2,
+        #option3:checked ~ .image3,
+        #option4:checked ~ .image4,
+        #option5:checked ~ .image5,
+        #option6:checked ~ .image6,
+        #option7:checked ~ .image7 {
+            display: block;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>画像選択プログラム</h1>
+    <input type="radio" id="option1" name="image" hidden>
+    <input type="radio" id="option2" name="image" hidden>
+    <input type="radio" id="option3" name="image" hidden>
+    <input type="radio" id="option4" name="image" hidden>
+    <input type="radio" id="option5" name="image" hidden>
+    <input type="radio" id="option6" name="image" hidden>
+    <input type="radio" id="option7" name="image" hidden>
+
+    <label for="option1">1塁</label>
+    <label for="option2">2塁</label>
+    <label for="option3">3塁</label>
+    <label for="option4">1.2塁</label>
+    <label for="option5">1.3塁</label>
+    <label for="option6">2.3塁</label>
+    <label for="option7">満塁</label>
+
+    <div class="image-container image1">
+        <img src="1塁.jpg" alt="1塁">
+    </div>
+    <div class="image-container image2">
+        <img src="2塁.jpg" alt="2塁">
+    </div>
+    <div class="image-container image3">
+        <img src="3塁.jpg" alt="3塁">
+    </div>
+    <div class="image-container image4">
+        <img src="1.2塁.jpg" alt="1.2塁">
+    </div>
+    <div class="image-container image5">
+        <img src="1.3塁.jpg" alt="1.3塁">
+    </div>
+    <div class="image-container image6">
+        <img src="2.3塁.jpg" alt="2.3塁">
+    </div>
+    <div class="image-container image7">
+        <img src="満塁.jpg" alt="満塁">
+    </div>
+</body>
+</html>
