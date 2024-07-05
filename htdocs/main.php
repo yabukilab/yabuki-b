@@ -143,9 +143,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>画像選択プログラム</title>
     <style>
+        .container {
+            text-align: right; /* ボタンと画像を右寄せ */
+        }
         .image-container {
             display: none;
-            text-align: right; /* コンテナ内の内容を右寄りに */
+            margin-top: 10px; /* ボタンと画像の間に少しスペースを追加 */
         }
         #option1:checked ~ .image1,
         #option2:checked ~ .image2,
@@ -157,10 +160,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
             display: block;
         }
         .image-container img {
-            max-width: 100%;
+            max-width: 50%; /* 画像の大きさを半分に */
             height: auto;
         }
         .label-container {
+            display: inline-block; /* ラベルをインラインブロックにする */
             text-align: right; /* ラベルを右寄りに */
         }
         label {
@@ -171,21 +175,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
 </head>
 <body>
     <h1>画像選択プログラム</h1>
-    <div class="label-container">
-        <input type="radio" id="option1" name="image" hidden>
-        <label for="option1">1塁</label>
-        <input type="radio" id="option2" name="image" hidden>
-        <label for="option2">2塁</label>
-        <input type="radio" id="option3" name="image" hidden>
-        <label for="option3">3塁</label>
-        <input type="radio" id="option4" name="image" hidden>
-        <label for="option4">1.2塁</label>
-        <input type="radio" id="option5" name="image" hidden>
-        <label for="option5">1.3塁</label>
-        <input type="radio" id="option6" name="image" hidden>
-        <label for="option6">2.3塁</label>
-        <input type="radio" id="option7" name="image" hidden>
-        <label for="option7">満塁</label>
+    <div class="container">
+        <div class="label-container">
+            <input type="radio" id="option1" name="image" hidden>
+            <label for="option1">1塁</label>
+            <input type="radio" id="option2" name="image" hidden>
+            <label for="option2">2塁</label>
+            <input type="radio" id="option3" name="image" hidden>
+            <label for="option3">3塁</label>
+            <input type="radio" id="option4" name="image" hidden>
+            <label for="option4">1.2塁</label>
+            <input type="radio" id="option5" name="image" hidden>
+            <label for="option5">1.3塁</label>
+            <input type="radio" id="option6" name="image" hidden>
+            <label for="option6">2.3塁</label>
+            <input type="radio" id="option7" name="image" hidden>
+            <label for="option7">満塁</label>
+        </div>
 
         <div class="image-container image1">
             <img src="1塁.jpg" alt="1塁">
