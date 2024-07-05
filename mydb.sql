@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.4.32-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: mydb
+-- Host: localhost    Database: baseball
 -- ------------------------------------------------------
 -- Server version	10.4.32-MariaDB
 
@@ -16,56 +16,61 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `table1`
+-- Table structure for table `images_table`
 --
 
-DROP TABLE IF EXISTS `table1`;
+DROP TABLE IF EXISTS `images_table`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `table1` (
+CREATE TABLE `images_table` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `varcharA` varchar(40) NOT NULL,
-  `intA` int(11) NOT NULL,
-  `intB` int(11) NOT NULL,
+  `inning` varchar(255) NOT NULL,
+  `image` longblob NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `table1`
+-- Dumping data for table `images_table`
 --
 
-LOCK TABLES `table1` WRITE;
-/*!40000 ALTER TABLE `table1` DISABLE KEYS */;
-INSERT INTO `table1` VALUES (2,'B',2980,0),(3,'D',200,121);
-/*!40000 ALTER TABLE `table1` ENABLE KEYS */;
+LOCK TABLES `images_table` WRITE;
+/*!40000 ALTER TABLE `images_table` DISABLE KEYS */;
+/*!40000 ALTER TABLE `images_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `table2`
+-- Table structure for table `my_table`
 --
 
-DROP TABLE IF EXISTS `table2`;
+DROP TABLE IF EXISTS `my_table`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `table2` (
+CREATE TABLE `my_table` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `varcharA` varchar(40) NOT NULL,
-  `intA` int(11) NOT NULL,
-  `intB` int(11) NOT NULL,
-  `varcharB` varchar(40) NOT NULL DEFAULT '',
+  `Team` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Inning1` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '''''',
+  `Inning2` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '''''',
+  `Inning3` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '''''',
+  `Inning4` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '''''',
+  `Inning5` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '''''',
+  `Inning6` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '''''',
+  `Inning7` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '''''',
+  `Inning8` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '''''',
+  `Inning9` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '''''',
+  `image` longblob DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `table2`
+-- Dumping data for table `my_table`
 --
 
-LOCK TABLES `table2` WRITE;
-/*!40000 ALTER TABLE `table2` DISABLE KEYS */;
-INSERT INTO `table2` VALUES (1,'A',1280,1,'product7.png'),(2,'B',2980,0,'product6.png'),(3,'C',198,121,'');
-/*!40000 ALTER TABLE `table2` ENABLE KEYS */;
+LOCK TABLES `my_table` WRITE;
+/*!40000 ALTER TABLE `my_table` DISABLE KEYS */;
+INSERT INTO `my_table` VALUES (2,'','','','','','','','','','',NULL),(3,NULL,'','','','','','','','','',NULL);
+/*!40000 ALTER TABLE `my_table` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -77,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-05 14:57:44
+-- Dump completed on 2024-07-05 15:04:29
