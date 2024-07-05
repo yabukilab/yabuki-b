@@ -145,7 +145,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     <style>
         .image-container {
             display: none;
-            text-align: right; /* コンテナ内の内容を右寄りに */
         }
         #option1:checked ~ .image1,
         #option2:checked ~ .image2,
@@ -203,4 +202,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     </div>
 </body>
 </html>
-
