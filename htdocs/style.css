@@ -17,3 +17,21 @@ html {
     flex-wrap: wrap;
     align-items: center;
   }
+
+  .image-container {
+    display: none;
+    text-align: right; /* コンテナ内の内容を右寄りに */
+}
+#option1:checked ~ .image1,
+#option2:checked ~ .image2,
+#option3:checked ~ .image3,
+#option4:checked ~ .image4,
+#option5:checked ~ .image5,
+#option6:checked ~ .image6,
+#option7:checked ~ .image7 {
+    display: block;
+}
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
