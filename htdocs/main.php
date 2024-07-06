@@ -144,22 +144,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     <title>画像選択プログラム</title>
     <style>
         .container {
-            position: relative;
             text-align: right; /* ボタンと画像を右寄せ */
         }
         .image-container {
             display: none;
-            position: absolute;
-            right: 0; /* 画面の右端に配置 */
             margin-top: 10px; /* ボタンと画像の間に少しスペースを追加 */
         }
-        #option1:checked ~ .label-container .image1,
-        #option2:checked ~ .label-container .image2,
-        #option3:checked ~ .label-container .image3,
-        #option4:checked ~ .label-container .image4,
-        #option5:checked ~ .label-container .image5,
-        #option6:checked ~ .label-container .image6,
-        #option7:checked ~ .label-container .image7 {
+        #option1:checked ~ .image1,
+        #option2:checked ~ .image2,
+        #option3:checked ~ .image3,
+        #option4:checked ~ .image4,
+        #option5:checked ~ .image5,
+        #option6:checked ~ .image6,
+        #option7:checked ~ .image7 {
             display: block;
         }
         .image-container img {
@@ -167,10 +164,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
             height: auto;
         }
         .label-container {
-            display: inline-block; /* ラベルをインラインブロックにする */
-            text-align: right; /* ラベルを右寄りに */
-            position: relative;
-            right: 0; /* 画面の右端に配置 */
+            display: flex; /* ラベルを横並びに */
+            justify-content: flex-end; /* 右寄せ */
+            flex-wrap: wrap;
         }
         label {
             display: inline-block;
@@ -196,28 +192,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
             <label for="option6">2.3塁</label>
             <input type="radio" id="option7" name="image" hidden>
             <label for="option7">満塁</label>
+        </div>
 
-            <div class="image-container image1">
-                <img src="1塁.jpg" alt="1塁">
-            </div>
-            <div class="image-container image2">
-                <img src="2塁.jpg" alt="2塁">
-            </div>
-            <div class="image-container image3">
-                <img src="3塁.jpg" alt="3塁">
-            </div>
-            <div class="image-container image4">
-                <img src="1.2塁.jpg" alt="1.2塁">
-            </div>
-            <div class="image-container image5">
-                <img src="1.3塁.jpg" alt="1.3塁">
-            </div>
-            <div class="image-container image6">
-                <img src="2.3塁.jpg" alt="2.3塁">
-            </div>
-            <div class="image-container image7">
-                <img src="満塁.jpg" alt="満塁">
-            </div>
+        <div class="image-container image1">
+            <img src="1塁.jpg" alt="1塁">
+        </div>
+        <div class="image-container image2">
+            <img src="2塁.jpg" alt="2塁">
+        </div>
+        <div class="image-container image3">
+            <img src="3塁.jpg" alt="3塁">
+        </div>
+        <div class="image-container image4">
+            <img src="1.2塁.jpg" alt="1.2塁">
+        </div>
+        <div class="image-container image5">
+            <img src="1.3塁.jpg" alt="1.3塁">
+        </div>
+        <div class="image-container image6">
+            <img src="2.3塁.jpg" alt="2.3塁">
+        </div>
+        <div class="image-container image7">
+            <img src="満塁.jpg" alt="満塁">
         </div>
     </div>
 </body>
