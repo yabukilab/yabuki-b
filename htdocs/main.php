@@ -144,9 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     <title>画像選択プログラム</title>
     <style>
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end; /* ボタンと画像を右寄せ */
+            text-align: right; /* ボタンと画像を右寄せ */
         }
         .label-container {
             display: flex; /* ラベルを横並びに */
@@ -162,7 +160,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
         .image-container {
             display: none;
         }
-        input[type="radio"]:checked + label ~ .image-container {
+        #option1:checked ~ .image-display .image1,
+        #option2:checked ~ .image-display .image2,
+        #option3:checked ~ .image-display .image3,
+        #option4:checked ~ .image-display .image4,
+        #option5:checked ~ .image-display .image5,
+        #option6:checked ~ .image-display .image6,
+        #option7:checked ~ .image-display .image7 {
             display: block;
         }
         .image-container img {
@@ -216,7 +220,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     </div>
 </body>
 </html>
-
 
 
 
