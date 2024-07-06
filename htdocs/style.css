@@ -1,9 +1,21 @@
 .container {
-    text-align: right; /* ボタンと画像を右寄せ */
+    display: flex;
+    justify-content: flex-end; /* コンテナ全体を右寄せ */
+    align-items: flex-start; /* コンテナ内のアイテムを上部に揃える */
+}
+.label-container {
+    display: flex;
+    flex-direction: column; /* ラベルを縦並びに */
+    margin-right: 20px; /* ラベルと画像の間にスペースを追加 */
+}
+label {
+    margin-bottom: 10px; /* ラベル間のスペースを追加 */
+}
+.image-display {
+    text-align: right; /* 画像を右寄せ */
 }
 .image-container {
     display: none;
-    margin-top: 20px; /* ボタンと画像の間に少しスペースを追加 */
 }
 input[type="radio"]:checked + label + .image-container {
     display: block;
@@ -12,16 +24,6 @@ input[type="radio"]:checked + label + .image-container {
     max-width: 50%; /* 画像の大きさを半分に */
     height: auto;
 }
-.label-container {
-    display: flex; /* ラベルを横並びに */
-    justify-content: flex-end; /* 右寄せ */
-    flex-wrap: wrap;
-}
-label {
-    display: inline-block;
-    margin: 0 5px;
-}
-
 
 
 
