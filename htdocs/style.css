@@ -5,13 +5,7 @@
     display: none;
     margin-top: 10px; /* ボタンと画像の間に少しスペースを追加 */
 }
-#option1:checked ~ .images .image1,
-#option2:checked ~ .images .image2,
-#option3:checked ~ .images .image3,
-#option4:checked ~ .images .image4,
-#option5:checked ~ .images .image5,
-#option6:checked ~ .images .image6,
-#option7:checked ~ .images .image7 {
+input[type="radio"]:checked + label + .image-container {
     display: block;
 }
 .image-container img {
@@ -27,9 +21,7 @@ label {
     display: inline-block;
     margin: 0 5px;
 }
-.images {
-    text-align: right; /* 画像を右寄せ */
-}
+
 
 
 
