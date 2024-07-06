@@ -144,7 +144,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     <title>画像選択プログラム</title>
     <style>
         .container {
-            text-align: right; /* ボタンと画像を右寄せ */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* ボタンと画像を右寄せ */
         }
         .label-container {
             display: flex; /* ラベルを横並びに */
@@ -160,13 +162,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
         .image-container {
             display: none;
         }
-        #option1:checked ~ .image-display .image1,
-        #option2:checked ~ .image-display .image2,
-        #option3:checked ~ .image-display .image3,
-        #option4:checked ~ .image-display .image4,
-        #option5:checked ~ .image-display .image5,
-        #option6:checked ~ .image-display .image6,
-        #option7:checked ~ .image-display .image7 {
+        input[type="radio"] {
+            display: none; /* ラジオボタンを非表示 */
+        }
+        input[type="radio"]:checked + label + .image-container {
             display: block;
         }
         .image-container img {
@@ -179,40 +178,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     <h1>画像選択プログラム</h1>
     <div class="container">
         <div class="label-container">
-            <input type="radio" id="option1" name="image" hidden>
+            <input type="radio" id="option1" name="image">
             <label for="option1">1塁</label>
-            <input type="radio" id="option2" name="image" hidden>
-            <label for="option2">2塁</label>
-            <input type="radio" id="option3" name="image" hidden>
-            <label for="option3">3塁</label>
-            <input type="radio" id="option4" name="image" hidden>
-            <label for="option4">1.2塁</label>
-            <input type="radio" id="option5" name="image" hidden>
-            <label for="option5">1.3塁</label>
-            <input type="radio" id="option6" name="image" hidden>
-            <label for="option6">2.3塁</label>
-            <input type="radio" id="option7" name="image" hidden>
-            <label for="option7">満塁</label>
-        </div>
-        <div class="image-display">
             <div class="image-container image1">
                 <img src="1塁.jpg" alt="1塁">
             </div>
+
+            <input type="radio" id="option2" name="image">
+            <label for="option2">2塁</label>
             <div class="image-container image2">
                 <img src="2塁.jpg" alt="2塁">
             </div>
+
+            <input type="radio" id="option3" name="image">
+            <label for="option3">3塁</label>
             <div class="image-container image3">
                 <img src="3塁.jpg" alt="3塁">
             </div>
+
+            <input type="radio" id="option4" name="image">
+            <label for="option4">1.2塁</label>
             <div class="image-container image4">
                 <img src="1.2塁.jpg" alt="1.2塁">
             </div>
+
+            <input type="radio" id="option5" name="image">
+            <label for="option5">1.3塁</label>
             <div class="image-container image5">
                 <img src="1.3塁.jpg" alt="1.3塁">
             </div>
+
+            <input type="radio" id="option6" name="image">
+            <label for="option6">2.3塁</label>
             <div class="image-container image6">
                 <img src="2.3塁.jpg" alt="2.3塁">
             </div>
+
+            <input type="radio" id="option7" name="image">
+            <label for="option7">満塁</label>
             <div class="image-container image7">
                 <img src="満塁.jpg" alt="満塁">
             </div>
@@ -220,6 +223,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     </div>
 </body>
 </html>
-
-
-
