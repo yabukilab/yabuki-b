@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end; /* ボタンと画像を右寄せ */
+    text-align: right;
 }
 .label-container {
     display: flex; /* ラベルを横並びに */
@@ -13,6 +14,7 @@ label {
 }
 .image-display {
     text-align: right; /* 画像を右寄せ */
+    width: 50%; /* 画像表示エリアの幅を固定 */
 }
 .image-container {
     display: none;
@@ -21,9 +23,10 @@ input[type="radio"]:checked + label + .image-container {
     display: block;
 }
 .image-container img {
-    max-width: 50%; /* 画像の大きさを半分に */
+    max-width: 100%; /* 画像の大きさを表示エリアに合わせる */
     height: auto;
 }
+
 
 
 
