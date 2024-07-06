@@ -164,7 +164,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
         .image-container {
             display: none;
         }
-        input[type="radio"]:checked + label + .image-container {
+        input[type="radio"] {
+            display: none; /* ラジオボタンを非表示 */
+        }
+        input[type="radio"]:checked + label ~ .image-container {
+            display: none;
+        }
+        #option1:checked ~ .image-display .image1,
+        #option2:checked ~ .image-display .image2,
+        #option3:checked ~ .image-display .image3,
+        #option4:checked ~ .image-display .image4,
+        #option5:checked ~ .image-display .image5,
+        #option6:checked ~ .image-display .image6,
+        #option7:checked ~ .image-display .image7 {
             display: block;
         }
         .image-container img {
@@ -218,4 +230,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     </div>
 </body>
 </html>
-
