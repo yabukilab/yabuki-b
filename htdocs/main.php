@@ -148,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
         }
         .image-container {
             display: none;
-            margin-top: 10px; /* ボタンと画像の間に少しスペースを追加 */
+            margin-top: 20px; /* ボタンと画像の間に少しスペースを追加 */
         }
         input[type="radio"]:checked + label + .image-container {
             display: block;
