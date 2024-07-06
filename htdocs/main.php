@@ -145,16 +145,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     <style>
         .container {
             display: flex;
-            justify-content: flex-end; /* コンテナ全体を右寄せ */
-            align-items: flex-start; /* コンテナ内のアイテムを上部に揃える */
+            flex-direction: column;
+            align-items: flex-end; /* ボタンと画像を右寄せ */
         }
         .label-container {
-            display: flex;
-            flex-direction: column; /* ラベルを縦並びに */
-            margin-right: 20px; /* ラベルと画像の間にスペースを追加 */
+            display: flex; /* ラベルを横並びに */
+            justify-content: flex-end; /* 右寄せ */
+            margin-bottom: 20px; /* ラベルと画像の間にスペースを追加 */
         }
         label {
-            margin-bottom: 10px; /* ラベル間のスペースを追加 */
+            margin: 0 5px;
         }
         .image-display {
             text-align: right; /* 画像を右寄せ */
@@ -162,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
         .image-container {
             display: none;
         }
-        input[type="radio"]:checked + label + .image-container {
+        input[type="radio"]:checked + label ~ .image-container {
             display: block;
         }
         .image-container img {
@@ -216,6 +216,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     </div>
 </body>
 </html>
+
 
 
 
