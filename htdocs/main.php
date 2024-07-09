@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
 </body>
 </html>
 
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -177,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     <h1 style="text-align: right;">画像選択プログラム</h1>
     <div class="container">
         <div class="label-container">
-            <form action="save_image.php" method="post">
+            <form method="post">
                 <input type="radio" id="option1" name="image" value="1塁.jpg">
                 <label for="option1">1塁</label>
                 <div class="image-container image1">
@@ -221,6 +221,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
                 </div>
                 <button type="submit">選択した画像を保存</button>
             </form>
+
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['image'])) {
+                $servername = "localhost";
+                $username = "root"; // MySQLのユーザー名を入力してください
+                $password = ""; // MySQLのパスワードを入力してください
+                $dbname = "baseball";
+
+                // データベース接続の作成
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // 接続の確認
+                if ($conn->connect_error) {
+                    die("接続失敗: " . $conn->connect_error);
+                }
+
+                $imageUrl = $_POST['image'];
+
+                $stmt = $conn->prepare("INSERT INTO images (url) VALUES (?)");
+                $stmt->bind_param("s", $imageUrl);
+
+                if ($stmt->execute()) {
+                    echo "画像が保存されました";
+                } else {
+                    echo "画像の保存に失敗しました: " . $stmt->error;
+                }
+
+                $stmt->close();
+                $conn->close();
+            } else {
+                echo "画像が選択されていません";
+            }
+            ?>
         </div>
         <div class="image-display">
             <!-- 選択された画像を表示する場所 -->
@@ -234,43 +267,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     </div>
 </body>
 </html>
-
-<?php
-$servername = "localhost";
-$username = "root"; // ここに正しいMySQLのユーザー名を入力してください
-$password = ""; // ここに正しいMySQLのパスワードを入力してください
-$dbname = "baseball";
-
-// データベース接続の作成
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// 接続の確認
-if ($conn->connect_error) {
-    die("接続失敗: " . $conn->connect_error);
-}
-
-if (isset($_POST['image'])) {
-    $imageUrl = $_POST['image'];
-
-    $stmt = $conn->prepare("INSERT INTO images (url) VALUES (?)");
-    $stmt->bind_param("s", $imageUrl);
-
-    if ($conn->connect_error) {
-        die("接続失敗: " . $conn->connect_error);
-    }
-    
-    if ($stmt->execute()) {
-        echo "画像が保存されました";
-    } else {
-        echo "画像の保存に失敗しました: " . $stmt->error;
-    }
-
-    $stmt->close();
-} else {
-    echo "画像が選択されていません";
-}
-
-$conn->close();
-
-
-?>
