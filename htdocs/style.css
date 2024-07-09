@@ -14,7 +14,7 @@ label {
 }
 .image-display {
     text-align: right; /* 画像を右寄せ */
-    width: 50%; /* 画像表示エリアの幅を固定 */
+    width: 100%; /* 画像表示エリアの幅を固定 */
 }
 .image-container {
     display: none;
