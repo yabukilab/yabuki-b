@@ -239,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
 $servername = "localhost";
 $username = "testuser"; // ここに正しいMySQLのユーザー名を入力してください
 $password = "pass"; // ここに正しいMySQLのパスワードを入力してください
-$dbname = "imageDB";
+$dbname = "images";
 
 // データベース接続の作成
 $conn = new mysqli($servername, $username, $password, $dbname);
