@@ -267,5 +267,14 @@ if (isset($_POST['image'])) {
 }
 
 $conn->close();
-?>
 
+if ($conn->connect_error) {
+    die("接続失敗: " . $conn->connect_error);
+}
+
+if ($stmt->execute()) {
+    echo "画像が保存されました";
+} else {
+    echo "画像の保存に失敗しました: " . $stmt->error;
+}
+?>
