@@ -174,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     </style>
 </head>
 <body>
-    <h1 style="text-align: right;">画像選択プログラム</h1>
+    <h1 style="text-align: right;">ランナー選択</h1>
     <div class="container">
         <div class="label-container">
             <form method="post">
@@ -251,7 +251,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
                 $stmt->close();
                 $conn->close();
             } else {
-                echo "画像が選択されていません";
+                echo "";
             }
             ?>
         </div>
