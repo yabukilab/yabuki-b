@@ -199,4 +199,52 @@
         $sql = "SELECT * FROM my_table ORDER BY id ASC";
         $result = $conn->query($sql);
 
-        if
+        if ($result->num_rows > 0) {
+            // データ出力
+            while($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["id"] . "</td>";
+                echo "<td>" . $row["Team"] . "</td>";
+                echo "<td>" . $row["Inning1"] . "</td>";
+                echo "<td>" . $row["Inning2"] . "</td>";
+                echo "<td>" . $row["Inning3"] . "</td>";
+                echo "<td>" . $row["Inning4"] . "</td>";
+                echo "<td>" . $row["Inning5"] . "</td>";
+                echo "<td>" . $row["Inning6"] . "</td>";
+                echo "<td>" . $row["Inning7"] . "</td>";
+                echo "<td>" . $row["Inning8"] . "</td>";
+                echo "<td>" . $row["Inning9"] . "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='11'>No data found</td></tr>";
+        }
+        ?>
+    </table>
+
+    <!-- 赤い丸表示 -->
+    <h2>赤い丸の表示</h2>
+    <?php
+    // 赤い丸のデータを取得するSQLクエリ
+    $sql_circle = "SELECT * FROM red_circles LIMIT 2";
+    $result_circle = $conn->query($sql_circle);
+
+    if ($result_circle->num_rows > 0) {
+        // 赤い丸を表示
+        $circle_count = 1;
+        while ($row_circle = $result_circle->fetch_assoc()) {
+            $x = $row_circle['x_position'];
+            $y = $row_circle['y_position'];
+            echo "<div class='red-circle' style='left: {$x}px; bottom: {$y}px;'></div>";
+            $circle_count++;
+        }
+    }
+    ?>
+
+</body>
+</html>
+
+<?php
+// データベース接続を閉じる
+$conn->close();
+?>
