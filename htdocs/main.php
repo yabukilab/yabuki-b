@@ -159,13 +159,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
         }
         .image-display {
             text-align: right; /* 画像を右寄せ */
-            width: 50%; /* 画像表示エリアの幅を固定 */
+            width: 100%; /* 画像表示エリアの幅を固定 */
         }
         .image-container {
             display: none;
-        }
-        input[type="radio"] {
-            display: none; /* ラジオボタンを非表示 */
         }
         input[type="radio"]:checked + label + .image-container {
             display: block;
@@ -180,45 +177,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
     <h1 style="text-align: right;">画像選択プログラム</h1>
     <div class="container">
         <div class="label-container">
-            <input type="radio" id="option1" name="image">
-            <label for="option1">1塁</label>
-            <input type="radio" id="option2" name="image">
-            <label for="option2">2塁</label>
-            <input type="radio" id="option3" name="image">
-            <label for="option3">3塁</label>
-            <input type="radio" id="option4" name="image">
-            <label for="option4">1.2塁</label>
-            <input type="radio" id="option5" name="image">
-            <label for="option5">1.3塁</label>
-            <input type="radio" id="option6" name="image">
-            <label for="option6">2.3塁</label>
-            <input type="radio" id="option7" name="image">
-            <label for="option7">満塁</label>
+            <form action="save_image.php" method="post">
+                <input type="radio" id="option1" name="image" value="1塁.jpg">
+                <label for="option1">1塁</label>
+                <div class="image-container image1">
+                    <img src="1塁.jpg" alt="1塁">
+                </div>
+
+                <input type="radio" id="option2" name="image" value="2塁.jpg">
+                <label for="option2">2塁</label>
+                <div class="image-container image2">
+                    <img src="2塁.jpg" alt="2塁">
+                </div>
+
+                <input type="radio" id="option3" name="image" value="3塁.jpg">
+                <label for="option3">3塁</label>
+                <div class="image-container image3">
+                    <img src="3塁.jpg" alt="3塁">
+                </div>
+
+                <input type="radio" id="option4" name="image" value="1.2塁.jpg">
+                <label for="option4">1.2塁</label>
+                <div class="image-container image4">
+                    <img src="1.2塁.jpg" alt="1.2塁">
+                </div>
+
+                <input type="radio" id="option5" name="image" value="1.3塁.jpg">
+                <label for="option5">1.3塁</label>
+                <div class="image-container image5">
+                    <img src="1.3塁.jpg" alt="1.3塁">
+                </div>
+
+                <input type="radio" id="option6" name="image" value="2.3塁.jpg">
+                <label for="option6">2.3塁</label>
+                <div class="image-container image6">
+                    <img src="2.3塁.jpg" alt="2.3塁">
+                </div>
+
+                <input type="radio" id="option7" name="image" value="満塁.jpg">
+                <label for="option7">満塁</label>
+                <div class="image-container image7">
+                    <img src="満塁.jpg" alt="満塁">
+                </div>
+                <button type="submit">選択した画像を保存</button>
+            </form>
         </div>
         <div class="image-display">
-            <div class="image-container image1">
-                <img src="1塁.jpg" alt="1塁">
-            </div>
-            <div class="image-container image2">
-                <img src="2塁.jpg" alt="2塁">
-            </div>
-            <div class="image-container image3">
-                <img src="3塁.jpg" alt="3塁">
-            </div>
-            <div class="image-container image4">
-                <img src="1.2塁.jpg" alt="1.2塁">
-            </div>
-            <div class="image-container image5">
-                <img src="1.3塁.jpg" alt="1.3塁">
-            </div>
-            <div class="image-container image6">
-                <img src="2.3塁.jpg" alt="2.3塁">
-            </div>
-            <div class="image-container image7">
-                <img src="満塁.jpg" alt="満塁">
-            </div>
+            <!-- 選択された画像を表示する場所 -->
+            <?php
+            if (isset($_POST['image'])) {
+                $selectedImage = $_POST['image'];
+                echo '<img src="'.$selectedImage.'" alt="選択された画像">';
+            }
+            ?>
         </div>
     </div>
 </body>
 </html>
->
+
