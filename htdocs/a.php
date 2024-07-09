@@ -223,3 +223,135 @@ if ($result_circle->num_rows > 0) {
 // データベース接続を閉じる
 $conn->close();
 ?>
+
+<<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画像選択プログラム</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* ボタンと画像を右寄せ */
+            text-align: right;
+        }
+        .label-container {
+            display: flex; /* ラベルを横並びに */
+            justify-content: flex-end; /* 右寄せ */
+            margin-bottom: 20px; /* ラベルと画像の間にスペースを追加 */
+        }
+        label {
+            margin: 0 5px;
+        }
+        .image-display {
+            text-align: right; /* 画像を右寄せ */
+            width: 100%; /* 画像表示エリアの幅を固定 */
+        }
+        .image-container {
+            display: none;
+        }
+        input[type="radio"]:checked + label + .image-container {
+            display: block;
+        }
+        .image-container img {
+            max-width: 100%; /* 画像の大きさを表示エリアに合わせる */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: right;">画像選択プログラム</h1>
+    <div class="container">
+        <div class="label-container">
+            <form method="post">
+                <input type="radio" id="option1" name="image" value="1塁.jpg">
+                <label for="option1">1塁</label>
+                <div class="image-container image1">
+                    <img src="1塁.jpg" alt="1塁">
+                </div>
+
+                <input type="radio" id="option2" name="image" value="2塁.jpg">
+                <label for="option2">2塁</label>
+                <div class="image-container image2">
+                    <img src="2塁.jpg" alt="2塁">
+                </div>
+
+                <input type="radio" id="option3" name="image" value="3塁.jpg">
+                <label for="option3">3塁</label>
+                <div class="image-container image3">
+                    <img src="3塁.jpg" alt="3塁">
+                </div>
+
+                <input type="radio" id="option4" name="image" value="1.2塁.jpg">
+                <label for="option4">1.2塁</label>
+                <div class="image-container image4">
+                    <img src="1.2塁.jpg" alt="1.2塁">
+                </div>
+
+                <input type="radio" id="option5" name="image" value="1.3塁.jpg">
+                <label for="option5">1.3塁</label>
+                <div class="image-container image5">
+                    <img src="1.3塁.jpg" alt="1.3塁">
+                </div>
+
+                <input type="radio" id="option6" name="image" value="2.3塁.jpg">
+                <label for="option6">2.3塁</label>
+                <div class="image-container image6">
+                    <img src="2.3塁.jpg" alt="2.3塁">
+                </div>
+
+                <input type="radio" id="option7" name="image" value="満塁.jpg">
+                <label for="option7">満塁</label>
+                <div class="image-container image7">
+                    <img src="満塁.jpg" alt="満塁">
+                </div>
+                <button type="submit">選択した画像を保存</button>
+            </form>
+
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['image'])) {
+                $servername = "localhost";
+                $username = "root"; // MySQLのユーザー名を入力してください
+                $password = ""; // MySQLのパスワードを入力してください
+                $dbname = "baseball";
+
+                // データベース接続の作成
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // 接続の確認
+                if ($conn->connect_error) {
+                    die("接続失敗: " . $conn->connect_error);
+                }
+
+                $imageUrl = $_POST['image'];
+
+                $stmt = $conn->prepare("INSERT INTO images (url) VALUES (?)");
+                $stmt->bind_param("s", $imageUrl);
+
+                if ($stmt->execute()) {
+                    echo "画像が保存されました";
+                } else {
+                    echo "画像の保存に失敗しました: " . $stmt->error;
+                }
+
+                $stmt->close();
+                $conn->close();
+            } else {
+                echo "画像が選択されていません";
+            }
+            ?>
+        </div>
+        <div class="image-display">
+            <!-- 選択された画像を表示する場所 -->
+            <?php
+            if (isset($_POST['image'])) {
+                $selectedImage = $_POST['image'];
+                echo '<img src="'.$selectedImage.'" alt="選択された画像">';
+            }
+            ?>
+        </div>
+    </div>
+</body>
+</html>
