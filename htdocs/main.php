@@ -237,7 +237,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['inning'])) {
 
 <?php
 $servername = "localhost";
-$username = ""; // ここに正しいMySQLのユーザー名を入力してください
+$username = "root"; // ここに正しいMySQLのユーザー名を入力してください
 $password = ""; // ここに正しいMySQLのパスワードを入力してください
 $dbname = "images";
 
