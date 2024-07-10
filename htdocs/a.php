@@ -254,9 +254,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ?>
     </div>
 </body>
-</html>
 
-<<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
