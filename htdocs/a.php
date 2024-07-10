@@ -178,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-    <h1 style="text-align: right;">データ入力と表示</h1>
+    <h1 style="text-align: left;">データ入力と表示</h1>
     <div class="container">
 
     <h2>データ入力フォーム</h2>
