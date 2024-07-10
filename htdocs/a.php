@@ -152,19 +152,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .container {
             display: flex;
             flex-direction: column;
-            align-items: flex-end; /* ボタンと画像を右寄せ */
             text-align: left;
         }
         .label-container {
             display: flex; /* ラベルを横並びに */
-            justify-content: flex-end; /* 右寄せ */
             margin-bottom: 20px; /* ラベルと画像の間にスペースを追加 */
         }
         label {
             margin: 0 5px;
         }
         .image-display {
-            text-align: right; /* 画像を右寄せ */
+            text-align: left; /* 画像を右寄せ */
             width: 100%; /* 画像表示エリアの幅を固定 */
         }
         .image-container {
