@@ -155,14 +155,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             text-align: left;
         }
         .label-container {
-            display: flex; /* ラベルを横並びに */
             margin-bottom: 20px; /* ラベルと画像の間にスペースを追加 */
+            text-align: right;
         }
         label {
             margin: 0 5px;
         }
         .image-display {
-            text-align: left; /* 画像を左寄せ */
+            text-align: right; /* 画像を左寄せ */
             width: 100%; /* 画像表示エリアの幅を固定 */
         }
         .image-container {
