@@ -105,9 +105,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("s", $imageUrl);
 
         if ($stmt->execute()) {
-            echo "画像が保存されました";
+            echo "";
         } else {
-            echo "画像の保存に失敗しました: " . $stmt->error;
+            echo ": " . $stmt->error;
         }
 
         $stmt->close();
