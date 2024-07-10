@@ -153,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: flex;
             flex-direction: column;
             align-items: flex-end; /* ボタンと画像を右寄せ */
-            text-align: right;
+            text-align: left;
         }
         .label-container {
             display: flex; /* ラベルを横並びに */
