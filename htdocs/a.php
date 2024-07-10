@@ -70,8 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // 赤い丸を2つまでに制限
         if ($row_count['count'] < 2) {
             // 赤い丸の座標を設定
-            $x_positions = [20, 80]; // x座標の候補
-            $y_position = 20; // y座標固定
+            $x_positions = [10, 80]; // x座標の候補
+            $y_position = 10; // y座標固定
             
             // 新しい赤い丸の座標をランダムで選択
             $random_key = $row_count['count']; // x_positionsのインデックスをcountで固定
@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // 赤い丸の座標をデータベースに挿入
             $sql_insert_circle = "INSERT INTO red_circles (x_position, y_position) VALUES ($x_position, $y_position)";
             if ($conn->query($sql_insert_circle) === TRUE) {
-                echo "赤い丸が正常に保存されました";
+                echo "OUTカウントが正常に保存されました";
             } else {
                 echo "エラー: " . $sql_insert_circle . "<br>" . $conn->error;
             }
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['reset_circles'])) {
         $sql_reset = "DELETE FROM red_circles";
         if ($conn->query($sql_reset) === TRUE) {
-            echo "赤い丸がリセットされました";
+            echo "OUTカウントがリセットされました";
         } else {
             echo "エラー: " . $sql_reset . "<br>" . $conn->error;
         }
@@ -105,9 +105,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("s", $imageUrl);
 
         if ($stmt->execute()) {
-            echo "";
+            echo "画像が保存されました";
         } else {
-            echo ": " . $stmt->error;
+            echo "画像の保存に失敗しました: " . $stmt->error;
         }
 
         $stmt->close();
@@ -143,27 +143,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         .red-circle:first-of-type {
             left: 20px; /* 1つ目の赤い丸の左位置 */
-            bottom: 20px; /* 1つ目の赤い丸の下位置 */
+            bottom: 10px; /* 1つ目の赤い丸の下位置 */
         }
         .red-circle:nth-of-type(2) {
             left: 80px; /* 2つ目の赤い丸の左位置 */
-            bottom: 20px; /* 2つ目の赤い丸の下位置 */
+            bottom: 10px; /* 2つ目の赤い丸の下位置 */
         }
         .container {
             display: flex;
             flex-direction: column;
             text-align: left;
         }
-        .label-container {
+        .form-container {
+            display: flex;
+            flex-direction: row; /* コンテナ内の要素を横並びに */
+            justify-content: space-between; /* 要素間のスペースを均等に */
+        }
+        .label-container, .left-container {
             margin-bottom: 20px; /* ラベルと画像の間にスペースを追加 */
-            text-align: right;
+            flex-direction: row; /* コンテナ内の要素を横並びに */
         }
         label {
             margin: 0 5px;
         }
         .image-display {
-            text-align: right; /* 画像を左寄せ */
+            justify-content: space-between;
+            text-align: right; /* 画像を右寄せ */
             width: 100%; /* 画像表示エリアの幅を固定 */
+            flex-direction: row; /* コンテナ内の要素を横並びに */
         }
         .image-container {
             display: none;
@@ -178,21 +185,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-    <h1 style="text-align: left;">データ入力と表示</h1>
+    <h1 style="text-align: left;">スコアボード</h1>
     <div class="container">
 
-    <h2>データ入力フォーム</h2>
+    <h2>得点入力フォーム</h2>
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <label for="inning">ここにデータを入力:</label>
-            <input type="text" id="inning" name="inning" required><br><br>
-            <input type="submit" value="Submit">
+            <label for="inning">ここに得点を入力:</label>
+            <input type="text" id="inning" name="inning" required>
+            <input type="submit" value="更新↻">
+            <br>
         </form>
 
     
-    <h2>データベースからのデータ表示</h2>
         <table>
             <tr>
-                <th>ID</th>
+                <th>TEAME</th>
                 <th>Inning1</th>
                 <th>Inning2</th>
                 <th>Inning3</th>
@@ -228,97 +235,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
         </table>
 
+        <div class="form-container">
+            <div class="left-container">
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <label for="circle">OUTを追加するには0を入力:</label>
+                    <input type="text" id="circle" name="circle" required><br><br>
+                    <input type="submit" value="更新↻">
+                </form>
 
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <label for="circle">赤い丸を追加するには0を入力:</label>
-            <input type="text" id="circle" name="circle" required><br><br>
-            <input type="submit" value="Submit">
-        </form>
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <input type="hidden" name="reset_circles" value="1">
+                    <input type="submit" value="OUTカウントをリセット">
+                </form>
+            </div>
 
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <input type="hidden" name="reset_circles" value="1">
-            <input type="submit" value="赤い丸をリセット">
-        </form>
+            <div class="label-container">
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <input type="radio" id="option1" name="image" value="1塁.jpg">
+                    <label for="option1">1塁</label>
+                    <div class="image-container image1">
+                        <img src="1塁.jpg" alt="1塁">
+                    </div>
 
+                    <input type="radio" id="option2" name="image" value="2塁.jpg">
+                    <label for="option2">2塁</label>
+                    <div class="image-container image2">
+                        <img src="2塁.jpg" alt="2塁">
+                    </div>
 
-        <?php
-        // 赤い丸のデータを取得
-        $sql_circles = "SELECT * FROM red_circles";
-        $result_circles = $conn->query($sql_circles);
+                    <input type="radio" id="option3" name="image" value="3塁.jpg">
+                    <label for="option3">3塁</label>
+                    <div class="image-container image3">
+                        <img src="3塁.jpg" alt="3塁">
+                    </div>
 
-        if ($result_circles->num_rows > 0) {
-            while ($row = $result_circles->fetch_assoc()) {
-                echo '<div class="red-circle" style="left: ' . $row["x_position"] . 'px; bottom: ' . $row["y_position"] . 'px;"></div>';
-            }
-        }
-        ?>
-    </div>
+                    <input type="radio" id="option4" name="image" value="1.2塁.jpg">
+                    <label for="option4">1.2塁</label>
+                    <div class="image-container image4">
+                        <img src="1.2塁.jpg" alt="1.2塁">
+                    </div>
 
-    <h1 style="text-align: right;">ランナー選択</h1>
-    <div class="container">
-        <div class="label-container">
-            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                <input type="radio" id="option1" name="image" value="1塁.jpg">
-                <label for="option1">1塁</label>
-                <div class="image-container image1">
-                    <img src="1塁.jpg" alt="1塁">
-                </div>
+                    <input type="radio" id="option5" name="image" value="1.3塁.jpg">
+                    <label for="option5">1.3塁</label>
+                    <div class="image-container image5">
+                        <img src="1.3塁.jpg" alt="1.3塁">
+                    </div>
 
-                <input type="radio" id="option2" name="image" value="2塁.jpg">
-                <label for="option2">2塁</label>
-                <div class="image-container image2">
-                    <img src="2塁.jpg" alt="2塁">
-                </div>
+                    <input type="radio" id="option6" name="image" value="2.3塁.jpg">
+                    <label for="option6">2.3塁</label>
+                    <div class="image-container image6">
+                        <img src="2.3塁.jpg" alt="2.3塁">
+                    </div>
 
-                <input type="radio" id="option3" name="image" value="3塁.jpg">
-                <label for="option3">3塁</label>
-                <div class="image-container image3">
-                    <img src="3塁.jpg" alt="3塁">
-                </div>
-
-                <input type="radio" id="option4" name="image" value="1.2塁.jpg">
-                <label for="option4">1.2塁</label>
-                <div class="image-container image4">
-                    <img src="1.2塁.jpg" alt="1.2塁">
-                </div>
-
-                <input type="radio" id="option5" name="image" value="1.3塁.jpg">
-                <label for="option5">1.3塁</label>
-                <div class="image-container image5">
-                    <img src="1.3塁.jpg" alt="1.3塁">
-                </div>
-
-                <input type="radio" id="option6" name="image" value="2.3塁.jpg">
-                <label for="option6">2.3塁</label>
-                <div class="image-container image6">
-                    <img src="2.3塁.jpg" alt="2.3塁">
-                </div>
-
-                <input type="radio" id="option7" name="image" value="満塁.jpg">
-                <label for="option7">満塁</label>
-                <div class="image-container image7">
-                    <img src="満塁.jpg" alt="満塁">
-                </div>
-                <button type="submit">選択した画像を保存</button>
-            </form>
-
-            <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['image'])) {
-                $imageUrl = $_POST['image'];
-
-                $stmt = $conn->prepare("INSERT INTO images (url) VALUES (?)");
-                $stmt->bind_param("s", $imageUrl);
-
-                if ($stmt->execute()) {
-                    echo "画像が保存されました";
-                } else {
-                    echo "画像の保存に失敗しました: " . $stmt->error;
-                }
-
-                $stmt->close();
-            }
-            ?>
+                    <input type="radio" id="option7" name="image" value="満塁.jpg">
+                    <label for="option7">満塁</label>
+                    <div class="image-container image7">
+                        <img src="満塁.jpg" alt="満塁">
+                    </div>
+                    <button type="submit">選択した画像を保存</button>
+                </form>
+            </div>
         </div>
+
         <div class="image-display">
             <!-- 選択された画像を表示する場所 -->
             <?php
