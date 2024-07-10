@@ -182,6 +182,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <h1 style="text-align: right;">データ入力と表示</h1>
     <div class="container">
+
+    <h2>データ入力フォーム</h2>
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <label for="inning">ここにデータを入力:</label>
+            <input type="text" id="inning" name="inning" required><br><br>
+            <input type="submit" value="Submit">
+        </form>
+
+    
     <h2>データベースからのデータ表示</h2>
         <table>
             <tr>
@@ -221,12 +230,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
         </table>
 
-        <h2>データ入力フォーム</h2>
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <label for="inning">ここにデータを入力:</label>
-            <input type="text" id="inning" name="inning" required><br><br>
-            <input type="submit" value="Submit">
-        </form>
 
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <label for="circle">赤い丸を追加するには0を入力:</label>
