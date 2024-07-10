@@ -240,7 +240,66 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="submit" value="赤い丸をリセット">
         </form>
 
-        <h2>画像選択プログラム</h2>
+
+        <?php
+        // 赤い丸のデータを取得
+        $sql_circles = "SELECT * FROM red_circles";
+        $result_circles = $conn->query($sql_circles);
+
+        if ($result_circles->num_rows > 0) {
+            while ($row = $result_circles->fetch_assoc()) {
+                echo '<div class="red-circle" style="left: ' . $row["x_position"] . 'px; bottom: ' . $row["y_position"] . 'px;"></div>';
+            }
+        }
+        ?>
+    </div>
+</body>
+</html>
+
+<?php
+$conn->close();
+?>
+
+<<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画像選択プログラム</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* ボタンと画像を右寄せ */
+            text-align: right;
+        }
+        .label-container {
+            display: flex; /* ラベルを横並びに */
+            justify-content: flex-end; /* 右寄せ */
+            margin-bottom: 20px; /* ラベルと画像の間にスペースを追加 */
+        }
+        label {
+            margin: 0 5px;
+        }
+        .image-display {
+            text-align: right; /* 画像を右寄せ */
+            width: 100%; /* 画像表示エリアの幅を固定 */
+        }
+        .image-container {
+            display: none;
+        }
+        input[type="radio"]:checked + label + .image-container {
+            display: block;
+        }
+        .image-container img {
+            max-width: 100%; /* 画像の大きさを表示エリアに合わせる */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: right;">ランナー選択</h1>
+    <div class="container">
         <div class="label-container">
             <form method="post">
                 <input type="radio" id="option1" name="image" value="1塁.jpg">
@@ -288,28 +347,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
 
             <?php
-            if (isset($_POST['image'])) {
-                $selectedImage = $_POST['image'];
-                echo "画像が保存されました: " . $selectedImage;
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['image'])) {
+                $servername = "localhost";
+                $username = "root"; // MySQLのユーザー名を入力してください
+                $password = ""; // MySQLのパスワードを入力してください
+                $dbname = "baseball";
+
+                // データベース接続の作成
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // 接続の確認
+                if ($conn->connect_error) {
+                    die("接続失敗: " . $conn->connect_error);
+                }
+
+                $imageUrl = $_POST['image'];
+
+                $stmt = $conn->prepare("INSERT INTO images (url) VALUES (?)");
+                $stmt->bind_param("s", $imageUrl);
+
+                if ($stmt->execute()) {
+                    echo "画像が保存されました";
+                } else {
+                    echo "画像の保存に失敗しました: " . $stmt->error;
+                }
+
+                $stmt->close();
+                $conn->close();
+            } else {
+                echo "";
             }
             ?>
         </div>
-
-        <?php
-        // 赤い丸のデータを取得
-        $sql_circles = "SELECT * FROM red_circles";
-        $result_circles = $conn->query($sql_circles);
-
-        if ($result_circles->num_rows > 0) {
-            while ($row = $result_circles->fetch_assoc()) {
-                echo '<div class="red-circle" style="left: ' . $row["x_position"] . 'px; bottom: ' . $row["y_position"] . 'px;"></div>';
+        <div class="image-display">
+            <!-- 選択された画像を表示する場所 -->
+            <?php
+            if (isset($_POST['image'])) {
+                $selectedImage = $_POST['image'];
+                echo '<img src="'.$selectedImage.'" alt="選択された画像">';
             }
-        }
-        ?>
+            ?>
+        </div>
     </div>
 </body>
 </html>
-
-<?php
-$conn->close();
-?>
