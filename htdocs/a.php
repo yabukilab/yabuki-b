@@ -255,6 +255,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
         </div>
 
+        <div class="image-display">
+            <!-- 選択された画像を表示する場所 -->
+            <?php
+            if (isset($_POST['image'])) {
+                $selectedImage = $_POST['image'];
+                echo '<img src="'.$selectedImage.'" alt="選択された画像">';
+            }
+            ?>
+        </div>
+
         <h2>データベースからのデータ表示</h2>
         <table>
             <tr>
