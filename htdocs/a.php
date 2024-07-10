@@ -295,58 +295,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
         </div>
 
-<<<<<<< HEAD
-        <div class="image-display">
-            <!-- 選択された画像を表示する場所 -->
-            <?php
-            if (isset($_POST['image'])) {
-                $selectedImage = $_POST['image'];
-                echo '<img src="'.$selectedImage.'" alt="選択された画像">';
-            }
-            ?>
-        </div>
-
-        <h2>データベースからのデータ表示</h2>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Inning1</th>
-                <th>Inning2</th>
-                <th>Inning3</th>
-                <th>Inning4</th>
-                <th>Inning5</th>
-                <th>Inning6</th>
-                <th>Inning7</th>
-                <th>Inning8</th>
-                <th>Inning9</th>
-            </tr>
-            <?php
-            $sql = "SELECT * FROM my_table";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row["id"] . "</td>";
-                    echo "<td>" . $row["Inning1"] . "</td>";
-                    echo "<td>" . $row["Inning2"] . "</td>";
-                    echo "<td>" . $row["Inning3"] . "</td>";
-                    echo "<td>" . $row["Inning4"] . "</td>";
-                    echo "<td>" . $row["Inning5"] . "</td>";
-                    echo "<td>" . $row["Inning6"] . "</td>";
-                    echo "<td>" . $row["Inning7"] . "</td>";
-                    echo "<td>" . $row["Inning8"] . "</td>";
-                    echo "<td>" . $row["Inning9"] . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='11'>No data found</td></tr>";
-            }
-            ?>
-        </table>
-
-=======
->>>>>>> 48873d7d6e68a920318b7c3a4fe1fa0c17f7beaf
         <?php
         // 赤い丸のデータを取得
         $sql_circles = "SELECT * FROM red_circles";
