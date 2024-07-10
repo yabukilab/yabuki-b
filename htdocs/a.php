@@ -162,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 0 5px;
         }
         .image-display {
-            text-align: left; /* 画像を右寄せ */
+            text-align: left; /* 画像を左寄せ */
             width: 100%; /* 画像表示エリアの幅を固定 */
         }
         .image-container {
@@ -253,49 +253,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
     </div>
-</body>
 
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>画像選択プログラム</title>
-    <style>
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end; /* ボタンと画像を右寄せ */
-            text-align: right;
-        }
-        .label-container {
-            display: flex; /* ラベルを横並びに */
-            justify-content: flex-end; /* 右寄せ */
-            margin-bottom: 20px; /* ラベルと画像の間にスペースを追加 */
-        }
-        label {
-            margin: 0 5px;
-        }
-        .image-display {
-            text-align: right; /* 画像を右寄せ */
-            width: 100%; /* 画像表示エリアの幅を固定 */
-        }
-        .image-container {
-            display: none;
-        }
-        input[type="radio"]:checked + label + .image-container {
-            display: block;
-        }
-        .image-container img {
-            max-width: 100%; /* 画像の大きさを表示エリアに合わせる */
-            height: auto;
-        }
-    </style>
-</head>
-<body>
     <h1 style="text-align: right;">ランナー選択</h1>
     <div class="container">
         <div class="label-container">
-            <form method="post">
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                 <input type="radio" id="option1" name="image" value="1塁.jpg">
                 <label for="option1">1塁</label>
                 <div class="image-container image1">
@@ -342,19 +304,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['image'])) {
-                $servername = "localhost";
-                $username = "root"; // MySQLのユーザー名を入力してください
-                $password = ""; // MySQLのパスワードを入力してください
-                $dbname = "baseball";
-
-                // データベース接続の作成
-                $conn = new mysqli($servername, $username, $password, $dbname);
-
-                // 接続の確認
-                if ($conn->connect_error) {
-                    die("接続失敗: " . $conn->connect_error);
-                }
-
                 $imageUrl = $_POST['image'];
 
                 $stmt = $conn->prepare("INSERT INTO images (url) VALUES (?)");
@@ -367,9 +316,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
 
                 $stmt->close();
-                $conn->close();
-            } else {
-                echo "";
             }
             ?>
         </div>
