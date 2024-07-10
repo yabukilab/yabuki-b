@@ -161,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .image-display {
             justify-content: space-between;
             text-align: right; /* 画像を右寄せ */
-            width: 100%; /* 画像表示エリアの幅を固定 */
+            width: 50%; /* 画像表示エリアの幅を固定 */
             flex-direction: row; /* コンテナ内の要素を横並びに */
         }
         .image-container {
@@ -171,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: block;
         }
         .image-container img {
-            max-width: 100%; /* 画像の大きさを表示エリアに合わせる */
+            max-width: 50%; /* 画像の大きさを表示エリアに合わせる */
             height: auto;
         }
     </style>
