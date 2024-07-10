@@ -70,12 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // 赤い丸を2つまでに制限
         if ($row_count['count'] < 2) {
             // 赤い丸の座標を設定
-            $x_positions = [10, 80]; // x座標の候補
+            $x_positions = [20, 80]; // x座標の候補
             $y_position = 10; // y座標固定
             
-            // 新しい赤い丸の座標をランダムで選択
-            $random_key = $row_count['count']; // x_positionsのインデックスをcountで固定
-            $x_position = $x_positions[$random_key];
+            // 新しい赤い丸の座標をインデックスで選択
+            $x_position = $x_positions[$row_count['count']];
             
             // 赤い丸の座標をデータベースに挿入
             $sql_insert_circle = "INSERT INTO red_circles (x_position, y_position) VALUES ($x_position, $y_position)";
@@ -141,18 +140,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 50%;
             background-color: red;
         }
-        .red-circle:first-of-type {
-            left: 20px; /* 1つ目の赤い丸の左位置 */
-            bottom: 10px; /* 1つ目の赤い丸の下位置 */
-        }
-        .red-circle:nth-of-type(2) {
-            left: 80px; /* 2つ目の赤い丸の左位置 */
-            bottom: 10px; /* 2つ目の赤い丸の下位置 */
-        }
         .container {
             display: flex;
             flex-direction: column;
             text-align: left;
+            position: relative; /* 赤い丸を表示するために追加 */
         }
         .form-container {
             display: flex;
@@ -306,6 +298,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             ?>
         </div>
+
+        <!-- 赤い丸の表示 -->
+        <?php
+        // 赤い丸のデータを取得
+        $sql_circles = "SELECT * FROM red_circles";
+        $result_circles = $conn->query($sql_circles);
+
+        if ($result_circles->num_rows > 0) {
+            while ($row = $result_circles->fetch_assoc()) {
+                echo '<div class="red-circle" style="left: ' . $row["x_position"] . 'px; bottom: ' . $row["y_position"] . 'px;"></div>';
+            }
+        }
+        ?>
     </div>
 </body>
 </html>
