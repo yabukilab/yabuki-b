@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($row_count['count'] < 2) {
             // 赤い丸の座標を設定
             $x_positions = [20, 80]; // x座標の候補
-            $y_position = 10; // y座標固定
+            $y_position = 20; // y座標固定
             
             // 新しい赤い丸の座標をインデックスで選択
             $x_position = $x_positions[$row_count['count']];
@@ -144,25 +144,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: flex;
             flex-direction: column;
             text-align: left;
-            position: relative; /* 赤い丸を表示するために追加 */
+            position: relative;
         }
         .form-container {
             display: flex;
-            flex-direction: row; /* コンテナ内の要素を横並びに */
-            justify-content: space-between; /* 要素間のスペースを均等に */
+            flex-direction: row;
+            justify-content: space-between;
         }
         .label-container, .left-container {
-            margin-bottom: 20px; /* ラベルと画像の間にスペースを追加 */
-            flex-direction: row; /* コンテナ内の要素を横並びに */
+            margin-bottom: 20px;
+            flex-direction: column; /* フォームと赤丸を縦に並べる */
+        }
+        .left-container {
+            position: relative; /* 赤丸を配置するための基準位置 */
+        }
+        .red-circles {
+            margin-top: 10px;
+            position: relative;
+        }
+        .red-circles .red-circle {
+            bottom: 0;
         }
         label {
             margin: 0 5px;
         }
         .image-display {
-            justify-content: space-between;
-            text-align: right; /* 画像を右寄せ */
-            width: 50%; /* 画像表示エリアの幅を固定 */
-            flex-direction: row; /* コンテナ内の要素を横並びに */
+            text-align: right;
+            width: 100%;
+            margin-top: 20px; /* 画像をボタンの下に表示するためのスペースを追加 */
         }
         .image-container {
             display: none;
@@ -171,7 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: block;
         }
         .image-container img {
-            max-width: 50%; /* 画像の大きさを表示エリアに合わせる */
+            max-width: 100%;
             height: auto;
         }
     </style>
@@ -180,7 +189,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h1 style="text-align: left;">スコアボード</h1>
     <div class="container">
 
-    <h2>得点入力フォーム</h2>
+        <h2>得点入力フォーム</h2>
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <label for="inning">ここに得点を入力:</label>
             <input type="text" id="inning" name="inning" required>
@@ -188,7 +197,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <br>
         </form>
 
-    
         <table>
             <tr>
                 <th>TEAME</th>
@@ -239,6 +247,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="hidden" name="reset_circles" value="1">
                     <input type="submit" value="OUTカウントをリセット">
                 </form>
+
+                <!-- 赤い丸の表示 -->
+                <div class="red-circles">
+                    <?php
+                    // 赤い丸のデータを取得
+                    $sql_circles = "SELECT * FROM red_circles";
+                    $result_circles = $conn->query($sql_circles);
+
+                    if ($result_circles->num_rows > 0) {
+                        while ($row = $result_circles->fetch_assoc()) {
+                            echo '<div class="red-circle" style="left: ' . $row["x_position"] . 'px;"></div>';
+                        }
+                    }
+                    ?>
+                </div>
             </div>
 
             <div class="label-container">
@@ -298,19 +321,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             ?>
         </div>
-
-        <!-- 赤い丸の表示 -->
-        <?php
-        // 赤い丸のデータを取得
-        $sql_circles = "SELECT * FROM red_circles";
-        $result_circles = $conn->query($sql_circles);
-
-        if ($result_circles->num_rows > 0) {
-            while ($row = $result_circles->fetch_assoc()) {
-                echo '<div class="red-circle" style="left: ' . $row["x_position"] . 'px; bottom: ' . $row["y_position"] . 'px;"></div>';
-            }
-        }
-        ?>
     </div>
 </body>
 </html>
