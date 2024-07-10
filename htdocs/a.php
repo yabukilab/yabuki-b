@@ -256,10 +256,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 </html>
 
-<?php
-$conn->close();
-?>
-
 <<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -391,3 +387,7 @@ $conn->close();
     </div>
 </body>
 </html>
+
+<?php
+$conn->close();
+?>
