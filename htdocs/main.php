@@ -1,17 +1,5 @@
 <?php
-// データベース接続情報
-$servername = "localhost";
-$username = "testuser";
-$password = "pass"; // データベースのパスワード
-$dbname = "mydb"; // データベース名
 
-// データベース接続を作成
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// 接続を確認
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // フォームからの得点を処理
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["score"])) {

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require"db.php";
+require "db.php";
 
 // PDO接続設定
 $dsn = 'mysql:host=localhost;dbname=your_database_name;charset=utf8';
