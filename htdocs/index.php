@@ -31,6 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login']))
 
         $stmt = $db->prepare("SELECT user_id, username, password FROM user2 WHERE username = ?");
         $stmt->execute([$user]);
+        catch(PDOException $e) {
+            die("データベース接続失敗: " . $e->getMessage());
+        }
 
 
     if ($result->num_rows == 1) {
