@@ -128,7 +128,7 @@ if ($conn->connect_error) {
             ?>
         </table>
 
-        <h2>赤い丸の位置</h2>
+        <h2>アウトカウント</h2>
         <div class="red-circles">
             <?php
             // 赤い丸のデータを取得
@@ -140,12 +140,12 @@ if ($conn->connect_error) {
                     echo '<div class="red-circle" style="left: ' . $row["x_position"] . 'px;"></div>';
                 }
             } else {
-                echo "赤い丸のデータが見つかりませんでした";
+                echo "ノーアウト";
             }
             ?>
         </div>
 
-        <h2>選択された画像</h2>
+        <h2>ランナー表示</h2>
         <div class="image-display">
             <?php
             // 最新の画像を取得
@@ -156,7 +156,7 @@ if ($conn->connect_error) {
                 $row_image = $result_image->fetch_assoc();
                 echo '<img src="'.$row_image['url'].'" alt="選択された画像">';
             } else {
-                echo "画像が見つかりませんでした";
+                echo "ランナーなし";
             }
             ?>
         </div>
