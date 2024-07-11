@@ -1,5 +1,7 @@
 <?php
-require"db.php";
+session_start();
+
+require"db.php"
 
 // ユーザーの追加処理
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
@@ -51,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     }
 }
 
+$conn->close();
 ?>
 
 <!DOCTYPE html>
