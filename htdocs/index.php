@@ -1,12 +1,19 @@
 <?php
 session_start();
 
-require "db.php"; 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $dbServer = isset($_ENV['MYSQL_SERVER'])    ? $_ENV['MYSQL_SERVER']      : '127.0.0.1';
+    $dbUser = isset($_SERVER['MYSQL_USER'])     ? $_SERVER['MYSQL_USER']     : 'testuser';
+    $dbPass = isset($_SERVER['MYSQL_PASSWORD']) ? $_SERVER['MYSQL_PASSWORD'] : 'pass';
+    $dbName = isset($_SERVER['MYSQL_DB'])       ? $_SERVER['MYSQL_DB']       : 'mydb';
+    $user = $_POST['username'];
+    $pass = $_POST['password'];
 
-// PDO接続設定
-$dsn = 'mysql:host=localhost;dbname=your_database_name;charset=utf8';
-$user = 'your_username';
-$password = 'your_password';
+    $dsn = "mysql:host={$dbServer};dbname={$dbName};charset=utf8";
+    $options = [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ];
 
 try {
     $pdo = new PDO($dsn, $user, $password);
