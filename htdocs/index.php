@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
 }
 
 // ログイン処理
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login']))
     $username = $_POST['username'];
     $password = $_POST['password'];
 
