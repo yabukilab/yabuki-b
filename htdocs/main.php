@@ -1,5 +1,5 @@
 <?php
-
+require 'db.php';
 
 // フォームからの得点を処理
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["score"])) {

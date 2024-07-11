@@ -1,17 +1,5 @@
 <?php
-// データベース接続情報
-$servername = "localhost";
-$username = "root";
-$password = ""; // データベースのパスワード
-$dbname = "baseball"; // データベース名
-
-// データベース接続を作成
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// 接続を確認
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require 'db.php';
 
 // HTMLの表示部分
 ?>
