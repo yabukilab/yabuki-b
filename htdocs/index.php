@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require "db.php"; // セミコロンが抜けていたため追加
+require "db.php"; 
 
 // ユーザーの追加処理
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
@@ -26,9 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     $password = $_POST['password'];
 
     // 入力されたユーザー名とパスワードが正しいかをデータベースからチェックする
-    $sql = "SELECT * FROM users WHERE username='$username'";
-    $result = $conn->query($sql);
-
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        // PDOのエラーモードを例外に設定
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $e) {
+        die("データベース接続失敗: " . $e->getMessage());
+    }
+    
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
