@@ -1,9 +1,9 @@
 <?php
 // データベース接続情報
 $servername = "localhost";
-$username = "root";
-$password = ""; // データベースのパスワード
-$dbname = "baseball"; // データベース名
+$username = "testuser";
+$password = "pass"; // データベースのパスワード
+$dbname = "mydb"; // データベース名
 
 // データベース接続を作成
 $conn = new mysqli($servername, $username, $password, $dbname);
