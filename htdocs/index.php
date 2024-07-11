@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require "db.php";
+require "db.php"; 
 
 // ユーザーの追加処理
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
@@ -11,17 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     // パスワードをハッシュ化
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    try {
-        // ユーザーをデータベースに追加
-        $sql_add_user = "INSERT INTO users (username, password) VALUES (:username, :password)";
-        $stmt = $conn->prepare($sql_add_user);
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $password_hash);
-        $stmt->execute();
-
+    // ユーザーをデータベースに追加
+    $sql_add_user = "INSERT INTO users (username, password) VALUES ('$username', '$password_hash')";
+    if ($conn->query($sql_add_user) === TRUE) {
         echo "新しいユーザーを追加しました";
-    } catch(PDOException $e) {
-        echo "エラー: " . $e->getMessage();
+    } else {
+        echo "エラー: " . $sql_add_user . "<br>" . $conn->error;
     }
 }
 
@@ -30,32 +25,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    try {
-        // 入力されたユーザー名とパスワードが正しいかをデータベースからチェックする
-        $sql = "SELECT * FROM users WHERE username = :username";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':username', $username);
-        $stmt->execute();
+    // 入力されたユーザー名とパスワードが正しいかをデータベースからチェックする
+    $sql = "SELECT * FROM users WHERE username='$username'";
+    $result = $conn->query($sql);
 
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($result) {
-            if (password_verify($password, $result['password'])) {
-                // 認証成功
-                $_SESSION['loggedin'] = true;
-                $_SESSION['username'] = $username;
-                header("Location: main.php"); // ダッシュボードや他のページへリダイレクトする
-                exit;
-            } else {
-                // パスワードが間違っている場合
-                $error_message = "ユーザー名またはパスワードが無効です。";
-            }
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        if (password_verify($password, $row['password'])) {
+            // 認証成功
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $username;
+            header("Location: main.php"); // ダッシュボードや他のページへリダイレクトする
+            exit;
         } else {
-            // ユーザーが見つからない場合
+            // パスワードが間違っている場合
             $error_message = "ユーザー名またはパスワードが無効です。";
         }
-    } catch(PDOException $e) {
-        echo "エラー: " . $e->getMessage();
+    } else {
+        // ユーザーが見つからない場合
+        $error_message = "ユーザー名またはパスワードが無効です。";
     }
 
     // ログインに失敗した場合のリダイレクト
@@ -65,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     }
 }
 
-$conn = null; // データベース接続を閉じる
+$conn->close();
 ?>
 
 <!DOCTYPE html>
