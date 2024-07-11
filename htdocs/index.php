@@ -66,8 +66,6 @@ try {
             exit;
         }
     }
-} catch (PDOException $e) {
-    echo '接続に失敗しました: ' . $e->getMessage();
 }
 ?>
 
