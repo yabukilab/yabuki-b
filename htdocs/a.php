@@ -142,7 +142,7 @@ if (isset($_POST['image'])) {
             display: flex;
             flex-direction: column;
             text-align: left;
-            position: relative;
+
         }
         .form-container {
             display: flex;
@@ -154,12 +154,10 @@ if (isset($_POST['image'])) {
             margin-bottom: 20px;
             flex-direction: column; /* フォームと赤丸を縦に並べる */
         }
-        .left-container {
-            position: relative; /* 赤丸を配置するための基準位置 */
-        }
+
         .red-circles {
             margin-top: 50px; /* 赤い丸を下に配置 */
-            position: relative;
+
         }
         .red-circles .red-circle {
             bottom: 0;
@@ -187,7 +185,7 @@ if (isset($_POST['image'])) {
 <h2>Baseball Scoreboard</h2>
 
 <!-- 得点の入力フォーム -->
-<h3>Enter Score</h3>
+<h3>得点データ入力</h3>
 <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     得点: <input type="text" name="score" required>
     <input type="submit" name="submit" value="更新↻">
@@ -309,7 +307,14 @@ if (isset($_POST['image'])) {
             <div class="image-container image7">
                 <img src="満塁.jpg" alt="満塁">
             </div>
-            <button type="submit">選択した画像を保存</button>
+
+            <input type="radio" id="option8" name="image" value="ランナーなし.jpg">
+            <label for="option8">ランナーなし</label>
+            <div class="image-container image8">
+                <img src="ランナーなし.jpg" alt="ランナーなし">
+            </div>
+
+            <button type="submit">更新↻</button>
         </form>
     </div>
 </div>

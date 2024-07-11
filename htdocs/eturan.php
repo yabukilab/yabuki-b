@@ -12,23 +12,25 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-?>
 
+// HTMLの表示部分
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>データ閲覧</title>
+    <title>Baseball Scoreboard</title>
     <style>
         table {
             border-collapse: collapse;
             width: 100%;
+            margin-bottom: 20px;
         }
         th, td {
             border: 1px solid black;
             padding: 8px;
-            text-align: left;
+            text-align: center;
         }
         th {
             background-color: #f2f2f2;
@@ -40,44 +42,19 @@ if ($conn->connect_error) {
             border-radius: 50%;
             background-color: red;
         }
-        .container {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            position: relative;
-        }
-        .form-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        .label-container, .left-container {
-            margin-bottom: 20px;
-            flex-direction: column;
-        }
-        .left-container {
-            position: relative;
-        }
         .red-circles {
-            margin-top: 10px;
-            position: relative;
+            margin-top: 50px; /* 赤い丸を下に配置 */
         }
         .red-circles .red-circle {
             bottom: 0;
         }
-        label {
-            margin: 0 5px;
-        }
         .image-display {
             text-align: right;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 20px; /* 画像をボタンの下に表示するためのスペースを追加 */
         }
         .image-container {
             display: none;
-        }
-        input[type="radio"]:checked + label + .image-container {
-            display: block;
         }
         .image-container img {
             max-width: 100%;
@@ -86,49 +63,61 @@ if ($conn->connect_error) {
     </style>
 </head>
 <body>
-    <h1 style="text-align: left;">データ閲覧</h1>
-    <div class="container">
 
-        <h2>得点データ</h2>
-        <table>
-            <tr>
-                <th>TEAME</th>
-                <th>Inning1</th>
-                <th>Inning2</th>
-                <th>Inning3</th>
-                <th>Inning4</th>
-                <th>Inning5</th>
-                <th>Inning6</th>
-                <th>Inning7</th>
-                <th>Inning8</th>
-                <th>Inning9</th>
-            </tr>
-            <?php
-            $sql = "SELECT * FROM my_table";
-            $result = $conn->query($sql);
+<h2>Baseball Scoreboard</h2>
 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row["id"] . "</td>";
-                    echo "<td>" . $row["Inning1"] . "</td>";
-                    echo "<td>" . $row["Inning2"] . "</td>";
-                    echo "<td>" . $row["Inning3"] . "</td>";
-                    echo "<td>" . $row["Inning4"] . "</td>";
-                    echo "<td>" . $row["Inning5"] . "</td>";
-                    echo "<td>" . $row["Inning6"] . "</td>";
-                    echo "<td>" . $row["Inning7"] . "</td>";
-                    echo "<td>" . $row["Inning8"] . "</td>";
-                    echo "<td>" . $row["Inning9"] . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='11'>No data found</td></tr>";
+<!-- スコアボードの表示 -->
+<table>
+    <tr>
+        <th>Team</th>
+        <?php
+        // イニングの数を取得
+        $sql = "SELECT DISTINCT inning FROM baseball_scores ORDER BY inning";
+        $result = $conn->query($sql);
+        $innings = array();
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $innings[] = $row["inning"];
+                echo "<th>" . $row["inning"] . "</th>";
             }
-            ?>
-        </table>
+        }
+        ?>
+        <th>Total</th>
+    </tr>
+    <?php
+    // チーム（先行・後攻）ごとにスコアを表示
+    $teams = array("Away", "Home");
+    foreach ($teams as $team) {
+        echo "<tr>";
+        echo "<td>" . $team . "</td>";
 
-        <h2>アウトカウント</h2>
+        // 各イニングごとのスコアを初期化
+        $scores = array_fill(0, count($innings), null);
+        $total = 0;
+
+        // スコアを取得して配列に格納
+        $sql = "SELECT inning, score FROM baseball_scores WHERE game = " . ($team == "Away" ? "0" : "1") . " ORDER BY inning";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $index = array_search($row["inning"], $innings);
+                if ($index !== false) {
+                    $scores[$index] = (int)$row["score"];
+                    $total += (int)$row["score"];
+                }
+            }
+        }
+
+        // 各イニングのスコアを表示
+        foreach ($scores as $score) {
+            echo "<td>" . ($score === null ? '' : $score) . "</td>";
+        }
+        echo "<td>" . $total . "</td>";
+        echo "</tr>";
+    }
+    ?>
+</table>
+
         <div class="red-circles">
             <?php
             // 赤い丸のデータを取得
@@ -145,7 +134,6 @@ if ($conn->connect_error) {
             ?>
         </div>
 
-        <h2>ランナー表示</h2>
         <div class="image-display">
             <?php
             // 最新の画像を取得
@@ -165,5 +153,6 @@ if ($conn->connect_error) {
 </html>
 
 <?php
+// データベース接続を閉じる
 $conn->close();
 ?>
