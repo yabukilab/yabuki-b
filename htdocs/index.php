@@ -1,26 +1,5 @@
 <?php
-session_start();
-
-// データベース接続情報
-$db_host = 'localhost'; // データベースのホスト名
-$db_username = 'root'; // データベースのユーザー名
-$db_password = ''; // データベースのパスワード
-$db_name = 'baseball'; // 作成したデータベース名
-
-// データベースに接続する
-$conn = new mysqli($db_host, $db_username, $db_password, $db_name);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// usersテーブルが存在しない場合は作成する
-$sql_create_table = "CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL
-)";
-$conn->query($sql_create_table);
+require"db.php";
 
 // ユーザーの追加処理
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
