@@ -2,6 +2,10 @@
 require "db.php";
 session_start();
 
+// PDO接続設定
+$dsn = 'mysql:host={$dbServer};dbname={$dbName};charset=utf8';
+$user = 'testuser';
+$password = 'pass';
 
 try {
     $pdo = new PDO($dsn, $user, $password);
