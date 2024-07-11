@@ -26,12 +26,3 @@ try {
   echo "Can't connect to the database: " . h($e->getMessage());
 }
 
-
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // PDOのエラーモードを例外に設定
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("データベース接続失敗: " . $e->getMessage());
-}
-?>
