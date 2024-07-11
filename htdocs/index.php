@@ -1,12 +1,7 @@
 <?php
 session_start();
 
-// データベース接続情報
-$servername = "localhost";
-$username = "testuser";
-$password = "pass"; // データベースのパスワード
-$dbname = "mydb"; // データベース名
-
+require"db.php";
 
 // PDO接続設定
 $dsn = 'mysql:host=localhost;dbname=your_database_name;charset=utf8';
