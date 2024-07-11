@@ -27,13 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
     // 入力されたユーザー名とパスワードが正しいかをデータベースからチェックする
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        // PDOのエラーモードを例外に設定
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch(PDOException $e) {
-        die("データベース接続失敗: " . $e->getMessage());
-    }
-    
+        $db = new PDO($dsn, $dbUser, $dbPass, $options);
+
+        $stmt = $db->prepare("SELECT user_id, username, password FROM user2 WHERE username = ?");
+        $stmt->execute([$user]);
+
+
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
