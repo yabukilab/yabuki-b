@@ -1,177 +1,209 @@
--- MariaDB dump 10.19  Distrib 10.4.32-MariaDB, for Win64 (AMD64)
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: mydb
--- ------------------------------------------------------
--- Server version	10.4.32-MariaDB
+-- ホスト: 127.0.0.1
+-- 生成日時: 2024-07-11 20:47:14
+-- サーバのバージョン： 10.4.32-MariaDB
+-- PHP のバージョン: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `baseball_scores`
+-- データベース: `mydb`
 --
 
-DROP TABLE IF EXISTS `baseball_scores`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `baseball_scores`
+--
+
 CREATE TABLE `baseball_scores` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `inning` int(11) DEFAULT NULL,
   `score` varchar(255) DEFAULT NULL,
-  `game` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `game` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `baseball_scores`
+-- テーブルのデータのダンプ `baseball_scores`
 --
 
-LOCK TABLES `baseball_scores` WRITE;
-/*!40000 ALTER TABLE `baseball_scores` DISABLE KEYS */;
-INSERT INTO `baseball_scores` VALUES (1,1,'0',0),(2,1,'0',1),(3,2,'1',0),(4,2,'1',1),(5,3,'0',0),(6,3,'0',1),(7,4,'2',0),(8,4,'0',1),(9,5,'0',0),(10,5,'0',1),(11,6,'0',0),(12,6,'5',1),(13,7,'1',0),(14,7,'0',1),(154,8,'0',0);
-/*!40000 ALTER TABLE `baseball_scores` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `baseball_scores` (`id`, `inning`, `score`, `game`) VALUES
+(1, 1, '0', 0),
+(2, 1, '0', 1),
+(3, 2, '1', 0),
+(4, 2, '1', 1),
+(5, 3, '0', 0),
+(6, 3, '0', 1),
+(7, 4, '2', 0),
+(8, 4, '0', 1),
+(9, 5, '0', 0),
+(10, 5, '0', 1),
+(11, 6, '0', 0),
+(12, 6, '5', 1),
+(13, 7, '1', 0),
+(14, 7, '0', 1),
+(154, 8, '0', 0);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `images`
+-- テーブルの構造 `images`
 --
 
-DROP TABLE IF EXISTS `images`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `images` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=324 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id` int(11) NOT NULL,
+  `url` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `images`
+-- テーブルのデータのダンプ `images`
 --
 
-LOCK TABLES `images` WRITE;
-/*!40000 ALTER TABLE `images` DISABLE KEYS */;
-INSERT INTO `images` VALUES (313,'1塁.jpg'),(314,'満塁.jpg'),(315,'1塁.jpg'),(316,'1塁.jpg'),(317,'ランナーなし.jpg'),(318,'満塁.jpg'),(319,'2.3塁.jpg'),(320,'1.3塁.jpg'),(321,'ランナーなし.jpg'),(322,'満塁.jpg'),(323,'2.3塁.jpg');
-/*!40000 ALTER TABLE `images` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `images` (`id`, `url`) VALUES
+(313, '1塁.jpg'),
+(314, '満塁.jpg'),
+(315, '1塁.jpg'),
+(316, '1塁.jpg'),
+(317, 'ランナーなし.jpg'),
+(318, '満塁.jpg'),
+(319, '2.3塁.jpg'),
+(320, '1.3塁.jpg'),
+(321, 'ランナーなし.jpg'),
+(322, '満塁.jpg'),
+(323, '2.3塁.jpg');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `images_table`
+-- テーブルの構造 `images_table`
 --
 
-DROP TABLE IF EXISTS `images_table`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `images_table` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `inning` varchar(255) NOT NULL,
-  `image` longblob NOT NULL,
-  PRIMARY KEY (`id`)
+  `image` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `images_table`
+-- テーブルの構造 `red_circles`
 --
 
-LOCK TABLES `images_table` WRITE;
-/*!40000 ALTER TABLE `images_table` DISABLE KEYS */;
-/*!40000 ALTER TABLE `images_table` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `innings`
---
-
-DROP TABLE IF EXISTS `innings`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `innings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `inning_number` int(11) NOT NULL,
-  `top_score` int(11) DEFAULT 0,
-  `bottom_score` int(11) DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `innings`
---
-
-LOCK TABLES `innings` WRITE;
-/*!40000 ALTER TABLE `innings` DISABLE KEYS */;
-/*!40000 ALTER TABLE `innings` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `red_circles`
---
-
-DROP TABLE IF EXISTS `red_circles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `red_circles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `x_position` int(11) DEFAULT NULL,
-  `y_position` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `y_position` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `red_circles`
+-- テーブルのデータのダンプ `red_circles`
 --
 
-LOCK TABLES `red_circles` WRITE;
-/*!40000 ALTER TABLE `red_circles` DISABLE KEYS */;
-INSERT INTO `red_circles` VALUES (14,20,20);
-/*!40000 ALTER TABLE `red_circles` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `red_circles` (`id`, `x_position`, `y_position`) VALUES
+(14, 20, 20);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- テーブルの構造 `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- テーブルのデータのダンプ `users`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'1234','1234'),(2,'user1','password1'),(3,'user2','password2'),(5,'5678','$2y$10$Kf7UuKqujzVmgPQdtpz/Euk4tkP3DBYfcQofKT3UTG45onEprBvTS'),(9,'0319','$2y$10$k.rLLeWnTGvWhEWlCxJf6.iYJq8UySw0JP321zJzO6tvhIQFKDvLi');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(5, '5678', '$2y$10$Kf7UuKqujzVmgPQdtpz/Euk4tkP3DBYfcQofKT3UTG45onEprBvTS'),
+(9, '0319', '$2y$10$k.rLLeWnTGvWhEWlCxJf6.iYJq8UySw0JP321zJzO6tvhIQFKDvLi');
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- ダンプしたテーブルのインデックス
+--
+
+--
+-- テーブルのインデックス `baseball_scores`
+--
+ALTER TABLE `baseball_scores`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `images`
+--
+ALTER TABLE `images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `images_table`
+--
+ALTER TABLE `images_table`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `red_circles`
+--
+ALTER TABLE `red_circles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- ダンプしたテーブルの AUTO_INCREMENT
+--
+
+--
+-- テーブルの AUTO_INCREMENT `baseball_scores`
+--
+ALTER TABLE `baseball_scores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+
+--
+-- テーブルの AUTO_INCREMENT `images`
+--
+ALTER TABLE `images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=324;
+
+--
+-- テーブルの AUTO_INCREMENT `images_table`
+--
+ALTER TABLE `images_table`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- テーブルの AUTO_INCREMENT `red_circles`
+--
+ALTER TABLE `red_circles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- テーブルの AUTO_INCREMENT `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2024-07-12  2:22:19
