@@ -14,6 +14,23 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// ユーザーが存在しない場合に作成する
+$username = 'user1';
+$password = 'password1';
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+$sql_check_user = "SELECT * FROM users WHERE username='$username'";
+$result_check_user = $conn->query($sql_check_user);
+
+if ($result_check_user->num_rows == 0) {
+    $sql_insert_user = "INSERT INTO users (username, password) VALUES ('$username', '$hashed_password')";
+    if ($conn->query($sql_insert_user) === TRUE) {
+        echo "新しいユーザーが正常に作成されました<br>";
+    } else {
+        echo "エラー: " . $sql_insert_user . "<br>" . $conn->error;
+    }
+}
+
 // ログインフォームの送信を処理する
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
