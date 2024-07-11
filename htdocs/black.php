@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="centered-text">
-        <p>これは赤い文字です</p>
+        <p>ログインに失敗しました</p>
     </div>
     <div class="centered-button">
         <button onclick="history.back()">戻る</button>
