@@ -5,8 +5,8 @@ require "db.php";
 
 // PDO接続設定
 $dsn = 'mysql:host=localhost;dbname=your_database_name;charset=utf8';
-$user = 'ytestuse';
-$password = 'ypass';
+$user = 'testuser';
+$password = 'pass';
 
 try {
     $pdo = new PDO($dsn, $user, $password);
