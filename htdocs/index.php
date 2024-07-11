@@ -74,8 +74,5 @@ $conn->close();
             </div>
         </form>
     </div>
-    <div class="footer">
-        <a href="otherpage.php" class="button">他ページへのリンク</a>
-    </div>
 </body>
 </html>
