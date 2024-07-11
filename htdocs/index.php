@@ -1,4 +1,5 @@
 <?php
+require "db.php";
 session_start();
 
 // PDO接続設定
