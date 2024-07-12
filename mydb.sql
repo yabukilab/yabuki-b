@@ -27,6 +27,7 @@ CREATE TABLE `baseball_scores` (
   `inning` int(11) DEFAULT NULL,
   `score` varchar(255) DEFAULT NULL,
   `game` int(11) NOT NULL,
+  `team_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -121,4 +122,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-12 10:45:41
+-- Dump completed on 2024-07-12 14:12:24
