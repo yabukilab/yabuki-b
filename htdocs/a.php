@@ -1,115 +1,3 @@
-<?php
-require_once 'db.php'; // db.phpをインクルードしてデータベース接続を使用
-
-// データベース接続を確認
-if (!$db) {
-    die("Connection failed: " . h($e->getMessage()));
-}
-
-// フォームからの得点を処理
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["score"])) {
-    $score = $_POST["score"];
-
-    // 現在のデータ入力回数を取得
-    $stmt = $db->query("SELECT COUNT(*) AS count FROM baseball_scores");
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    $input_count = $row['count'] + 1;
-
-    // gameとinningを計算
-    $game = $input_count % 2 === 0 ? 1 : 0;
-    $inning = ceil($input_count / 2);
-
-    // SQLクエリを準備
-    $sql = "INSERT INTO baseball_scores (inning, score, game) VALUES (?, ?, ?)";
-
-    // SQLクエリの準備とバインド
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam(1, $inning, PDO::PARAM_INT);
-    $stmt->bindParam(2, $score, PDO::PARAM_STR);
-    $stmt->bindParam(3, $game, PDO::PARAM_INT);
-
-    // クエリを実行
-    if ($stmt->execute()) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . h($stmt->errorInfo());
-    }
-
-    // リダイレクトしてフォーム再送信を防ぐ
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit();
-}
-
-// 赤い丸のデータを挿入するための処理
-if (isset($_POST['circle']) && $_POST['circle'] == '0') {
-    // 既存の赤い丸の数を確認
-    $sql_count = "SELECT COUNT(*) as count FROM red_circles";
-    $stmt_count = $db->query($sql_count);
-    $row_count = $stmt_count->fetch(PDO::FETCH_ASSOC);
-
-    // 赤い丸を2つまでに制限
-    if ($row_count['count'] < 2) {
-        // 赤い丸の座標を設定
-        $x_positions = [20, 80]; // x座標の候補
-        $y_position = 20; // y座標固定
-
-        // 新しい赤い丸の座標をインデックスで選択
-        $x_position = $x_positions[$row_count['count']];
-
-        // 赤い丸の座標をデータベースに挿入
-        $sql_insert_circle = "INSERT INTO red_circles (x_position, y_position) VALUES (:x_position, :y_position)";
-        $stmt_insert_circle = $db->prepare($sql_insert_circle);
-        $stmt_insert_circle->bindParam(':x_position', $x_position, PDO::PARAM_INT);
-        $stmt_insert_circle->bindParam(':y_position', $y_position, PDO::PARAM_INT);
-
-        if ($stmt_insert_circle->execute()) {
-            echo "";
-        } else {
-            echo "エラー: " . h($stmt_insert_circle->errorInfo());
-        }
-    }
-}
-
-// 赤い丸をリセットする処理
-if (isset($_POST['reset_circles'])) {
-    $sql_reset = "DELETE FROM red_circles";
-    $stmt_reset = $db->prepare($sql_reset);
-
-    if ($stmt_reset->execute()) {
-        echo "OUTカウントがリセットされました";
-    } else {
-        echo "エラー: " . h($stmt_reset->errorInfo());
-    }
-}
-
-// 得点データをリセットする処理
-if (isset($_POST['reset_scores'])) {
-    $sql_reset_scores = "DELETE FROM baseball_scores";
-    $stmt_reset_scores = $db->prepare($sql_reset_scores);
-
-    if ($stmt_reset_scores->execute()) {
-        echo "得点データがリセットされました";
-    } else {
-        echo "エラー: " . h($stmt_reset_scores->errorInfo());
-    }
-}
-
-// 画像選択フォームの処理
-if (isset($_POST['image'])) {
-    $imageUrl = $_POST['image'];
-
-    $sql_insert_image = "INSERT INTO images (url) VALUES (:url)";
-    $stmt_insert_image = $db->prepare($sql_insert_image);
-    $stmt_insert_image->bindParam(':url', $imageUrl, PDO::PARAM_STR);
-
-    if ($stmt_insert_image->execute()) {
-        echo "";
-    } else {
-        echo "画像の保存に失敗しました: " . h($stmt_insert_image->errorInfo());
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -117,10 +5,17 @@ if (isset($_POST['image'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baseball Scoreboard</title>
     <style>
+        body {
+            background-image: url('/mnt/data/背景.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
         table {
             border-collapse: collapse;
             width: 100%;
             margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
         }
         th, td {
             border: 1px solid black;
@@ -141,7 +36,6 @@ if (isset($_POST['image'])) {
             display: flex;
             flex-direction: column;
             text-align: left;
-
         }
         .form-container {
             display: flex;
@@ -156,7 +50,6 @@ if (isset($_POST['image'])) {
 
         .red-circles {
             margin-top: 50px; /* 赤い丸を下に配置 */
-
         }
         .red-circles .red-circle {
             bottom: 0;
@@ -172,7 +65,6 @@ if (isset($_POST['image'])) {
         .image-container {
             display: none;
         }
-
         .image-container img {
             max-width: 100%;
             height: auto;
