@@ -118,7 +118,7 @@ if (isset($_POST['image'])) {
     <title>Baseball Scoreboard</title>
     <style>
         body {
-            background-image: url('/mnt/data/背景.jpeg');
+            background-image: url('背景.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
