@@ -1,8 +1,12 @@
 <?php
-require 'db.php';
+require_once 'db.php'; // db.phpをインクルードしてデータベース接続を使用
 
-// HTMLの表示部分
+// データベース接続を確認
+if (!$db) {
+    die("Connection failed: " . h($e->getMessage()));
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -30,11 +34,29 @@ require 'db.php';
             border-radius: 50%;
             background-color: red;
         }
+        .container {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .label-container, .left-container {
+            margin-bottom: 20px;
+            flex-direction: column; /* フォームと赤丸を縦に並べる */
+        }
         .red-circles {
             margin-top: 50px; /* 赤い丸を下に配置 */
         }
         .red-circles .red-circle {
             bottom: 0;
+        }
+        label {
+            margin: 0 5px;
         }
         .image-display {
             text-align: right;
@@ -61,12 +83,12 @@ require 'db.php';
         <?php
         // イニングの数を取得
         $sql = "SELECT DISTINCT inning FROM baseball_scores ORDER BY inning";
-        $result = $conn->query($sql);
+        $stmt = $db->query($sql);
         $innings = array();
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
+        if ($stmt->rowCount() > 0) {
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $innings[] = $row["inning"];
-                echo "<th>" . $row["inning"] . "</th>";
+                echo "<th>" . h($row["inning"]) . "</th>";
             }
         }
         ?>
@@ -77,17 +99,17 @@ require 'db.php';
     $teams = array("Away", "Home");
     foreach ($teams as $team) {
         echo "<tr>";
-        echo "<td>" . $team . "</td>";
+        echo "<td>" . h($team) . "</td>";
 
         // 各イニングごとのスコアを初期化
-        $scores = array_fill(0, count($innings), null);
+        $scores = array_fill(0, count($innings), null);  // 0 から null に変更
         $total = 0;
 
         // スコアを取得して配列に格納
         $sql = "SELECT inning, score FROM baseball_scores WHERE game = " . ($team == "Away" ? "0" : "1") . " ORDER BY inning";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
+        $stmt = $db->query($sql);
+        if ($stmt->rowCount() > 0) {
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $index = array_search($row["inning"], $innings);
                 if ($index !== false) {
                     $scores[$index] = (int)$row["score"];
@@ -98,49 +120,44 @@ require 'db.php';
 
         // 各イニングのスコアを表示
         foreach ($scores as $score) {
-            echo "<td>" . ($score === null ? '' : $score) . "</td>";
+            echo "<td>" . ($score === null ? '' : h($score)) . "</td>";
         }
-        echo "<td>" . $total . "</td>";
+        echo "<td>" . h($total) . "</td>";
         echo "</tr>";
     }
     ?>
 </table>
 
-        <div class="red-circles">
-            <?php
-            // 赤い丸のデータを取得
-            $sql_circles = "SELECT * FROM red_circles";
-            $result_circles = $conn->query($sql_circles);
+<!-- 赤い丸の表示 -->
+<div class="red-circles">
+    <?php
+    // 赤い丸のデータを取得
+    $sql_circles = "SELECT * FROM red_circles";
+    $stmt_circles = $db->query($sql_circles);
 
-            if ($result_circles->num_rows > 0) {
-                while ($row = $result_circles->fetch_assoc()) {
-                    echo '<div class="red-circle" style="left: ' . $row["x_position"] . 'px;"></div>';
-                }
-            } else {
-                echo "ノーアウト";
-            }
-            ?>
-        </div>
+    if ($stmt_circles->rowCount() > 0) {
+        while ($row = $stmt_circles->fetch(PDO::FETCH_ASSOC)) {
+            echo '<div class="red-circle" style="left: ' . h($row["x_position"]) . 'px;"></div>';
+        }
+    }
+    ?>
+</div>
 
-        <div class="image-display">
-            <?php
-            // 最新の画像を取得
-            $sql_image = "SELECT url FROM images ORDER BY id DESC LIMIT 1";
-            $result_image = $conn->query($sql_image);
-
-            if ($result_image->num_rows > 0) {
-                $row_image = $result_image->fetch_assoc();
-                echo '<img src="'.$row_image['url'].'" alt="選択された画像">';
-            } else {
-                echo "ランナーなし";
-            }
-            ?>
-        </div>
-    </div>
-</body>
-</html>
+<!-- 選択された画像を表示する場所 -->
+<div class="image-display">
+    <?php
+    $sql_images = "SELECT url FROM images ORDER BY id DESC LIMIT 1";
+    $stmt_images = $db->query($sql_images);
+    if ($stmt_images->rowCount() > 0) {
+        $row = $stmt_images->fetch(PDO::FETCH_ASSOC);
+        echo '<img src="'.h($row['url']).'" alt="選択された画像">';
+    }
+    ?>
+</div>
 
 <?php
 // データベース接続を閉じる
-$conn->close();
+$db = null;
 ?>
+</body>
+</html>
