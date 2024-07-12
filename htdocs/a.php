@@ -61,11 +61,8 @@ if (isset($_POST['circle']) && $_POST['circle'] == '0') {
         $x_positions = [20, 80]; // x座標の候補
         $y_position = 20; // y座標固定
 
-        // 新しい赤い丸の座標をインデックスで選択
-        $x_position = $x_positions[$row_count['count']];
-
-        // 赤い丸の座標をデータベースに挿入
-        $sql_insert_circle = "INSERT INTO red_circles (x_position, y_position) VALUES ($x_position, $y_position)";
+        // 新しい赤い丸の座標をデータベースに挿入
+        $sql_insert_circle = "INSERT INTO red_circles (x_position, y_position) VALUES ($x_positions[$row_count['count']], $y_position)";
         if ($conn->query($sql_insert_circle) === TRUE) {
             echo "";
         } else {
@@ -142,7 +139,6 @@ if (isset($_POST['image'])) {
             display: flex;
             flex-direction: column;
             text-align: left;
-
         }
         .form-container {
             display: flex;
@@ -152,12 +148,10 @@ if (isset($_POST['image'])) {
         }
         .label-container, .left-container {
             margin-bottom: 20px;
-            flex-direction: column; /* フォームと赤丸を縦に並べる */
+            flex-direction: column;
         }
-
         .red-circles {
-            margin-top: 50px; /* 赤い丸を下に配置 */
-
+            margin-top: 50px;
         }
         .red-circles .red-circle {
             bottom: 0;
@@ -168,12 +162,11 @@ if (isset($_POST['image'])) {
         .image-display {
             text-align: right;
             width: 100%;
-            margin-top: 20px; /* 画像をボタンの下に表示するためのスペースを追加 */
+            margin-top: 20px;
         }
         .image-container {
             display: none;
         }
-
         .image-container img {
             max-width: 100%;
             height: auto;
@@ -343,7 +336,6 @@ if (isset($_POST['image'])) {
     }
     ?>
 </div>
-
 
 <?php
 // データベース接続を閉じる
