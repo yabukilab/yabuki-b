@@ -145,7 +145,6 @@ if (isset($_POST['image'])) {
             display: flex;
             flex-direction: column;
             text-align: left;
-
         }
         .form-container {
             display: flex;
@@ -159,20 +158,18 @@ if (isset($_POST['image'])) {
         }
 
         .red-circles {
-            margin-top: 50px; /* 赤い丸を下に配置 */
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
 
-        }
-        .red-circles .red-circle {
-            bottom: 0;
-        }
-        label {
-            margin: 0 5px;
-        }
         .image-display {
-            text-align: right;
-            width: 100%;
-            margin-top: 20px; /* 画像をボタンの下に表示するためのスペースを追加 */
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-left: auto;
         }
+
         .image-container {
             display: none;
         }
@@ -252,7 +249,7 @@ if (isset($_POST['image'])) {
     ?>
 </table>
 
-<!-- 赤い丸の表示 -->
+<!-- 赤い丸の表示と画像表示を同じ行に配置 -->
 <div class="form-container">
     <div class="left-container">
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
@@ -322,17 +319,7 @@ if (isset($_POST['image'])) {
     </div>
 </div>
 
-<!-- 選択された画像を表示する場所 -->
-<div class="image-display">
-    <?php
-    if (isset($_SESSION['selected_image'])) {
-        $selectedImage = $_SESSION['selected_image'];
-        echo '<img src="'.h($selectedImage).'" alt="選択された画像">';
-    }
-    ?>
-</div>
-
-<!-- 赤い丸の表示 -->
+<!-- 赤い丸の表示と画像を同じ行に配置 -->
 <div class="red-circles">
     <?php
     // 赤い丸のデータを取得
@@ -343,6 +330,15 @@ if (isset($_POST['image'])) {
         while ($row = $stmt_circles->fetch(PDO::FETCH_ASSOC)) {
             echo '<div class="red-circle" style="left: ' . h($row["x_position"]) . 'px;"></div>';
         }
+    }
+    ?>
+</div>
+
+<div class="image-display">
+    <?php
+    if (isset($_SESSION['selected_image'])) {
+        $selectedImage = $_SESSION['selected_image'];
+        echo '<img src="'.h($selectedImage).'" alt="選択された画像">';
     }
     ?>
 </div>
