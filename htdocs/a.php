@@ -51,7 +51,7 @@ if (isset($_POST['circle']) && $_POST['circle'] == '0') {
     if ($row_count['count'] < 2) {
         // 赤い丸の座標を設定
         $x_positions = [20, 80]; // x座標の候補
-        $y_position = 20; // y座標固定
+        $y_position = 50; // y座標固定
 
         // 新しい赤い丸の座標をインデックスで選択
         $x_position = $x_positions[$row_count['count']];
