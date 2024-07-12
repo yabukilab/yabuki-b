@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'db.php'; // db.phpをインクルードしてデータベース接続を使用
 
 // データベース接続を確認
@@ -107,6 +108,9 @@ if (isset($_POST['image'])) {
     } else {
         echo "画像の保存に失敗しました: " . h($stmt_insert_image->errorInfo());
     }
+
+    // 選択した画像のURLをセッションに保存
+    $_SESSION['selected_image'] = $imageUrl;
 }
 ?>
 
@@ -321,8 +325,8 @@ if (isset($_POST['image'])) {
 <!-- 選択された画像を表示する場所 -->
 <div class="image-display">
     <?php
-    if (isset($_POST['image'])) {
-        $selectedImage = $_POST['image'];
+    if (isset($_SESSION['selected_image'])) {
+        $selectedImage = $_SESSION['selected_image'];
         echo '<img src="'.h($selectedImage).'" alt="選択された画像">';
     }
     ?>
