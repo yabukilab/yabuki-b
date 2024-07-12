@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require 'db.php'; // データベース接続ファイルを読み込む
 
 // フォームからの得点を処理
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["score"])) {
@@ -331,7 +331,6 @@ if (isset($_POST['image'])) {
     }
     ?>
 </div>
-
 
 <?php
 // データベース接続を閉じる
