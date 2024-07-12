@@ -145,7 +145,6 @@ if (isset($_POST['image'])) {
             display: flex;
             flex-direction: column;
             text-align: left;
-
         }
         .form-container {
             display: flex;
@@ -167,7 +166,8 @@ if (isset($_POST['image'])) {
         .image-display {
             display: flex;
             align-items: center;
-            margin-left: 20px;
+            justify-content: flex-end;
+            margin-left: auto;
         }
 
         .image-container {
@@ -319,7 +319,7 @@ if (isset($_POST['image'])) {
     </div>
 </div>
 
-<!-- 選択された画像を表示する場所 -->
+<!-- 赤い丸の表示と画像を同じ行に配置 -->
 <div class="red-circles">
     <?php
     // 赤い丸のデータを取得
