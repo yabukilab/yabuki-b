@@ -60,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["score"])) {
     } catch (PDOException $e) {
         echo "Error: " . h($e->getMessage());
     }
+    
 }
 ?>
 
