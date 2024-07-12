@@ -1,9 +1,9 @@
 <?php
 require_once 'db.php'; // db.phpをインクルードしてデータベース接続を使用
 
-// 接続を確認
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// データベース接続を確認
+if (!$db) {
+    die("Connection failed: " . h($e->getMessage()));
 }
 
 // フォームからの得点を処理
@@ -11,8 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["score"])) {
     $score = $_POST["score"];
 
     // 現在のデータ入力回数を取得
-    $result = $conn->query("SELECT COUNT(*) AS count FROM baseball_scores");
-    $row = $result->fetch_assoc();
+    $stmt = $db->query("SELECT COUNT(*) AS count FROM baseball_scores");
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $input_count = $row['count'] + 1;
 
     // gameとinningを計算
@@ -23,30 +23,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["score"])) {
     $sql = "INSERT INTO baseball_scores (inning, score, game) VALUES (?, ?, ?)";
 
     // SQLクエリの準備とバインド
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("isi", $inning, $score, $game);
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(1, $inning, PDO::PARAM_INT);
+    $stmt->bindParam(2, $score, PDO::PARAM_STR);
+    $stmt->bindParam(3, $game, PDO::PARAM_INT);
 
     // クエリを実行
-    if ($stmt->execute() === TRUE) {
+    if ($stmt->execute()) {
         echo "New record created successfully";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>" . h($stmt->errorInfo());
     }
 
     // リダイレクトしてフォーム再送信を防ぐ
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
-
-    // クエリと接続を閉じる
-    $stmt->close();
 }
 
 // 赤い丸のデータを挿入するための処理
 if (isset($_POST['circle']) && $_POST['circle'] == '0') {
     // 既存の赤い丸の数を確認
     $sql_count = "SELECT COUNT(*) as count FROM red_circles";
-    $result_count = $conn->query($sql_count);
-    $row_count = $result_count->fetch_assoc();
+    $stmt_count = $db->query($sql_count);
+    $row_count = $stmt_count->fetch(PDO::FETCH_ASSOC);
 
     // 赤い丸を2つまでに制限
     if ($row_count['count'] < 2) {
@@ -58,11 +57,15 @@ if (isset($_POST['circle']) && $_POST['circle'] == '0') {
         $x_position = $x_positions[$row_count['count']];
 
         // 赤い丸の座標をデータベースに挿入
-        $sql_insert_circle = "INSERT INTO red_circles (x_position, y_position) VALUES ($x_position, $y_position)";
-        if ($conn->query($sql_insert_circle) === TRUE) {
+        $sql_insert_circle = "INSERT INTO red_circles (x_position, y_position) VALUES (:x_position, :y_position)";
+        $stmt_insert_circle = $db->prepare($sql_insert_circle);
+        $stmt_insert_circle->bindParam(':x_position', $x_position, PDO::PARAM_INT);
+        $stmt_insert_circle->bindParam(':y_position', $y_position, PDO::PARAM_INT);
+
+        if ($stmt_insert_circle->execute()) {
             echo "";
         } else {
-            echo "エラー: " . $sql_insert_circle . "<br>" . $conn->error;
+            echo "エラー: " . h($stmt_insert_circle->errorInfo());
         }
     }
 }
@@ -70,20 +73,24 @@ if (isset($_POST['circle']) && $_POST['circle'] == '0') {
 // 赤い丸をリセットする処理
 if (isset($_POST['reset_circles'])) {
     $sql_reset = "DELETE FROM red_circles";
-    if ($conn->query($sql_reset) === TRUE) {
+    $stmt_reset = $db->prepare($sql_reset);
+
+    if ($stmt_reset->execute()) {
         echo "OUTカウントがリセットされました";
     } else {
-        echo "エラー: " . $sql_reset . "<br>" . $conn->error;
+        echo "エラー: " . h($stmt_reset->errorInfo());
     }
 }
 
 // 得点データをリセットする処理
 if (isset($_POST['reset_scores'])) {
     $sql_reset_scores = "DELETE FROM baseball_scores";
-    if ($conn->query($sql_reset_scores) === TRUE) {
+    $stmt_reset_scores = $db->prepare($sql_reset_scores);
+
+    if ($stmt_reset_scores->execute()) {
         echo "得点データがリセットされました";
     } else {
-        echo "エラー: " . $sql_reset_scores . "<br>" . $conn->error;
+        echo "エラー: " . h($stmt_reset_scores->errorInfo());
     }
 }
 
@@ -91,16 +98,15 @@ if (isset($_POST['reset_scores'])) {
 if (isset($_POST['image'])) {
     $imageUrl = $_POST['image'];
 
-    $stmt = $conn->prepare("INSERT INTO images (url) VALUES (?)");
-    $stmt->bind_param("s", $imageUrl);
+    $sql_insert_image = "INSERT INTO images (url) VALUES (:url)";
+    $stmt_insert_image = $db->prepare($sql_insert_image);
+    $stmt_insert_image->bindParam(':url', $imageUrl, PDO::PARAM_STR);
 
-    if ($stmt->execute()) {
+    if ($stmt_insert_image->execute()) {
         echo "";
     } else {
-        echo "画像の保存に失敗しました: " . $stmt->error;
+        echo "画像の保存に失敗しました: " . h($stmt_insert_image->errorInfo());
     }
-
-    $stmt->close();
 }
 ?>
 
@@ -197,12 +203,12 @@ if (isset($_POST['image'])) {
         <?php
         // イニングの数を取得
         $sql = "SELECT DISTINCT inning FROM baseball_scores ORDER BY inning";
-        $result = $conn->query($sql);
+        $stmt = $db->query($sql);
         $innings = array();
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
+        if ($stmt->rowCount() > 0) {
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $innings[] = $row["inning"];
-                echo "<th>" . $row["inning"] . "</th>";
+                echo "<th>" . h($row["inning"]) . "</th>";
             }
         }
         ?>
@@ -213,7 +219,7 @@ if (isset($_POST['image'])) {
     $teams = array("Away", "Home");
     foreach ($teams as $team) {
         echo "<tr>";
-        echo "<td>" . $team . "</td>";
+        echo "<td>" . h($team) . "</td>";
 
         // 各イニングごとのスコアを初期化
         $scores = array_fill(0, count($innings), null);  // 0 から null に変更
@@ -221,9 +227,9 @@ if (isset($_POST['image'])) {
 
         // スコアを取得して配列に格納
         $sql = "SELECT inning, score FROM baseball_scores WHERE game = " . ($team == "Away" ? "0" : "1") . " ORDER BY inning";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
+        $stmt = $db->query($sql);
+        if ($stmt->rowCount() > 0) {
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $index = array_search($row["inning"], $innings);
                 if ($index !== false) {
                     $scores[$index] = (int)$row["score"];
@@ -234,9 +240,9 @@ if (isset($_POST['image'])) {
 
         // 各イニングのスコアを表示
         foreach ($scores as $score) {
-            echo "<td>" . ($score === null ? '' : $score) . "</td>";
+            echo "<td>" . ($score === null ? '' : h($score)) . "</td>";
         }
-        echo "<td>" . $total . "</td>";
+        echo "<td>" . h($total) . "</td>";
         echo "</tr>";
     }
     ?>
@@ -317,7 +323,7 @@ if (isset($_POST['image'])) {
     <?php
     if (isset($_POST['image'])) {
         $selectedImage = $_POST['image'];
-        echo '<img src="'.$selectedImage.'" alt="選択された画像">';
+        echo '<img src="'.h($selectedImage).'" alt="選択された画像">';
     }
     ?>
 </div>
@@ -327,11 +333,11 @@ if (isset($_POST['image'])) {
     <?php
     // 赤い丸のデータを取得
     $sql_circles = "SELECT * FROM red_circles";
-    $result_circles = $conn->query($sql_circles);
+    $stmt_circles = $db->query($sql_circles);
 
-    if ($result_circles->num_rows > 0) {
-        while ($row = $result_circles->fetch_assoc()) {
-            echo '<div class="red-circle" style="left: ' . $row["x_position"] . 'px;"></div>';
+    if ($stmt_circles->rowCount() > 0) {
+        while ($row = $stmt_circles->fetch(PDO::FETCH_ASSOC)) {
+            echo '<div class="red-circle" style="left: ' . h($row["x_position"]) . 'px;"></div>';
         }
     }
     ?>
@@ -339,7 +345,7 @@ if (isset($_POST['image'])) {
 
 <?php
 // データベース接続を閉じる
-$conn->close();
+$db = null;
 ?>
 </body>
 </html>
