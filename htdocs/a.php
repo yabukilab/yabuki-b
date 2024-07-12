@@ -117,17 +117,10 @@ if (isset($_POST['image'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baseball Scoreboard</title>
     <style>
-        body {
-            background-image: url('背景.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
         table {
             border-collapse: collapse;
             width: 100%;
             margin-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
         }
         th, td {
             border: 1px solid black;
@@ -143,6 +136,7 @@ if (isset($_POST['image'])) {
             height: 50px;
             border-radius: 50%;
             background-color: red;
+            top: -20px; /* 赤い丸を上に20ピクセル移動 */
         }
         .container {
             display: flex;
