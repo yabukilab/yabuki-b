@@ -2,15 +2,7 @@
 require "db.php";
 session_start();
 
-// PDO接続設定
-$dsn = "mysql:host={$dbServer};dbname={$dbName};charset=utf8";
-$user = 'testuser';
-$password = 'pass';
-
 try {
-    $pdo = new PDO($dsn, $user, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     // ユーザーの追加処理
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
         $username = $_POST['username'];
@@ -21,7 +13,7 @@ try {
 
         // ユーザーをデータベースに追加
         $sql_add_user = "INSERT INTO users (username, password) VALUES (:username, :password_hash)";
-        $stmt = $pdo->prepare($sql_add_user);
+        $stmt = $db->prepare($sql_add_user);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->bindParam(':password_hash', $password_hash, PDO::PARAM_STR);
 
@@ -39,7 +31,7 @@ try {
 
         // 入力されたユーザー名とパスワードが正しいかをデータベースからチェックする
         $sql = "SELECT * FROM users WHERE username = :username";
-        $stmt = $pdo->prepare($sql);
+        $stmt = $db->prepare($sql);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->execute();
 
@@ -84,7 +76,7 @@ try {
         <h1>ログイン</h1>
         
         <?php if (isset($error_message)): ?>
-            <p><?php echo $error_message; ?></p>
+            <p><?php echo h($error_message); ?></p>
         <?php endif; ?>
         
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
