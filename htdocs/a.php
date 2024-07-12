@@ -6,25 +6,6 @@ if (!$db) {
     die("Connection failed: " . h($e->getMessage()));
 }
 
-// チーム名の入力フォームを処理
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["team_name"])) {
-    $teamName = $_POST["team_name"];
-    $teamType = $_POST["team_type"]; // Away か Home かを区別するためのフィールド
-
-    // チーム名をデータベースに保存
-    $sql_insert_team = "INSERT INTO baseball_teams (team_type, team_name) VALUES (:team_type, :team_name)
-                        ON DUPLICATE KEY UPDATE team_name = VALUES(team_name)";
-    $stmt_insert_team = $db->prepare($sql_insert_team);
-    $stmt_insert_team->bindParam(':team_type', $teamType, PDO::PARAM_STR);
-    $stmt_insert_team->bindParam(':team_name', $teamName, PDO::PARAM_STR);
-
-    if ($stmt_insert_team->execute()) {
-        echo "チーム名が保存されました";
-    } else {
-        echo "チーム名の保存に失敗しました: " . h($stmt_insert_team->errorInfo());
-    }
-}
-
 // フォームからの得点を処理
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["score"])) {
     $score = $_POST["score"];
@@ -38,23 +19,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["score"])) {
     $game = $input_count % 2 === 0 ? 1 : 0;
     $inning = ceil($input_count / 2);
 
-    // チーム名を取得
-    $teamType = $game == 0 ? 'Away' : 'Home';
-    $stmt_team = $db->prepare("SELECT team_name FROM baseball_teams WHERE team_type = :team_type");
-    $stmt_team->bindParam(':team_type', $teamType, PDO::PARAM_STR);
-    $stmt_team->execute();
-    $row_team = $stmt_team->fetch(PDO::FETCH_ASSOC);
-    $teamName = $row_team['team_name'];
-
     // SQLクエリを準備
-    $sql = "INSERT INTO baseball_scores (inning, score, game, team_name) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO baseball_scores (inning, score, game) VALUES (?, ?, ?)";
 
     // SQLクエリの準備とバインド
     $stmt = $db->prepare($sql);
     $stmt->bindParam(1, $inning, PDO::PARAM_INT);
     $stmt->bindParam(2, $score, PDO::PARAM_STR);
     $stmt->bindParam(3, $game, PDO::PARAM_INT);
-    $stmt->bindParam(4, $teamName, PDO::PARAM_STR);
 
     // クエリを実行
     if ($stmt->execute()) {
@@ -211,19 +183,6 @@ if (isset($_POST['image'])) {
 
 <h2>Baseball Scoreboard</h2>
 
-<!-- チーム名の入力フォーム -->
-<h3>チーム名入力</h3>
-<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-    Away チーム名: <input type="text" name="team_name" required>
-    <input type="hidden" name="team_type" value="Away">
-    <input type="submit" value="更新↻">
-</form>
-<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-    Home チーム名: <input type="text" name="team_name" required>
-    <input type="hidden" name="team_type" value="Home">
-    <input type="submit" value="更新↻">
-</form>
-
 <!-- 得点の入力フォーム -->
 <h3>得点データ入力</h3>
 <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
@@ -259,15 +218,8 @@ if (isset($_POST['image'])) {
     // チーム（先行・後攻）ごとにスコアを表示
     $teams = array("Away", "Home");
     foreach ($teams as $team) {
-        // チーム名を取得
-        $stmt_team = $db->prepare("SELECT team_name FROM baseball_teams WHERE team_type = :team_type");
-        $stmt_team->bindParam(':team_type', $team, PDO::PARAM_STR);
-        $stmt_team->execute();
-        $row_team = $stmt_team->fetch(PDO::FETCH_ASSOC);
-        $teamName = $row_team['team_name'];
-
         echo "<tr>";
-        echo "<td>" . h($teamName) . "</td>";
+        echo "<td>" . h($team) . "</td>";
 
         // 各イニングごとのスコアを初期化
         $scores = array_fill(0, count($innings), null);  // 0 から null に変更
