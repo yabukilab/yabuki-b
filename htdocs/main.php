@@ -151,9 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["score"])) {
         .image-container {
             display: none;
         }
-        input[type="radio"]:checked + label + .image-container {
-            display: block;
-        }
+        
         .image-container img {
             max-width: 100%; /* 画像の大きさを表示エリアに合わせる */
             height: auto;
