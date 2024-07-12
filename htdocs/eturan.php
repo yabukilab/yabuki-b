@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'db.php'; // db.phpをインクルードしてデータベース接続を使用
 
 // データベース接続を確認
@@ -49,23 +50,24 @@ if (!$db) {
             margin-bottom: 20px;
             flex-direction: column; /* フォームと赤丸を縦に並べる */
         }
+
         .red-circles {
-            margin-top: 50px; /* 赤い丸を下に配置 */
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
         }
-        .red-circles .red-circle {
-            bottom: 0;
-        }
-        label {
-            margin: 0 5px;
-        }
+
         .image-display {
-            text-align: right;
-            width: 100%;
-            margin-top: 20px; /* 画像をボタンの下に表示するためのスペースを追加 */
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-left: auto;
         }
+
         .image-container {
             display: none;
         }
+
         .image-container img {
             max-width: 100%;
             height: auto;
@@ -128,31 +130,30 @@ if (!$db) {
     ?>
 </table>
 
-<!-- 赤い丸の表示 -->
-<div class="red-circles">
-    <?php
-    // 赤い丸のデータを取得
-    $sql_circles = "SELECT * FROM red_circles";
-    $stmt_circles = $db->query($sql_circles);
+<!-- 赤い丸の表示と画像を同じ行に配置 -->
+<div class="form-container">
+    <div class="red-circles">
+        <?php
+        // 赤い丸のデータを取得
+        $sql_circles = "SELECT * FROM red_circles";
+        $stmt_circles = $db->query($sql_circles);
 
-    if ($stmt_circles->rowCount() > 0) {
-        while ($row = $stmt_circles->fetch(PDO::FETCH_ASSOC)) {
-            echo '<div class="red-circle" style="left: ' . h($row["x_position"]) . 'px;"></div>';
+        if ($stmt_circles->rowCount() > 0) {
+            while ($row = $stmt_circles->fetch(PDO::FETCH_ASSOC)) {
+                echo '<div class="red-circle" style="left: ' . h($row["x_position"]) . 'px;"></div>';
+            }
         }
-    }
-    ?>
-</div>
+        ?>
+    </div>
 
-<!-- 選択された画像を表示する場所 -->
-<div class="image-display">
-    <?php
-    $sql_images = "SELECT url FROM images ORDER BY id DESC LIMIT 1";
-    $stmt_images = $db->query($sql_images);
-    if ($stmt_images->rowCount() > 0) {
-        $row = $stmt_images->fetch(PDO::FETCH_ASSOC);
-        echo '<img src="'.h($row['url']).'" alt="選択された画像">';
-    }
-    ?>
+    <div class="image-display">
+        <?php
+        if (isset($_SESSION['selected_image'])) {
+            $selectedImage = $_SESSION['selected_image'];
+            echo '<img src="'.h($selectedImage).'" alt="選択された画像">';
+        }
+        ?>
+    </div>
 </div>
 
 <?php
