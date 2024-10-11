@@ -94,13 +94,13 @@
 <section>
     <div class="slideshow-container">
         <div class="mySlides">
-            <img src="karaoke1.jpg" alt="カラオケ1" style="width:100%">
+            <img src="https://github.com/yabukilab/yabuki-b/blob/main/IMG_1152.jpg" alt="カラオケ1" style="width:100%">
         </div>
         <div class="mySlides">
-            <img src="karaoke2.jpg" alt="カラオケ2" style="width:100%">
+            <img src="https://github.com/yabukilab/yabuki-b/blob/main/IMG_1153.jpg" alt="カラオケ2" style="width:100%">
         </div>
         <div class="mySlides">
-            <img src="karaoke3.jpg" alt="カラオケ3" style="width:100%">
+            <img src="https://github.com/yabukilab/yabuki-b/blob/main/IMG_1154.jpg" alt="カラオケ3" style="width:100%">
         </div>
         <div class="mySlides">
             <img src="karaoke4.jpg" alt="カラオケ4" style="width:100%">
