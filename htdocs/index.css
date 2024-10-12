@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 20px;
+    background-color: #F4D923;  /* 背景色を黄色に設定 */
 }
 iframe {
     width: 600px;  /* 幅を600pxに設定 */
@@ -24,12 +25,12 @@ h2 {
     color: #2C3E50;
     text-decoration: none;
     padding: 10px 15px;
-    border: 2px solid #3498DB;
+    border: 3px solid #2C3E50;  /* ボーダーを青系に変更し、3pxに太く設定 */
     border-radius: 5px;
     transition: background-color 0.3s;
 }
 .link a:hover {
-    background-color: #3498DB;
+    background-color: #2C3E50;  /* ホバー時の背景色を変更 */
     color: white;
 }
 .small-text {
@@ -42,4 +43,3 @@ h2 {
     color: #34495E; /* テキストの色を変更（任意） */
     margin-top: 5px;
 }
-
