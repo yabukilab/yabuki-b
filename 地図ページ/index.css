@@ -22,7 +22,7 @@ h2 {
 }
 .link a {
     font-size: 1.5em;
-    color: #00A599;
+    color: #000000;
     text-decoration: none;
     padding: 10px 15px;
     border: 3px solid #00A599;  /* ボーダーを青系に変更し、3pxに太く設定 */
