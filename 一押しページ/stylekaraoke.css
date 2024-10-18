@@ -1,0 +1,85 @@
+/* 全体のスタイル */
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(244, 217, 35); /* 背景色を変更 */
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+/* タイトルのスタイル */
+h1 {
+    text-align: center;
+    background-color: rgb(0, 165, 153); /* タイトル背景色 */
+    color: #fff; /* 文字色を白に変更してコントラストを改善 */
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+/* カテゴリーのコンテナ */
+.category {
+    background-color: #fff; /* 各カラオケ店の部分の背景色を白に */
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 各カテゴリーのタイトル */
+.category h2 {
+    margin-top: 0;
+    color: rgb(0, 165, 153); /* タイトルの文字色をグリーンに */
+}
+
+/* カテゴリーのテキスト */
+.category p, .category ul {
+    color: #555; /* 読みやすいように文字色を明るく変更 */
+    margin: 0; /* テキストの余白を調整 */
+    font-size: 1.2em; /* 文字サイズを大きくする */
+    line-height: 1.5; /* 行間を調整 */
+}
+
+/* リストのスタイル */
+.category ul {
+    padding-left: 20px; /* 左のインデントを設定 */
+}
+
+.category ul li {
+    margin-bottom: 10px; /* リスト項目間の余白を設定 */
+}
+
+/* ナビゲーションリンクのスタイル */
+nav ul {
+    list-style-type: none; /* リストマーカーを非表示に */
+    padding: 0;
+}
+
+nav ul li {
+    display: inline; /* 横並びにする */
+    margin-right: 15px; /* リンク間の余白 */
+}
+
+nav a {
+    text-decoration: none; /* 下線を非表示に */
+    color: rgb(0, 165, 153); /* リンクの色 */
+    font-size: 1.2em; /* フォントサイズを大きくする */
+    font-weight: bold; /* フォントを太くする */
+    transition: color 0.3s, text-decoration 0.3s; /* ホバー時のスムーズな効果 */
+}
+
+nav a:hover {
+    text-decoration: underline; /* ホバー時に下線を表示 */
+    color: rgb(0, 140, 130); /* ホバー時の色を少し暗く */
+}
+
+
+/* スマホ向けのレスポンシブデザイン */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    .category {
+        padding: 15px;
+    }
+}
