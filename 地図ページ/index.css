@@ -22,15 +22,15 @@ h2 {
 }
 .link a {
     font-size: 1.5em;
-    color: #2C3E50;
+    color: #00A599;
     text-decoration: none;
     padding: 10px 15px;
-    border: 3px solid #2C3E50;  /* ボーダーを青系に変更し、3pxに太く設定 */
+    border: 3px solid #00A599;  /* ボーダーを青系に変更し、3pxに太く設定 */
     border-radius: 5px;
     transition: background-color 0.3s;
 }
 .link a:hover {
-    background-color: #2C3E50;  /* ホバー時の背景色を変更 */
+    background-color: #00A599;  /* ホバー時の背景色を変更 */
     color: white;
 }
 .small-text {
