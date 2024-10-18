@@ -1,0 +1,35 @@
+﻿/* 全体の背景を黄色に */
+body {
+  background-color: #F4D923;
+}
+/* コンテンツの枠線を横長に */
+.container {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap; /* 横並びにしつつ、幅が足りない場合に折り返す */
+  justify-content: space-between; /* 各ボックスの間隔を均等に */
+  gap: 20px; /* ボックス同士の間隔を広げる */
+}
+/* 各ボックスを横長にして青色に */
+.box { border: 2px solid #00A599;
+padding: 20px;
+margin-bottom: 20px;
+flex: 1 1 calc(25% - 40px); /* ボックスのサイズを均等に */
+max-width: calc(25% - 40px); /* 最大幅を設定 */
+box-sizing: border-box; /* パディングを含めた幅調整 */
+text-align: left; /* テキストを左寄せ */
+}
+
+
+/* まねきねこ 津田沼北口店の料金と比較結果の内容を赤色に */
+[data-store="まねきねこ 津田沼北口2号店"] .weekdayFreeTime, 
+[data-store="まねきねこ 津田沼北口2号店"] .weekdayFreeTimeStudent, 
+[data-store="まねきねこ 津田沼北口2号店"] .holidayFreeTime, 
+[data-store="まねきねこ 津田沼北口2号店"] .holidayFreeTimeStudent {
+  color: #EA585E; 
+}
+
+/* 比較結果を赤色にするためのスタイル */
+.highlight{
+  color:#EA585E; /* ハイライトされた部分のテキストを赤色に */
+}
