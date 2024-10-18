@@ -85,8 +85,8 @@ nav a:hover {
 }
 
 .item img {
-    max-width: 300px; /* Adjusted maximum width to a smaller size */
+    max-width: 150px; /* Adjusted maximum width to a smaller size */
     height: auto;
-    margin-top: 15px;
-    border-radius: 8px;
+    margin-top: 10px;
+    border-radius: 5px;
 }
