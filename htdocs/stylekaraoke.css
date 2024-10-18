@@ -83,3 +83,10 @@ nav a:hover {
         padding: 15px;
     }
 }
+
+.item img {
+    max-width: 300px; /* Adjusted maximum width to a smaller size */
+    height: auto;
+    margin-top: 15px;
+    border-radius: 8px;
+}
