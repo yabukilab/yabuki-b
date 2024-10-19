@@ -84,7 +84,7 @@ nav a:hover {
     }
 }
 
-.item img {
+item img {
     width: 150px; /* 統一したい幅 */
     height: 150px; /* 統一したい高さ */
     object-fit: cover; /* 画像を切り抜きながら全体を表示 */
