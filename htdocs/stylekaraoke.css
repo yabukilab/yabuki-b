@@ -85,8 +85,8 @@ nav a:hover {
 }
 
 .item img {
-    width: 150px; /* 統一したい幅 */
-    height: 150px; /* 統一したい高さ */
+    width: 100px; /* 統一したい幅 */
+    height: 100px; /* 統一したい高さ */
     object-fit: cover; /* 画像を切り抜きながら全体を表示 */
     margin-top: 10px;
     border-radius: 5px;
