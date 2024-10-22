@@ -101,3 +101,10 @@ img {
         max-width: 100%; /* スマートフォンでは画面幅に合わせて画像をフルサイズ表示 */
     }
 }
+footer {
+    margin-top: 40px;
+    text-align: center; /* テキストと要素を中央揃え */
+    color: black;
+    padding: 20px; /* フッター内の余白を追加 */
+    background-color: #F4D923; /* フッターの背景色を指定（任意） */
+}
