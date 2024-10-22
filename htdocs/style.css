@@ -8,7 +8,9 @@ body {
 header {
     background-color: #00A599; /* 枠（ヘッダー） */
     color: black; /* 文字色 */
-    padding: 15px;
+    padding: 50px;
+    font-size: 60px; /* ←ヘッダーの文字サイズを指定する */
+
     text-align: center;
     border: 5px solid #00A599;
 }
@@ -16,25 +18,50 @@ section {
     margin: 20px;
     text-align: center;
     border: 3px solid #00A599; /* 各セクションの枠 */
-    padding: 20px;
-    border-radius: 10px;
+    padding: 50px;
+    border-radius: 50px;
+    font-size: 40px; /* ←文字サイズを指定する */
 }
 .slideshow-container {
     position: relative;
-    max-width: 600px;
+    max-width: 550px;
     margin: auto;
+    font-size: 100px; /* ←文字サイズを指定する */
+
 }
-.mySlides {
-    display: none;
-    width: 100%;
-    border: 5px solid #00A599; /* スライドショーの画像枠 */
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%; /* 画像の中央に配置 */
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    transition: 0.6s ease;
+    user-select: none;
+    background-color: rgba(0,0,0,0.8);
 }
+
+.prev {
+    left: 0;  /* 左側に配置 */
+    border-radius: 0 3px 3px 0;
+}
+
 .next {
-    right: 0;
+    right: 0;  /* 右側に配置 */
     border-radius: 3px 0 0 3px;
 }
+
 .prev:hover, .next:hover {
-    background-color: rgba(0, 165, 153, 1);
+    background-color: rgba(0,165,153,1);
+}
+
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,165,153,1); /* ボタンをホバー時に明るく */
 }
 .dot {
     cursor: pointer;
@@ -57,6 +84,7 @@ footer {
 a {
     color: #00A599;
     text-decoration: none;
+    font-size: 40px; /* ←文字サイズを指定する */
 }
 a:hover {
     text-decoration: underline;
