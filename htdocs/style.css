@@ -9,7 +9,7 @@ header {
     background-color: #00A599; /* 枠（ヘッダー） */
     color: black; /* 文字色 */
     padding: 50px;
-    font-size: 55px; /* ←ヘッダーの文字サイズを指定する */
+    font-size: 57px; /* ←ヘッダーの文字サイズを指定する */
 
     text-align: center;
     border: 5px solid #00A599;
