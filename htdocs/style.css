@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F4D923; /* 背景色 */
+    color: black; /* 文字色 */
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #00A599; /* 枠（ヘッダー） */
+    color: black; /* 文字色 */
+    padding: 50px;
+    font-size: 57px; /* ←ヘッダーの文字サイズを指定する */
+
+    text-align: center;
+    border: 5px solid #00A599;
+}
+section {
+    margin: 20px;
+    text-align: center;
+    border: 3px solid #00A599; /* 各セクションの枠 */
+    padding: 50px;
+    border-radius: 50px;
+    font-size: 40px; /* ←文字サイズを指定する */
+}
+.slideshow-container {
+    position: relative;
+    max-width: 550px;
+    margin: auto;
+    font-size: 100px; /* ←文字サイズを指定する */
+
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%; /* 画像の中央に配置 */
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    transition: 0.6s ease;
+    user-select: none;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.prev {
+    left: 0;  /* 左側に配置 */
+    border-radius: 0 3px 3px 0;
+}
+
+.next {
+    right: 0;  /* 右側に配置 */
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,165,153,1);
+}
+
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,165,153,1); /* ボタンをホバー時に明るく */
+}
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+.active, .dot:hover {
+    background-color: #717171;
+}
+footer {
+    margin-top: 40px;
+    text-align: center;
+    color: black;
+}
+a {
+    color: #00A599;
+    text-decoration: none;
+    font-size: 40px; /* ←文字サイズを指定する */
+}
+a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>津田沼のおすすめカラオケ4選</title>
+    <link rel="stylesheet" href="style.css"> <!-- CSSファイルをリンク -->
+</head>
+<body>
+
+<header>
+    <h1>津田沼のおすすめカラオケ4選</h1>
+</header>
+
+<section>
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <img src="IMG_1153.jpg" alt="カラオケ1" style="width:100%">
+        </div>
+        <div class="mySlides">
+            <img src="IMG_1152.jpg" alt="カラオケ2" style="width:100%">
+        </div>
+        <div class="mySlides">
+            <img src="IMG_1154.jpg" alt="カラオケ3" style="width:100%">
+        </div>
+        <div class="mySlides">
+            <img src="カラオケ館外観.jpg" alt="カラオケ4" style="width:100%">
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1) ">&#10094;</a>
+
+        <a class="next" onclick="plusSlides(1) ">&#10095;</a>
+    </div>
+
+    <br>
+
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span> 
+        <span class="dot" onclick="currentSlide(4)"></span> 
+    </div>
+</section>
+
+<section>
+    <h2>他のページへリンク</h2>
+    <ul>
+        <li><a href="./3.html">各カラオケのおおすすめポイント</a></li>
+        <li><a href="./2.html">料金比較</a></li>
+        <li><a href="./4.html">地図</a></li>
+    </ul>
+</section>
+
+<footer>
+    <p>© 2024 津田沼のおすすめカラオケ</p>
+</footer>
+
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+    }
+</script>
+
+</body>
+</html>

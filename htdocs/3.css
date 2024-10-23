@@ -72,14 +72,39 @@ nav a:hover {
     color: rgb(0, 140, 130); /* ホバー時の色を少し暗く */
 }
 
+/* 共通の画像スタイル */
+img {
+    max-width: 100%; /* 親要素の幅に合わせて画像を縮小 */
+    height: auto; /* アスペクト比を維持 */
+    border-radius: 5px; /* 角を丸くする */
+    display: block; /* ブロック要素として扱う */
+    margin: 0 auto; /* 左右のマージンを自動で設定し、中央に揃える */
+}
 
-/* スマホ向けのレスポンシブデザイン */
-@media (max-width: 600px) {
-    body {
-        padding: 10px;
+/* デスクトップ用のスタイル */
+@media (min-width: 1024px) {
+    img {
+        max-width: 530px; /* デスクトップでは最大幅を530pxに設定 */
     }
-    
-    .category {
-        padding: 15px;
+}
+
+/* タブレット用のスタイル */
+@media (min-width: 600px) and (max-width: 1023px) {
+    img {
+        max-width: 400px; /* タブレットでは最大幅を400pxに設定 */
     }
+}
+
+/* スマートフォン用のスタイル */
+@media (max-width: 599px) {
+    img {
+        max-width: 100%; /* スマートフォンでは画面幅に合わせて画像をフルサイズ表示 */
+    }
+}
+footer {
+    margin-top: 40px;
+    text-align: center; /* テキストと要素を中央揃え */
+    color: black;
+    padding: 20px; /* フッター内の余白を追加 */
+    background-color: #F4D923; /* フッターの背景色を指定（任意） */
 }
