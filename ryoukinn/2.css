@@ -24,10 +24,10 @@ body {
   
   
   /* まねきねこ 津田沼北口店の料金と比較結果の内容を赤色に */
-  [data-store="まねきねこ 津田沼北口2号店"] .weekdayFreeTime, 
-  [data-store="まねきねこ 津田沼北口2号店"] .weekdayFreeTimeStudent, 
-  [data-store="まねきねこ 津田沼北口2号店"] .holidayFreeTime, 
-  [data-store="まねきねこ 津田沼北口2号店"] .holidayFreeTimeStudent {
+  [data-store="まねきねこ 津田沼北口店"] .weekdayFreeTime, 
+  [data-store="まねきねこ 津田沼北口店"] .weekdayFreeTimeStudent, 
+  [data-store="まねきねこ 津田沼北口店"] .holidayFreeTime, 
+  [data-store="まねきねこ 津田沼北口店"] .holidayFreeTimeStudent {
     color: #EA585E; 
   }
   
