@@ -1,0 +1,56 @@
+.sample {
+	display: flex;
+	justify-content:space-around;
+}
+
+ h1{
+	display: flex;
+	justify-content:space-around;
+	font-size: 100px;
+	line-height: 2;
+}
+ h2{
+	display: flex;
+	justify-content:space-around;
+	font-size: 75px;
+	line-height: 2;
+}
+.field {
+	display: flex;
+	justify-content:space-around;
+	text-align:center;
+	img{
+		width: 2000px;
+		height: 1500px;
+	}
+}
+.field{
+	line-height: 2;
+}
+/*↑は横並びの指定*/
+/*↓は画像の下中央に文字を指定する文*/
+ div{
+	text-align:center;
+	font-size: 50px;
+	img{
+		width: 1500px;
+		height: 1200px;
+	}
+	line-height: 3;
+}
+h3{
+	display: flex;
+	justify-content:space-around;
+	font-size: 50px;
+	line-height: 2;
+}
+:root {
+	--base-color: rgb(254, 254, 246); /* または #fefef6 */
+	--main-color: rgb(100, 127, 163); /* または #647fa3 */
+	--accent-color: rgb(82, 182, 100); /* または #52b664 */
+  }
+
+  body {
+	background-color: var(--base-color);
+	color: var(--main-color);
+  }
