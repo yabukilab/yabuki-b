@@ -96,105 +96,31 @@ ol{
 }
 
 /*スマホ対応css*/
-@media screen and (max-width: 770px){
-	/*学習環境の部分*/
-.sample {
-	display: flex;
-	justify-content:space-around;
-}
-/*津田沼おすすめ施設*/
- h1{
-	display: flex;
-	justify-content:space-around;
-	font-size: 45px;/*もともと100px*/
-	line-height: 2;
-}
-/*学習環境の情報*/
- h2{
-	display: flex;
-	justify-content:space-around;
-	font-size: 45px;/*もともと75*/
-	line-height: 2;
-	border-top: solid 10px;
-	border-bottom: solid 10px;
-}
-/*遊び場情報*/
-.field {
-	display: flex;
-	justify-content:space-around;
-	text-align:center;
-	img{
-		width: 150px;
-		height: 120px;
-	}
-}
-.field{
-	line-height: 2;
-}
-/*↑は横並びの指定*/
-/*↓は画像の下中央に文字を指定する文
-divは学習環境の画像およびURL*/
- div{
-	text-align:center;
-	font-size: 20px;
-	img{
-		width: 15px;
-		height: 12px;
-	}
-	line-height: 3;
-}
-h3{
-	display: flex;
-	justify-content:space-around;
-	font-size: 75px;
-	line-height: 2;
-	border-top: solid 10px;
-	border-bottom: solid 10px;
-}
-h4{
-	display: flex;
-	justify-content:space-around;
-	font-size: 75px;
-	line-height: 2;
-	border-top: solid 10px;
-	border-bottom: solid 10px;
-}
-:root {
-	--base-color: rgb(254, 254, 246); /* または #fefef6 */
-	--main-color: rgb(100, 127, 163); /* または #647fa3 */
-	--accent-color: rgb(82, 182, 100); /* または #52b664 */
+@media (max-width: 768px) {
+    h1 {
+      font-size: 2em;
+    }
+    h2, h3, h4 {
+      font-size: 1.8em;
+    }
+    .sample, .field, .ti {
+      flex-direction: column;
+      align-items: center;
+    }
+    img {
+      max-width: 90%;
+      margin-bottom: 10px;
+    }
+    div {
+      font-size: 1em;
+    }
+    ol {
+      flex-direction: column;
+      align-items: center;
+    }
+    .button02 {
+      font-size: 1em;
+      padding: 10px 15px;
+    }
   }
-
-  body {
-	background-color: var(--base-color);
-	color: var(--main-color);
-  }
-ol{
-	display: flex;
-	justify-content:space-around;
-	font-size: 40px;
-}
-.t2{
-	display: flex;
-	justify-content:space-around;
-	font-size: 50px;
-}
-
-.button02 {
-  background-color: #fefef6;
-  border: double 6px #647fa3;
-  color: #647fa3;
-  border-radius: 10px;
-  padding: 10px 30px;
-  text-decoration: none;
-  font-size: 1em;
-}
-.button02:hover {
-  color: #647fa3;
-  background-color: #fefef6;
-}
-/*↓は画像の角を丸くする文*/
-.m{
-	border-radius: 40px;
-}}
 	
