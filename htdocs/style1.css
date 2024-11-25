@@ -94,6 +94,7 @@ ol{
 .m{
 	border-radius: 40px;
 }
+
 /*スマホ対応css*/
 @media screen and (max-width: 770px){
 	/*学習環境の部分*/
