@@ -94,11 +94,14 @@ ol{
 .m{
 	border-radius: 40px;
 }
-@media (max-width:770px){.sample {
+/*スマホ対応css*/
+@media (max-width:770px){
+	/*学習環境の部分*/
+	.sample {
 	display: flex;
 	justify-content:space-around;
 }
-
+/*津田沼おすすめ施設*/
  h1{
 	display: flex;
 	justify-content:space-around;
@@ -165,7 +168,7 @@ h4{
 ol{
 	display: flex;
 	justify-content:space-around;
-	font-size: 50px;
+	font-size: 40px;
 }
 .t2{
 	display: flex;
