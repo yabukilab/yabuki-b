@@ -146,8 +146,8 @@ ol{
 		justify-content:space-around;
 		text-align:center;
 		img{
-			width: 100px;
-			height: 75px;
+			width: 200px;
+			height: 150px;
 		}
 	}
 	.field{
@@ -159,8 +159,8 @@ ol{
 		text-align:center;
 		font-size: 1m;
 		img{
-			width: 100px;
-			height: 75px;
+			width: 200px;
+			height: 150px;
 		}
 		line-height: 3;
 	}
