@@ -48,4 +48,19 @@
   body {
 	background-color: var(--base-color);
 	color: var(--main-color);
+	/*↓はボタンの設定*/
+  }
+  .button02 {
+	background-color: #fefef6;
+	border: double 6px #647fa3;
+	color: #647fa3;
+	border-radius: 10px;
+	padding: 10px 30px;
+	text-decoration: none;
+	font-size: 1em;
+	line-height: 3;
+  }
+  .button02:hover {
+	color: #647fa3;
+	background-color: #fefef6;
   }
