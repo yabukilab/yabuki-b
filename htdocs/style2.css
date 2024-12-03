@@ -19,7 +19,15 @@
 	font-size: 75px;
 	line-height: 2;
 }
-.sample2{
+/*リストのcss*/
+ ol{
+	font-size: 50px;
+	line-height: 2;
+	/*display: flex;
+	justify-content:space-around;*/
+	text-align:center;
+}
+ .sample2{
 	font-size: 50px;
 	line-height: 2;
     in{	display: flex;
