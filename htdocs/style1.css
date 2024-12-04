@@ -157,7 +157,7 @@ ol{
 	/*↓は画像の下中央に文字を指定する文*/
 	 div{
 		text-align:center;
-		font-size: 1m;
+		font-size: 1em;
 		line-height: 3;
 	}
 	img{
