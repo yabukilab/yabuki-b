@@ -41,11 +41,11 @@
  div{
 	text-align:center;
 	font-size: 50px;
-	img{
-		width: 1500px;
-		height: 1200px;
-	}
 	line-height: 3;
+}
+img{
+	width: 1500px;
+	height: 1200px;
 }
 :root {
 	--base-color: rgb(254, 254, 246); /* または #fefef6 */

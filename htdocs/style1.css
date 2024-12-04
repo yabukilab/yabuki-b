@@ -21,10 +21,10 @@
 	display: flex;
 	justify-content:space-around;
 	text-align:center;
-	img{
-		width: 2000px;
-		height: 1500px;
-	}
+}
+img{
+	width: 2000px;
+	height: 1500px;
 }
 .field{
 	line-height: 2;
@@ -34,11 +34,11 @@
  div{
 	text-align:center;
 	font-size: 50px;
-	img{
-		width: 1500px;
-		height: 1200px;
-	}
 	line-height: 3;
+}
+img{
+	width: 1500px;
+	height: 1200px;
 }
 h3{
 	display: flex;
@@ -145,10 +145,10 @@ ol{
 		display: flex;
 		justify-content:space-around;
 		text-align:center;
-		img{
-			width: 170px;
-			height: 150px;
-		}
+	}
+	img{
+		width: 170px;
+		height: 150px;
 	}
 	.field{
 		line-height: 2;
@@ -158,11 +158,11 @@ ol{
 	 div{
 		text-align:center;
 		font-size: 1m;
-		img{
-			width: 170px;
-			height: 150px;
-		}
 		line-height: 3;
+	}
+	img{
+		width: 170px;
+		height: 150px;
 	}
 	h3{
 		display: flex;
