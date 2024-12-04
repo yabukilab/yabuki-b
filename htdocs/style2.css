@@ -29,10 +29,10 @@
 }
  .sample2{
 	font-size: 50px;
-	line-height: 2;
-    in{	display: flex;
-		justify-content:space-around;}
-}
+	line-height: 2;}
+ in{display: flex;
+	   justify-content:space-around;}
+
 /*↓は画像の角を丸くする文*/
 .m{
 	border-radius: 40px;
