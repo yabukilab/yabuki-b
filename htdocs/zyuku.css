@@ -95,7 +95,8 @@ button:hover {
     color: var(--main-color);
     background-color: var(--base-color);
 }
-@media (max-width: 768px) {}:root {
+@media (max-width: 768px)  {
+:root{
     --base-color: rgb(254, 254, 246); /* 背景色 */
     --main-color: rgb(100, 127, 163); /* メインテキスト色 */
     --accent-color: rgb(100, 127, 163); /* アクセント色 */
@@ -191,4 +192,5 @@ button {
 button:hover {
     color: var(--main-color);
     background-color: var(--base-color);
+}
 }
