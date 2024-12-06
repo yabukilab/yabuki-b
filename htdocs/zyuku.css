@@ -17,10 +17,14 @@ header {
     color: white;
     padding: 20px;
     text-align: center;
+    font-size: 1.8em;
+    border-bottom: solid 10px var(--main-color);
 }
 
 h1 {
     font-size: 2em;
+    text-align: center;
+    line-height: 1.5;
 }
 
 section.info {
@@ -30,6 +34,10 @@ section.info {
 h2 {
     font-size: 1.8em;
     text-align: center;
+    line-height: 2;
+    border-top: solid 10px var(--main-color);
+    border-bottom: solid 10px var(--main-color);
+    margin: 20px 0;
 }
 
 .center {
@@ -43,12 +51,17 @@ h2 {
     width: 80%;
     max-width: 400px;
     margin-top: 10px;
-    border-radius: 8px;
+    border-radius: 40px;
 }
 
 h3 {
     font-size: 1.5em;
     color: var(--accent-color);
+    text-align: center;
+    line-height: 2;
+    border-top: solid 10px var(--main-color);
+    border-bottom: solid 10px var(--main-color);
+    margin: 20px 0;
 }
 
 footer {
@@ -63,5 +76,22 @@ footer {
 
 p {
     font-size: 1em;
-    margin: 0;
+    margin: 10px 0;
+}
+
+button {
+    background-color: var(--base-color);
+    border: double 6px var(--main-color);
+    color: var(--main-color);
+    border-radius: 10px;
+    padding: 10px 30px;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    color: var(--main-color);
+    background-color: var(--base-color);
 }
