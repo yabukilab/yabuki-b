@@ -19,12 +19,20 @@
 	font-size: 75px;
 	line-height: 2;
 }
-.sample2{
+/*リストのcss*/
+ ol{
 	font-size: 50px;
 	line-height: 2;
-    in{	display: flex;
-		justify-content:space-around;}
+	/*display: flex;
+	justify-content:space-around;*/
+	text-align:center;
 }
+ .sample2{
+	font-size: 50px;
+	line-height: 2;}
+ in{display: flex;
+	   justify-content:space-around;}
+
 /*↓は画像の角を丸くする文*/
 .m{
 	border-radius: 40px;
@@ -33,11 +41,11 @@
  div{
 	text-align:center;
 	font-size: 50px;
-	img{
-		width: 1500px;
-		height: 1200px;
-	}
 	line-height: 3;
+}
+img{
+	width: 1500px;
+	height: 1200px;
 }
 :root {
 	--base-color: rgb(254, 254, 246); /* または #fefef6 */
@@ -48,4 +56,19 @@
   body {
 	background-color: var(--base-color);
 	color: var(--main-color);
+	/*↓はボタンの設定*/
+  }
+  .button02 {
+	background-color: #fefef6;
+	border: double 6px #647fa3;
+	color: #647fa3;
+	border-radius: 10px;
+	padding: 10px 30px;
+	text-decoration: none;
+	font-size: 1em;
+	line-height: 3;
+  }
+  .button02:hover {
+	color: #647fa3;
+	background-color: #fefef6;
   }
