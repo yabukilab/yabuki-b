@@ -4,7 +4,7 @@
 :root {
 	--base-color: rgb(254, 254, 246); /* または #fefef6 */
 	--main-color: rgb(100, 127, 163); /* または #647fa3 */
-	--accent-color: rgb(82, 182, 100); /* または #52b664 */
+	--accent-color: rgb(100, 127, 163); /* または #52b664 */
    }
    
    /* 全体のスタイル */
