@@ -119,13 +119,13 @@ header {
 }
 
 h1 {
-    font-size: 50px;
+    font-size: 2em;
     text-align: center;
     line-height: 1.5;
 }
 
 section.info {
-    padding: 5px;
+    padding: 20px;
 }
 
 h2 {
@@ -134,7 +134,7 @@ h2 {
     line-height: 2;
     border-top: solid 10px var(--main-color);
     border-bottom: solid 10px var(--main-color);
-    margin: 5px 0;
+    margin: 20px 0;
 }
 
 .center {
@@ -146,7 +146,7 @@ h2 {
 
 .center img {
     width: 80%;
-    max-width: 80px;
+    max-width: 400px;
     margin-top: 10px;
     border-radius: 40px;
 }
