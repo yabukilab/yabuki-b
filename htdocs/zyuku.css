@@ -114,14 +114,14 @@ header {
     background-color: var(--accent-color);
     color: white;
     padding: 20px;
-    text-align: card;
+    text-align: center;
     font-size: 1.8em;
     border-bottom: solid 10px var(--main-color);
 }
 
 h1 {
     font-size: 2em;
-    text-align: card;
+    text-align: center;
     line-height: 1.5;
 }
 
@@ -131,7 +131,7 @@ section.info {
 
 h2 {
     font-size: 1.8em;
-    text-align: card;
+    text-align: center;
     line-height: 2;
     border-top: solid 10px var(--main-color);
     border-bottom: solid 10px var(--main-color);
@@ -141,7 +141,7 @@ h2 {
 .card {
     display: flex;
     flex-direction: column;
-    align-items: card;
+    align-items: center;
     margin: 20px 0;
 }
 
@@ -155,7 +155,7 @@ h2 {
 h3 {
     font-size: 1.5em;
     color: var(--accent-color);
-    text-align: card;
+    text-align: center;
     line-height: 2;
     border-top: solid 10px var(--main-color);
     border-bottom: solid 10px var(--main-color);
@@ -165,7 +165,7 @@ h3 {
 footer {
     background-color: var(--main-color);
     color: white;
-    text-align: card;
+    text-align: center;
     padding: 10px;
     position: fixed;
     width: 100%;
