@@ -76,14 +76,14 @@ img{
 	.sample {
 		display: flex;
 		justify-content:space-around;
-		font-size: 2em;
+		font-size: 70px;
 		line-height: 2;
 	}
 	
 	 h1{
 		display: flex;
 		justify-content:space-around;
-		font-size: 2em;
+		font-size: 100px;
 		line-height: 2;
 	}
 	 h2{
@@ -91,19 +91,19 @@ img{
 		color: #647fa3;/*文字色*/
 		background: transparent;/*背景透明に*/
 		border-left: solid 30px #647fa3;/*左線*/
-		font-size: 2em;
+		font-size: 75px;
 		line-height: 2;
 	}
 	/*リストのcss*/
 	 ol{
-		font-size: 2em;
+		font-size: 50px;
 		line-height: 2;
 		/*display: flex;
 		justify-content:space-around;*/
 		text-align:center;
 	}
 	 .sample2{
-		font-size: 2em;
+		font-size: 50px;
 		line-height: 2;}
 	 in{display: flex;
 		   justify-content:space-around;}
@@ -115,7 +115,7 @@ img{
 	/*↓は画像の下中央に文字を指定する文*/
 	 div{
 		text-align:center;
-		font-size: 2em;
+		font-size: 50px;
 		line-height: 3;
 	}
 	img{
