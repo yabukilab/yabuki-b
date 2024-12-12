@@ -72,3 +72,79 @@ img{
 	color: #647fa3;
 	background-color: #fefef6;
   }
+@media (max-width: 768px) {
+	.sample {
+		display: flex;
+		justify-content:space-around;
+		font-size: 2em;
+		line-height: 2;
+	}
+	
+	 h1{
+		display: flex;
+		justify-content:space-around;
+		font-size: 2em;
+		line-height: 2;
+	}
+	 h2{
+		padding: 0.25em 0.5em;/*上下 左右の余白*/
+		color: #647fa3;/*文字色*/
+		background: transparent;/*背景透明に*/
+		border-left: solid 30px #647fa3;/*左線*/
+		font-size: 2em;
+		line-height: 2;
+	}
+	/*リストのcss*/
+	 ol{
+		font-size: 2em;
+		line-height: 2;
+		/*display: flex;
+		justify-content:space-around;*/
+		text-align:center;
+	}
+	 .sample2{
+		font-size: 2em;
+		line-height: 2;}
+	 in{display: flex;
+		   justify-content:space-around;}
+	
+	/*↓は画像の角を丸くする文*/
+	.m{
+		border-radius: 40px;
+	}
+	/*↓は画像の下中央に文字を指定する文*/
+	 div{
+		text-align:center;
+		font-size: 2em;
+		line-height: 3;
+	}
+	img{
+		width: 150px;
+		height: 120px;
+	}
+	:root {
+		--base-color: rgb(254, 254, 246); /* または #fefef6 */
+		--main-color: rgb(100, 127, 163); /* または #647fa3 */
+		--accent-color: rgb(82, 182, 100); /* または #52b664 */
+	  }
+	
+	  body {
+		background-color: var(--base-color);
+		color: var(--main-color);
+		/*↓はボタンの設定*/
+	  }
+	  .button02 {
+		background-color: #fefef6;
+		border: double 6px #647fa3;
+		color: #647fa3;
+		border-radius: 10px;
+		padding: 10px 30px;
+		text-decoration: none;
+		font-size: 1em;
+		line-height: 3;
+	  }
+	  .button02:hover {
+		color: #647fa3;
+		background-color: #fefef6;
+	  }
+}
