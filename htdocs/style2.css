@@ -73,7 +73,8 @@ img{
 	background-color: #fefef6;
   }
 
-@media (max-width: 770px) {
+@media (max-width: 768px) {
+
   .sample {
 	display: flex;
 	justify-content:space-around;
