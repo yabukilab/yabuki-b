@@ -78,7 +78,7 @@ img{
   .sample {
 	display: flex;
 	justify-content:space-around;
-	font-size: 10px;
+	font-size: 2em;
 	line-height: 2;
   }
   h1{
@@ -88,10 +88,10 @@ img{
 	line-height: 2;
   }
   h2{
-	padding: 0.25em 0.5em;/*上下 左右の余白*/
+	padding: 10px 5px;/*上下 左右の余白*/
     color: #647fa3;/*文字色*/
     background: transparent;/*背景透明に*/
-    border-left: solid 30px #647fa3;/*左線*/
+    border-left: solid 10px #647fa3;/*左線*/
 	font-size: 1.8em;
 	line-height: 2;
   }
@@ -140,7 +140,7 @@ img{
 	border: double 6px #647fa3;
 	color: #647fa3;
 	border-radius: 10px;
-	padding: 10px 30px;
+	padding: 10px 15px;
 	text-decoration: none;
 	font-size: 10px;
     }
