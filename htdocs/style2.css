@@ -107,8 +107,8 @@ img{
 	font-size: 10px;
 	line-height: 2;}
  in{display: flex;
-	   justify-content:space-around;}
-
+	   justify-content:space-around;
+	}
 /*↓は画像の角を丸くする文*/
  .m{
 	border-radius: 40px;
