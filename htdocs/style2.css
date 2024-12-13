@@ -71,20 +71,19 @@ img{
   .button02:hover {
 	color: #647fa3;
 	background-color: #fefef6;
-  }
-
+}
 @media (max-width: 768px) {
 
   .sample {
 	display: flex;
 	justify-content:space-around;
-	font-size: 50px;
+	font-size: 20px;
 	line-height: 2;
   }
   h1{
 	display: flex;
 	justify-content:space-around;
-	font-size: 50px;
+	font-size: 20px;
 	line-height: 2;
   }
   h2{
