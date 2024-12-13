@@ -73,14 +73,13 @@ img{
 	background-color: #fefef6;
   }
 
-@media (max-width: 768px) {
+@media (max-width: 770px) {
   .sample {
 	display: flex;
 	justify-content:space-around;
 	font-size: 20px;
 	line-height: 2;
   }
-
  h1{
 	display: flex;
 	justify-content:space-around;
@@ -106,6 +105,7 @@ img{
  .sample2{
 	font-size: 10px;
 	line-height: 2;}
+
  in{display: flex;
 	   justify-content:space-around;
 	}
