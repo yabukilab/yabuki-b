@@ -78,13 +78,13 @@ img{
   .sample {
 	display: flex;
 	justify-content:space-around;
-	font-size: 20px;
+	font-size: 10px;
 	line-height: 2;
   }
   h1{
 	display: flex;
 	justify-content:space-around;
-	font-size: 2em;
+	font-size: 1.8em;
 	line-height: 2;
   }
   h2{
@@ -95,7 +95,7 @@ img{
 	font-size: 1.8em;
 	line-height: 2;
   }
-/*リストのcss*/
+   /*リストのcss*/
   ol{
 	font-size: 10px;
 	line-height: 2;
@@ -110,11 +110,11 @@ img{
    in {display: flex;
 	   justify-content:space-around;
 	}
-/*↓は画像の角を丸くする文*/
+    /*↓は画像の角を丸くする文*/
    .m{
 	border-radius: 40px;
     }
-/*↓は画像の下中央に文字を指定する文*/
+     /*↓は画像の下中央に文字を指定する文*/
     div{
 	text-align:center;
 	font-size: 10px;
@@ -142,7 +142,7 @@ img{
 	border-radius: 10px;
 	padding: 10px 30px;
 	text-decoration: none;
-	font-size: 20px;
+	font-size: 10px;
     }
    .button02:hover {
 	color: #647fa3;
