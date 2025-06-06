@@ -1,17 +1,3 @@
-<?php
-session_start();
-// 仮ログイン：ユーザーID 1
-$_SESSION['user_id'] = 1;
-$user_id = $_SESSION['user_id'];
-
-$pdo = new PDO('mysql:host=mysql;dbname=app;charset=utf8', 'root', 'root');
-
-
-// 感想一覧を取得
-$stmt = $pdo->prepare('SELECT * FROM comments WHERE user_id = ? ORDER BY created_at DESC');
-$stmt->execute([$user_id]);
-$comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
 
 <!DOCTYPE html>
 <html>
