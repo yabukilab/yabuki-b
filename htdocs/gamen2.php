@@ -18,34 +18,47 @@ if (!empty($_GET['q'])) {
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Google Books検索</title>
+    <title>作者名サジェスト検索</title>
+    <script>
+        function fetchSuggestions() {
+            const input = document.getElementById("author").value;
+            if (input.length < 2) return;
+
+            fetch("autocomplete.php?q=" + encodeURIComponent(input))
+                .then(response => response.json())
+                .then(data => {
+                    const list = document.getElementById("suggestions");
+                    list.innerHTML = "";
+
+                    data.forEach(author => {
+                        const item = document.createElement("div");
+                        item.textContent = author;
+                        item.onclick = () => {
+                            document.getElementById("author").value = author;
+                            list.innerHTML = "";
+                        };
+                        list.appendChild(item);
+                    });
+                });
+        }
+    </script>
+    <style>
+        #suggestions div {
+            background: #eee;
+            padding: 5px;
+            cursor: pointer;
+        }
+        #suggestions div:hover {
+            background: #ccc;
+        }
+    </style>
 </head>
 <body>
-    <h1>本を検索</h1>
-    <form method="get">
-        <input type="text" name="q" placeholder="タイトルや著者名" required>
+    <h1>作者名で本を検索</h1>
+    <form method="get" action="index.php">
+        <input type="text" id="author" name="q" placeholder="作者名" oninput="fetchSuggestions()" autocomplete="off">
         <button type="submit">検索</button>
+        <div id="suggestions"></div>
     </form>
-
-    <?php if (!empty($books)): ?>
-        <h2>検索結果</h2>
-        <ul>
-            <?php foreach ($books as $book): ?>
-                <?php
-                    $volumeInfo = $book['volumeInfo'];
-                    $title = $volumeInfo['title'] ?? 'タイトル不明';
-                    $authors = isset($volumeInfo['authors']) ? implode(', ', $volumeInfo['authors']) : '著者不明';
-                    $thumbnail = $volumeInfo['imageLinks']['thumbnail'] ?? '';
-                ?>
-                <li style="margin-bottom: 20px;">
-                    <strong><?= htmlspecialchars($title) ?></strong><br>
-                    著者: <?= htmlspecialchars($authors) ?><br>
-                    <?php if ($thumbnail): ?>
-                        <img src="<?= htmlspecialchars($thumbnail) ?>" alt="カバー画像">
-                    <?php endif; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
 </body>
 </html>
