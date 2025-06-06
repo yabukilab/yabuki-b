@@ -1,0 +1,64 @@
+<?php
+$books = [];
+
+if (!empty($_GET['q'])) {
+    $query = urlencode($_GET['q']);
+    $url = "https://www.googleapis.com/books/v1/volumes?q={$query}";
+
+    $json = file_get_contents($url);
+    $data = json_decode($json, true);
+
+    if (!empty($data['items'])) {
+        $books = $data['items'];
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>作者名サジェスト検索</title>
+    <script>
+        function fetchSuggestions() {
+            const input = document.getElementById("author").value;
+            if (input.length < 2) return;
+
+            fetch("autocomplete.php?q=" + encodeURIComponent(input))
+                .then(response => response.json())
+                .then(data => {
+                    const list = document.getElementById("suggestions");
+                    list.innerHTML = "";
+
+                    data.forEach(author => {
+                        const item = document.createElement("div");
+                        item.textContent = author;
+                        item.onclick = () => {
+                            document.getElementById("author").value = author;
+                            list.innerHTML = "";
+                        };
+                        list.appendChild(item);
+                    });
+                });
+        }
+    </script>
+    <style>
+        #suggestions div {
+            background: #eee;
+            padding: 5px;
+            cursor: pointer;
+        }
+        #suggestions div:hover {
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>作者名で本を検索</h1>
+    <form method="get" action="index.php">
+        <input type="text" id="author" name="q" placeholder="作者名" oninput="fetchSuggestions()" autocomplete="off">
+        <button type="submit">検索</button>
+        <div id="suggestions"></div>
+    </form>
+</body>
+</html>
