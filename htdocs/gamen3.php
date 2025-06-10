@@ -1,4 +1,4 @@
-
+<?php
 // 仮データ
 $works = [
     ['id' => 1, 'title' => '作品A', 'image' => 'images/sample1.png', 'comments' => 5],
@@ -76,3 +76,12 @@ usort($works, function ($a, $b) {
                         <?php endforeach; ?>
                     </ul>
                 <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+    </section>
+
+    <a href="#" class="back-link">戻る</a>
+</main>
+
+</body>
+</html>
