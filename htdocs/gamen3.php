@@ -1,4 +1,4 @@
-
+<<<<<<< HEAD
 <?php
 // 仮データ
 $works = [
@@ -66,7 +66,7 @@ usort($works, function ($a, $b) {
                 <form method="post" class="comment-form">
                     <input type="hidden" name="work_id" value="<?= $work['id'] ?>">
                     <textarea name="comment" placeholder="感想を入力..." rows="3" cols="40" required></textarea><br>
-                    <button type="submit">投稿</button>
+                    <button type="submit">投稿ボタン</button>
                 </form>
 
                 <!-- 感想表示 -->
