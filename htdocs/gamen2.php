@@ -24,7 +24,7 @@ if (!empty($_GET['q'])) {
             const input = document.getElementById("author").value;
             if (input.length < 2) return;
 
-            fetch("autocomplete.php?q=" + encodeURIComponent(input))
+            fetch("gamen2kaeshi.php?q=" + encodeURIComponent(input))
                 .then(response => response.json())
                 .then(data => {
                     const list = document.getElementById("suggestions");
