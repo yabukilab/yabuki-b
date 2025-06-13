@@ -80,9 +80,8 @@ usort($works, function ($a, $b) {
         <?php endforeach; ?>
     </section>
 
-    <a href="#" class="back-link">modoru</a>
+    <a href="#" class="back-link">戻る</a>
 </main>
 
 </body>
 </html>
- 
