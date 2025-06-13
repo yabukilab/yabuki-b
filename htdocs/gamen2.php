@@ -55,11 +55,21 @@ if (!empty($_GET['q'])) {
     </style>
 </head>
 <body>
-    <h1>作者名で本を検索</h1>
-    <form method="get" action="gamen3.php">
+    <div class="container">
+     <h1>作者名で本を検索</h1>
+     <form method="get" action="gamen3.php">
         <input type="text" id="author" name="q" placeholder="作者名" oninput="fetchSuggestions()" autocomplete="off">
         <button type="submit">検索</button>
         <div id="suggestions"></div>
-    </form>
+     </form>
+    </div>
+
+    <div class="notes">
+        <h2>― 注意事項 ―</h2>
+        <ol>
+            <li>検索を行う際はローマ字入力でなく、日本語入力してください。</li>
+
+        </ol>
+    </div>
 </body>
 </html>
