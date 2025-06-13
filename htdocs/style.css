@@ -60,6 +60,18 @@ h1 {
     background-color: #1c7cd6;
 }
 
+.button {
+    font-size: 2.0rem;
+    padding: 15px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+
+}
+
 /* 注意事項エリア */
 .notes {
     width: 90%;
