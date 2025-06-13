@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['work_id'], $_POST['co
     if ($comment !== '') {
         $_SESSION['comments'][$workId][] = $comment;
     }
-    header("Location: " . strtok($_SERVER['REQUEST_URI'], '?')); // 投稿後はGETに戻す
+    header("Location: " . $_SERVER['REQUEST_URI']);
     exit;
 }
 
@@ -45,40 +45,13 @@ unset($work);
 
 // ソート
 usort($works, fn($a, $b) => $b['comments'] - $a['comments']);
-
-// --- Google Books API 著者検索処理 ---
-$authorSuggestions = [];
-if (!empty($_GET['q'])) {
-    $queryRaw = trim($_GET['q']);
-    $apiUrl = "https://www.googleapis.com/books/v1/volumes?q=" . urlencode("inauthor:" . $queryRaw);
-
-    $json = @file_get_contents($apiUrl);
-    if ($json !== false) {
-        $data = json_decode($json, true);
-        $authors = [];
-
-        if (!empty($data['items'])) {
-            foreach ($data['items'] as $item) {
-                if (!empty($item['volumeInfo']['authors'])) {
-                    foreach ($item['volumeInfo']['authors'] as $author) {
-                        if (mb_stripos($author, $queryRaw) !== false) {
-                            $authors[] = $author;
-                        }
-                    }
-                }
-            }
-        }
-
-        $authorSuggestions = array_slice(array_unique($authors), 0, 5);
-    }
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Mypage with Book Search</title>
+    <title>Mypage</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -93,25 +66,6 @@ if (!empty($_GET['q'])) {
         <div class="author-name" style="font-size: 18px; font-weight: bold;">
             <?= htmlspecialchars($user['name']) ?>
         </div>
-    </section>
-
-    <!-- 著者検索フォーム -->
-    <section class="author-search" style="margin-bottom: 40px;">
-        <h2 style="color: #1e90ff;">著者検索（Google Books API）</h2>
-        <form method="get" style="margin-bottom: 10px;">
-            <input type="text" name="q" placeholder="著者名を入力" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '' ?>" style="width: 300px; padding: 8px;">
-            <button type="submit" style="padding: 8px 12px; background-color: #1e90ff; color: white; border: none; border-radius: 4px;">検索</button>
-        </form>
-
-        <?php if (!empty($authorSuggestions)): ?>
-            <ul style="padding-left: 20px;">
-                <?php foreach ($authorSuggestions as $author): ?>
-                    <li style="color: #333;"><?= htmlspecialchars($author) ?></li>
-                <?php endforeach; ?>
-            </ul>
-        <?php elseif (isset($_GET['q'])): ?>
-            <p style="color: #777;">該当する著者が見つかりませんでした。</p>
-        <?php endif; ?>
     </section>
 
     <!-- 作品一覧 -->
