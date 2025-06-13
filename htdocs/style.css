@@ -9,10 +9,10 @@ body {
 /* コンテナ（中央寄せ） */
 .container {
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     margin: 60px auto;
     background-color: #ffffff;
-    padding: 30px;
+    padding: 40px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -21,7 +21,8 @@ body {
 h1 {
     text-align: center;
     color: #333;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    font-size: 2.4rem;  
 }
 
 .accent {
@@ -34,8 +35,41 @@ h1 {
     flex-direction: column;
 }
 
+.login-form input[type="text"],
+.login-form textarea {
+    font-size: 1.2rem;    /* 文字を大きく */
+    padding: 12px 15px;   /* 入力欄の高さと余白を増やす */
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.login-form button {
+    font-size: 1.3rem;    /* ボタンの文字も大きく */
+    padding: 12px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
 .login-form button:hover {
     background-color: #1c7cd6;
+}
+
+.button {
+    font-size: 2.0rem;
+    padding: 15px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+
 }
 
 /* 注意事項エリア */

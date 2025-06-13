@@ -19,6 +19,7 @@ if (!empty($_GET['q'])) {
 <head>
     <meta charset="UTF-8">
     <title>作者名サジェスト検索</title>
+    <link rel="stylesheet" href="style.css">
     <script>
         function fetchSuggestions() {
             const input = document.getElementById("author").value;
@@ -54,11 +55,21 @@ if (!empty($_GET['q'])) {
     </style>
 </head>
 <body>
-    <h1>作者名で本を検索</h1>
-    <form method="get" action="gamen3.php">
+    <div class="container">
+     <h1>作者名で本を検索</h1>
+     <form method="get" action="gamen3.php">
         <input type="text" id="author" name="q" placeholder="作者名" oninput="fetchSuggestions()" autocomplete="off">
         <button type="submit">検索</button>
         <div id="suggestions"></div>
-    </form>
+     </form>
+    </div>
+
+    <div class="notes">
+        <h2>― 注意事項 ―</h2>
+        <ol>
+            <li>検索を行う際、ローマ字入力をすると上手く検索できない場合があります。</li>
+
+        </ol>
+    </div>
 </body>
 </html>
