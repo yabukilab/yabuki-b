@@ -15,7 +15,7 @@
                 <li>
                     <img src="<?= htmlspecialchars($comment['thumbnail']) ?>" alt="cover" style="height:100px;"><br>
                     <strong><?= htmlspecialchars($comment['title']) ?></strong><br>
-                    著者：<?= htmlspecialchars($comment['authors']) ?><br>
+                    著作者：<?= htmlspecialchars($comment['authors']) ?><br>
                     感想：<?= nl2br(htmlspecialchars($comment['comment'])) ?><br>
                     投稿日：<?= htmlspecialchars($comment['created_at']) ?><br>
                     <hr>
