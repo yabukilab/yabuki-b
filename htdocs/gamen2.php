@@ -19,6 +19,7 @@ if (!empty($_GET['q'])) {
 <head>
     <meta charset="UTF-8">
     <title>作者名サジェスト検索</title>
+    <link rel="stylesheet" href="style.css">
     <script>
         function fetchSuggestions() {
             const input = document.getElementById("author").value;
