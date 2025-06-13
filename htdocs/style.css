@@ -34,4 +34,32 @@ h1 {
     flex-direction: column;
 }
 
-.login-form label {
+.login-form button:hover {
+    background-color: #1c7cd6;
+}
+
+/* 注意事項エリア */
+.notes {
+    width: 90%;
+    max-width: 600px;
+    margin: 30px auto;
+    background-color: #eaf6ff;
+    padding: 20px;
+    border-left: 5px solid #1e90ff;
+    border-radius: 5px;
+}
+
+.notes h2 {
+    margin-top: 0;
+    color: #1e90ff;
+}
+
+.notes ol {
+    margin-left: 20px;
+    padding-left: 0;
+}
+
+.notes li {
+    margin-bottom: 8px;
+    color: #333;
+}
