@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // 仮データ
 $works = [
     ['id' => 1, 'title' => '作品A', 'image' => 'images/sample1.png', 'comments' => 5],
@@ -6,22 +8,23 @@ $works = [
     ['id' => 3, 'title' => '作品C', 'image' => 'images/sample3.png', 'comments' => 8],
 ];
 
-// 感想保存用（セッションに保存）
-session_start();
+// 初期化（セッション内コメント）
 if (!isset($_SESSION['comments'])) {
     $_SESSION['comments'] = [];
 }
 
-// 感想投稿処理
+// 投稿処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['work_id'], $_POST['comment'])) {
     $workId = (int)$_POST['work_id'];
     $comment = trim($_POST['comment']);
     if ($comment !== '') {
         $_SESSION['comments'][$workId][] = $comment;
     }
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit;
 }
 
-// 感想数の降順で並び替え（仮データ + 投稿分）
+// コメント件数加算
 foreach ($works as &$work) {
     $id = $work['id'];
     $count = isset($_SESSION['comments'][$id]) ? count($_SESSION['comments'][$id]) : 0;
@@ -29,10 +32,10 @@ foreach ($works as &$work) {
 }
 unset($work);
 
-usort($works, function ($a, $b) {
-    return $b['comments'] - $a['comments'];
-});
+// コメント数でソート
+usort($works, fn($a, $b) => $b['comments'] - $a['comments']);
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -42,14 +45,12 @@ usort($works, function ($a, $b) {
 </head>
 <body>
 
-<header>
-    <h1>Mypage</h1>
-</header>
+<div class="container">
+    <h1><span class="accent">My</span>page</h1>
 
-<main>
-    <section class="author-info">
-        <div class="icon">F</div>
-        <div class="author-name">作者名</div>
+    <section class="author-info" style="text-align:center; margin-bottom: 30px;">
+        <div class="icon" style="font-size: 40px;">F</div>
+        <div class="author-name" style="font-weight: bold; font-size: 20px;">作者名</div>
     </section>
 
     <section class="works">
@@ -57,18 +58,18 @@ usort($works, function ($a, $b) {
 
         <?php foreach ($works as $work): ?>
             <div class="work-item">
-                <img src="<?= htmlspecialchars($work['image']) ?>" alt="作品画像">
-                <strong><?= htmlspecialchars($work['title']) ?></strong>
+                <img src="<?= htmlspecialchars($work['image']) ?>" alt="作品画像" style="width: 100%; border-radius: 10px;">
+                <strong><?= htmlspecialchars($work['title']) ?></strong><br>
                 <span class="comment-count">(<?= $work['comments'] ?> 件の感想)</span>
 
                 <!-- 感想フォーム -->
                 <form method="post" class="comment-form">
                     <input type="hidden" name="work_id" value="<?= $work['id'] ?>">
-                    <textarea name="comment" placeholder="感想を入力..." rows="3" cols="40" required></textarea><br>
+                    <textarea name="comment" placeholder="感想を入力..." rows="3" required></textarea><br>
                     <button type="submit">投稿</button>
                 </form>
 
-                <!-- 感想表示 -->
+                <!-- 感想リスト -->
                 <?php if (!empty($_SESSION['comments'][$work['id']])): ?>
                     <ul class="comment-list">
                         <?php foreach ($_SESSION['comments'][$work['id']] as $c): ?>
@@ -80,8 +81,10 @@ usort($works, function ($a, $b) {
         <?php endforeach; ?>
     </section>
 
-    <a href="#" class="back-link">戻る</a>
-</main>
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="#" class="back-link">戻る</a>
+    </div>
+</div>
 
 </body>
 </html>
