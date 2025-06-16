@@ -121,7 +121,7 @@ if (!empty($_GET['q'])) {
                 <?php endif; ?>
             </div>
         <?php else: ?>
-            <p>作者名が指定されてません。</p>
+            <p>作者名が指定されていません。</p>
         <?php endif; ?>
 
         <a href="gamen2.php" class="back-link">← 戻る</a>
