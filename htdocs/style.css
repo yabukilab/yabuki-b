@@ -1,99 +1,79 @@
-/* 全体レイアウト */
+/* 共通レイアウト */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f8;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f2f5;
     margin: 0;
     padding: 0;
 }
 
-/* コンテナ（中央寄せ） */
-.container {
-    width: 100%;
-    max-width: 500px;
+/* セクション（中央寄せ） */
+.section {
+    width: 90%;
+    max-width: 600px;
     margin: 60px auto;
-    background-color: #ffffff;
+    background-color: #fff;
     padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 /* タイトル */
-h1 {
+h1, h2 {
     text-align: center;
     color: #333;
-    margin-bottom: 40px;
-    font-size: 2.4rem;  
+    margin-bottom: 30px;
 }
 
 .accent {
     color: #1e90ff;
 }
 
-/* フォーム */
-.login-form {
+/* 汎用フォーム */
+.form-wrapper {
     display: flex;
     flex-direction: column;
 }
 
-.login-form input[type="text"],
-.login-form textarea {
-    font-size: 1.2rem;    /* 文字を大きく */
-    padding: 12px 15px;   /* 入力欄の高さと余白を増やす */
+.form-wrapper input[type="text"],
+.form-wrapper input[type="email"],
+.form-wrapper input[type="password"],
+.form-wrapper textarea {
+    font-size: 1rem;
+    padding: 12px;
     border-radius: 8px;
     border: 1px solid #ccc;
     margin-bottom: 20px;
-    box-sizing: border-box;
+    transition: all 0.3s;
 }
 
-.login-form button {
-    font-size: 1.3rem;    /* ボタンの文字も大きく */
-    padding: 12px 0;
+.form-wrapper input:focus,
+.form-wrapper textarea:focus {
+    border-color: #1e90ff;
+    box-shadow: 0 0 4px rgba(30,144,255,0.4);
+    outline: none;
+}
+
+/* 汎用ボタン */
+.btn {
+    font-size: 1.1rem;
+    padding: 12px;
     border-radius: 8px;
-    cursor: pointer;
     background-color: #1e90ff;
     color: white;
     border: none;
-    transition: background-color 0.3s ease;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.login-form button:hover {
+.btn:hover {
     background-color: #1c7cd6;
 }
 
-.button {
-    font-size: 2.0rem;
-    padding: 15px 0;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: #1e90ff;
-    color: white;
-    border: none;
-    transition: background-color 0.3s ease;
-
-}
-
-/* 注意事項エリア */
-.notes {
-    width: 90%;
-    max-width: 600px;
-    margin: 30px auto;
+/* 補足・通知エリア */
+.notice-box {
     background-color: #eaf6ff;
     padding: 20px;
     border-left: 5px solid #1e90ff;
-    border-radius: 5px;
-}
-
-.notes h2 {
-    margin-top: 0;
-    color: #1e90ff;
-}
-
-.notes ol {
-    margin-left: 20px;
-    padding-left: 0;
-}
-
-.notes li {
-    margin-bottom: 8px;
-    color: #333;
+    border-radius: 6px;
+    margin-top: 30px;
 }
