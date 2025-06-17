@@ -97,13 +97,13 @@ if (!empty($_GET['q'])) {
     <header>Mypage</header>
 
     <div class="container">
-        <?php if (!empty($_GET['q'])): ?>
-            
-            <div class="book-title">
-                <a href="gamen5.php?title=<?= urlencode($title) ?>" style="text-decoration: none; color: inherit;">
-                    <?= htmlspecialchars($title) ?>
-                </a>
-            </div>
+       <?php if (!empty($_GET['q'])): ?>
+             <div class="author-info">
+                 <div class="author-icon"><?= htmlspecialchars(mb_substr($_GET['q'], 0, 1)) ?></div>
+                 <div><strong>作者名</strong>: <?= htmlspecialchars($_GET['q']) ?></div>
+             </div>
+
+
 
 
             <div class="book-list">
@@ -118,6 +118,12 @@ if (!empty($_GET['q'])) {
                         <div class="book-card">
                             <img src="<?= htmlspecialchars($image) ?>" alt="Book cover">
                             <div class="book-title"><?= htmlspecialchars($title) ?></div>
+                            <div class="book-title">
+                                 <a href="gamen5.php?title=<?= urlencode($title) ?>" style="text-decoration: none; color: inherit;">
+                                    <?= htmlspecialchars($title) ?>
+                                </a>
+                            </div>
+
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
