@@ -53,6 +53,20 @@ h1, h2 {
     outline: none;
 }
 
+
+
+/* 左上に固定表示するマイページボタン */
+.mypage-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;  /* ← right: 20px を left: 20px に変更 */
+    z-index: 999;
+}
+
+
+
+
+
 /* 汎用ボタン */
 .btn {
     font-size: 1.1rem;
@@ -61,6 +75,7 @@ h1, h2 {
     background-color: #1e90ff;
     color: white;
     border: none;
+    text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s;
 }

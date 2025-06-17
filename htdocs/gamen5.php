@@ -27,6 +27,11 @@ $title = $_GET['title'] ?? 'タイトル不明';
             <button type="submit" class="btn">他の人の感想を見る</button>
         </form>
     </div>
+
+    <div class="mypage-button">
+       <a href="gamen4.php" class="btn">マイページ</a>
+    </div>
+
 </body>
 </html>
 

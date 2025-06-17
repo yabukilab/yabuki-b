@@ -31,6 +31,11 @@
             ?>
         </div>
 
+        <div class="mypage-button">
+            <a href="gamen4.php" class="btn">マイページ</a>
+        </div>
+
+
         <div style="margin-top: 20px;">
             <a href="gamen5.php" class="btn">感想投稿に戻る</a>
         </div>
