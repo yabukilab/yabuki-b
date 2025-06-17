@@ -101,7 +101,7 @@ if (!empty($_GET['q'])) {
             
             <div class="book-title">
                 <a href="gamen5.php?title=<?= urlencode($title) ?>" style="text-decoration: none; color: inherit;">
-                <?= htmlspecialchars($title) ?>
+                    <?= htmlspecialchars($title) ?>
                 </a>
             </div>
 
