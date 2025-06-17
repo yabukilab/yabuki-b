@@ -2,17 +2,24 @@
 <?php
 header("Content-Type: application/json");
 
+// 空なら空配列返して終了
 if (empty($_GET['q'])) {
     echo json_encode([]);
     exit;
 }
 
-$queryRaw = $_GET['q'];
-$query = urlencode("inauthor:" . $queryRaw);
+$queryRaw = trim($_GET['q']);
 
-$url = "https://www.googleapis.com/books/v1/volumes?q=" . $query;
+// APIリクエスト準備
+$apiUrl = "https://www.googleapis.com/books/v1/volumes?q=" . urlencode("inauthor:" . $queryRaw);
 
-$json = file_get_contents($url);
+// API呼び出し（失敗対策付き）
+$json = @file_get_contents($apiUrl);
+if ($json === false) {
+    echo json_encode([]);
+    exit;
+}
+
 $data = json_decode($json, true);
 
 $authors = [];
@@ -21,7 +28,6 @@ if (!empty($data['items'])) {
     foreach ($data['items'] as $item) {
         if (!empty($item['volumeInfo']['authors'])) {
             foreach ($item['volumeInfo']['authors'] as $author) {
-                // 入力文字列が含まれているかをチェック（部分一致）
                 if (mb_stripos($author, $queryRaw) !== false) {
                     $authors[] = $author;
                 }
@@ -30,5 +36,7 @@ if (!empty($data['items'])) {
     }
 }
 
+// 重複除去＆最大5件に絞って返す
 $authors = array_unique($authors);
-echo json_encode(array_slice($authors, 0, 5));
+echo json_encode(array_slice(array_values($authors), 0, 5));
+?>
