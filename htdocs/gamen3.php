@@ -1,6 +1,7 @@
 <?php
 $books = [];
 
+
 if (!empty($_GET['q'])) {
     $query = urlencode("inauthor:" . $_GET['q']);
     $url = "https://www.googleapis.com/books/v1/volumes?q={$query}&maxResults=10";
@@ -97,12 +98,13 @@ if (!empty($_GET['q'])) {
 
     <div class="container">
         <?php if (!empty($_GET['q'])): ?>
-            <div class="author-info">
-                <div class="author-icon"><?= htmlspecialchars(mb_substr($_GET['q'], 0, 1)) ?></div>
-                <div>
-                    <div><strong>作者名</strong>: <?= htmlspecialchars($_GET['q']) ?></div>
-                </div>
+            
+            <div class="book-title">
+                <a href="gamen5.php?title=<?= urlencode($title) ?>" style="text-decoration: none; color: inherit;">
+                   <?= htmlspecialchars($title) ?>
+                </a>
             </div>
+
 
             <div class="book-list">
                 <?php if (empty($books)): ?>
