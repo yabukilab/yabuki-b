@@ -6,9 +6,9 @@ $startIndex = ($page - 1) * $perPage;
 $totalItems = 0;
 
 if (!empty($_GET['q'])) {
+    // 検索キーワードに作者名か作品名を含めて検索
     $keyword = $_GET['q'];
-    // 作者名か作品名のどちらかにマッチするものを検索
-    $query = urlencode("inauthor:{$keyword} OR intitle:{$keyword}");
+    $query = urlencode("inauthor:{$keyword}+OR+intitle:{$keyword}");
     $url = "https://www.googleapis.com/books/v1/volumes?q={$query}&startIndex={$startIndex}&maxResults={$perPage}";
 
     $json = @file_get_contents($url);
@@ -25,7 +25,7 @@ if (!empty($_GET['q'])) {
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Mypage - 作者・作品名検索結果</title>
+    <title>Mypage - 作者の作品一覧</title>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -144,12 +144,16 @@ if (!empty($_GET['q'])) {
             color: #aaa;
             pointer-events: none;
         }
+
+        .mypage-button {
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
 
 <div class="section">
-    <h1>作者・作品名検索結果</h1>
+    <h1>作者の作品一覧</h1>
 
     <?php if (!empty($_GET['q'])): ?>
         <div class="author-info">
@@ -166,15 +170,11 @@ if (!empty($_GET['q'])) {
                 <?php foreach ($books as $book): ?>
                     <?php
                         $title = $book['volumeInfo']['title'] ?? 'タイトル不明';
-                        $authors = $book['volumeInfo']['authors'] ?? ['不明な作者'];
                         $image = $book['volumeInfo']['imageLinks']['thumbnail'] ?? 'https://via.placeholder.com/60x90?text=No+Image';
                     ?>
                     <div class="book-card">
                         <img src="<?= htmlspecialchars($image) ?>" alt="Book cover">
-                        <div>
-                            <div class="book-title"><?= htmlspecialchars($title) ?></div>
-                            <div>作者: <?= htmlspecialchars(implode(', ', $authors)) ?></div>
-                        </div>
+                        <div class="book-title"><?= htmlspecialchars($title) ?></div>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -204,7 +204,10 @@ if (!empty($_GET['q'])) {
     <?php endif; ?>
 
     <a href="gamen2.php" class="btn">← 戻る</a>
-</div>
 
+    <div class="mypage-button">
+        <a href="gamen4.php" class="btn">マイページ</a>
+    </div>
+</div>
 </body>
 </html>
