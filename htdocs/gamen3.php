@@ -3,13 +3,25 @@ $books = [];
 
 if (!empty($_GET['q'])) {
     $query = urlencode("inauthor:" . $_GET['q']);
-    $url = "https://www.googleapis.com/books/v1/volumes?q={$query}&maxResults=10";
+    $maxPerPage = 40;
+    $totalFetched = 0;
+    $maxTotal = 200;
 
-    $json = @file_get_contents($url);
-    $data = json_decode($json, true);
+    while ($totalFetched < $maxTotal) {
+        $url = "https://www.googleapis.com/books/v1/volumes?q={$query}&startIndex={$totalFetched}&maxResults={$maxPerPage}";
+        $json = @file_get_contents($url);
+        $data = json_decode($json, true);
 
-    if (!empty($data['items'])) {
-        $books = $data['items'];
+        if (empty($data['items'])) {
+            break;
+        }
+
+        $books = array_merge($books, $data['items']);
+        $totalFetched += count($data['items']);
+
+        if ($totalFetched >= ($data['totalItems'] ?? 0)) {
+            break;
+        }
     }
 }
 ?>
