@@ -20,41 +20,53 @@ if (!empty($_GET['q'])) {
     <meta charset="UTF-8">
     <title>Mypage - 作者の作品一覧</title>
     <style>
+        /* 共通レイアウト */
         body {
-            font-family: sans-serif;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f2f5;
             margin: 0;
             padding: 0;
-            background: #f8f8f8;
         }
 
-        header {
-            background: #0077cc;
-            color: white;
-            padding: 10px;
-            font-size: 20px;
+        /* セクション（中央寄せ） */
+        .section {
+            width: 90%;
+            max-width: 600px;
+            margin: 60px auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
-        .container {
-            padding: 20px;
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .accent {
+            color: #1e90ff;
         }
 
         .author-info {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .author-icon {
-            background: #444;
+            background: #1e90ff;
             color: white;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            margin-right: 10px;
+            font-size: 1.2rem;
+            margin-right: 15px;
         }
 
         .book-list {
@@ -65,11 +77,11 @@ if (!empty($_GET['q'])) {
 
         .book-card {
             display: flex;
-            background: white;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             align-items: center;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 10px;
+            border: 1px solid #ddd;
         }
 
         .book-card img {
@@ -77,37 +89,59 @@ if (!empty($_GET['q'])) {
             height: 90px;
             object-fit: cover;
             margin-right: 15px;
-            background: #eee;
+            border-radius: 4px;
         }
 
         .book-title {
             font-weight: bold;
+            color: #333;
         }
 
-        .back-link {
-            margin-top: 20px;
-            display: inline-block;
+        .btn {
+            font-size: 1.1rem;
+            padding: 12px;
+            border-radius: 8px;
+            background-color: #1e90ff;
+            color: white;
+            border: none;
             text-decoration: none;
-            color: #0077cc;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #1c7cd6;
+        }
+
+        .notice-box {
+            background-color: #eaf6ff;
+            padding: 20px;
+            border-left: 5px solid #1e90ff;
+            border-radius: 6px;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
-    <header>Mypage</header>
 
-    <div class="container">
+    <div class="section">
+        <h1>作者の作品一覧</h1>
+
         <?php if (!empty($_GET['q'])): ?>
             <div class="author-info">
                 <div class="author-icon"><?= htmlspecialchars(mb_substr($_GET['q'], 0, 1)) ?></div>
                 <div>
-                    <div><strong>作者名</strong>: <?= htmlspecialchars($_GET['q']) ?></div>
+                    <div><strong>作者名:</strong> <span class="accent"><?= htmlspecialchars($_GET['q']) ?></span></div>
                 </div>
             </div>
 
-            <div class="book-list">
-                <?php if (empty($books)): ?>
-                    <p>作品が見つかりませんでした。</p>
-                <?php else: ?>
+            <?php if (empty($books)): ?>
+                <div class="notice-box">作品が見つかりませんでした。</div>
+            <?php else: ?>
+                <div class="book-list">
                     <?php foreach ($books as $book): ?>
                         <?php
                             $title = $book['volumeInfo']['title'] ?? 'タイトル不明';
@@ -118,13 +152,13 @@ if (!empty($_GET['q'])) {
                             <div class="book-title"><?= htmlspecialchars($title) ?></div>
                         </div>
                     <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
+                </div>
+            <?php endif; ?>
         <?php else: ?>
-            <p>作者名が指定されていません。</p>
+            <div class="notice-box">作者名が指定されていません。</div>
         <?php endif; ?>
 
-        <a href="gamen2.php" class="back-link">← 戻る</a>
+        <a href="gamen2.php" class="btn">← 戻る</a>
     </div>
 </body>
 </html>
