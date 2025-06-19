@@ -6,7 +6,9 @@ $startIndex = ($page - 1) * $perPage;
 $totalItems = 0;
 
 if (!empty($_GET['q'])) {
-    $query = urlencode("inauthor:" . $_GET['q']);
+    $keyword = $_GET['q'];
+    // 作者名か作品名のどちらかにマッチするものを検索
+    $query = urlencode("inauthor:{$keyword} OR intitle:{$keyword}");
     $url = "https://www.googleapis.com/books/v1/volumes?q={$query}&startIndex={$startIndex}&maxResults={$perPage}";
 
     $json = @file_get_contents($url);
@@ -23,7 +25,7 @@ if (!empty($_GET['q'])) {
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Mypage - 作者の作品一覧</title>
+    <title>Mypage - 作者・作品名検索結果</title>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -147,13 +149,13 @@ if (!empty($_GET['q'])) {
 <body>
 
 <div class="section">
-    <h1>作者の作品一覧</h1>
+    <h1>作者・作品名検索結果</h1>
 
     <?php if (!empty($_GET['q'])): ?>
         <div class="author-info">
             <div class="author-icon"><?= htmlspecialchars(mb_substr($_GET['q'], 0, 1)) ?></div>
             <div>
-                <div><strong>作者名:</strong> <span class="accent"><?= htmlspecialchars($_GET['q']) ?></span></div>
+                <div><strong>検索キーワード:</strong> <span class="accent"><?= htmlspecialchars($_GET['q']) ?></span></div>
             </div>
         </div>
 
@@ -164,11 +166,15 @@ if (!empty($_GET['q'])) {
                 <?php foreach ($books as $book): ?>
                     <?php
                         $title = $book['volumeInfo']['title'] ?? 'タイトル不明';
+                        $authors = $book['volumeInfo']['authors'] ?? ['不明な作者'];
                         $image = $book['volumeInfo']['imageLinks']['thumbnail'] ?? 'https://via.placeholder.com/60x90?text=No+Image';
                     ?>
                     <div class="book-card">
                         <img src="<?= htmlspecialchars($image) ?>" alt="Book cover">
-                        <div class="book-title"><?= htmlspecialchars($title) ?></div>
+                        <div>
+                            <div class="book-title"><?= htmlspecialchars($title) ?></div>
+                            <div>作者: <?= htmlspecialchars(implode(', ', $authors)) ?></div>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -194,10 +200,11 @@ if (!empty($_GET['q'])) {
             </div>
         <?php endif; ?>
     <?php else: ?>
-        <div class="notice-box">作者名が指定されていません。</div>
+        <div class="notice-box">検索キーワードが指定されていません。</div>
     <?php endif; ?>
 
     <a href="gamen2.php" class="btn">← 戻る</a>
 </div>
+
 </body>
 </html>
