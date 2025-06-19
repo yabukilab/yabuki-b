@@ -1,27 +1,20 @@
 <?php
 $books = [];
+$perPage = 10;
+$page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+$startIndex = ($page - 1) * $perPage;
+$totalItems = 0;
 
 if (!empty($_GET['q'])) {
     $query = urlencode("inauthor:" . $_GET['q']);
-    $maxPerPage = 40;
-    $totalFetched = 0;
-    $maxTotal = 200;
+    $url = "https://www.googleapis.com/books/v1/volumes?q={$query}&startIndex={$startIndex}&maxResults={$perPage}";
 
-    while ($totalFetched < $maxTotal) {
-        $url = "https://www.googleapis.com/books/v1/volumes?q={$query}&startIndex={$totalFetched}&maxResults={$maxPerPage}";
-        $json = @file_get_contents($url);
-        $data = json_decode($json, true);
+    $json = @file_get_contents($url);
+    $data = json_decode($json, true);
 
-        if (empty($data['items'])) {
-            break;
-        }
-
-        $books = array_merge($books, $data['items']);
-        $totalFetched += count($data['items']);
-
-        if ($totalFetched >= ($data['totalItems'] ?? 0)) {
-            break;
-        }
+    if (!empty($data['items'])) {
+        $books = $data['items'];
+        $totalItems = $data['totalItems'] ?? 0;
     }
 }
 ?>
@@ -32,7 +25,6 @@ if (!empty($_GET['q'])) {
     <meta charset="UTF-8">
     <title>Mypage - 作者の作品一覧</title>
     <style>
-        /* 共通レイアウト */
         body {
             font-family: 'Segoe UI', sans-serif;
             background-color: #f0f2f5;
@@ -40,7 +32,6 @@ if (!empty($_GET['q'])) {
             padding: 0;
         }
 
-        /* セクション（中央寄せ） */
         .section {
             width: 90%;
             max-width: 600px;
@@ -135,42 +126,78 @@ if (!empty($_GET['q'])) {
             border-radius: 6px;
             margin-top: 30px;
         }
+
+        .pagination {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .pagination a {
+            margin: 0 10px;
+            color: #1e90ff;
+            text-decoration: none;
+        }
+
+        .pagination a.disabled {
+            color: #aaa;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
 
-    <div class="section">
-        <h1>作者の作品一覧</h1>
+<div class="section">
+    <h1>作者の作品一覧</h1>
 
-        <?php if (!empty($_GET['q'])): ?>
-            <div class="author-info">
-                <div class="author-icon"><?= htmlspecialchars(mb_substr($_GET['q'], 0, 1)) ?></div>
-                <div>
-                    <div><strong>作者名:</strong> <span class="accent"><?= htmlspecialchars($_GET['q']) ?></span></div>
-                </div>
+    <?php if (!empty($_GET['q'])): ?>
+        <div class="author-info">
+            <div class="author-icon"><?= htmlspecialchars(mb_substr($_GET['q'], 0, 1)) ?></div>
+            <div>
+                <div><strong>作者名:</strong> <span class="accent"><?= htmlspecialchars($_GET['q']) ?></span></div>
+            </div>
+        </div>
+
+        <?php if (empty($books)): ?>
+            <div class="notice-box">作品が見つかりませんでした。</div>
+        <?php else: ?>
+            <div class="book-list">
+                <?php foreach ($books as $book): ?>
+                    <?php
+                        $title = $book['volumeInfo']['title'] ?? 'タイトル不明';
+                        $image = $book['volumeInfo']['imageLinks']['thumbnail'] ?? 'https://via.placeholder.com/60x90?text=No+Image';
+                    ?>
+                    <div class="book-card">
+                        <img src="<?= htmlspecialchars($image) ?>" alt="Book cover">
+                        <div class="book-title"><?= htmlspecialchars($title) ?></div>
+                    </div>
+                <?php endforeach; ?>
             </div>
 
-            <?php if (empty($books)): ?>
-                <div class="notice-box">作品が見つかりませんでした。</div>
-            <?php else: ?>
-                <div class="book-list">
-                    <?php foreach ($books as $book): ?>
-                        <?php
-                            $title = $book['volumeInfo']['title'] ?? 'タイトル不明';
-                            $image = $book['volumeInfo']['imageLinks']['thumbnail'] ?? 'https://via.placeholder.com/60x90?text=No+Image';
-                        ?>
-                        <div class="book-card">
-                            <img src="<?= htmlspecialchars($image) ?>" alt="Book cover">
-                            <div class="book-title"><?= htmlspecialchars($title) ?></div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
-        <?php else: ?>
-            <div class="notice-box">作者名が指定されていません。</div>
-        <?php endif; ?>
+            <!-- ページネーション -->
+            <div class="pagination">
+                <?php
+                    $prevPage = $page - 1;
+                    $nextPage = $page + 1;
+                    $hasNext = $startIndex + $perPage < $totalItems;
+                ?>
+                <?php if ($page > 1): ?>
+                    <a href="?q=<?= urlencode($_GET['q']) ?>&page=<?= $prevPage ?>">← 前へ</a>
+                <?php else: ?>
+                    <a class="disabled">← 前へ</a>
+                <?php endif; ?>
 
-        <a href="gamen2.php" class="btn">← 戻る</a>
-    </div>
+                <?php if ($hasNext): ?>
+                    <a href="?q=<?= urlencode($_GET['q']) ?>&page=<?= $nextPage ?>">次へ →</a>
+                <?php else: ?>
+                    <a class="disabled">次へ →</a>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+    <?php else: ?>
+        <div class="notice-box">作者名が指定されていません。</div>
+    <?php endif; ?>
+
+    <a href="gamen2.php" class="btn">← 戻る</a>
+</div>
 </body>
 </html>
