@@ -7,7 +7,7 @@ $content = $_POST['content'] ?? '';
 $rating = $_POST['rating'] ?? null;
 
 // DB接続情報（例）
-$host = 'localhost';
+$host = ''127.0.0.1'; ';
 $dbname = 'mydb';
 $user = 'testuser';
 $pass = 'pass';
