@@ -20,10 +20,11 @@
     <a href="gamen4.php" class="btn">マイページ</a>
   </div>
 
-  <h1>投稿された作品</h1>
+  <h1>投稿された作品一覧</h1>
 
   <?php
   $titles = [];
+  $filterTitle = $_GET['title'] ?? null;
 
   if (file_exists('reviews.txt')) {
     $lines = file('reviews.txt', FILE_IGNORE_NEW_LINES);
@@ -37,9 +38,12 @@
     echo "<p>まだ作品が投稿されていません。</p>";
   } else {
     foreach (array_keys($titles) as $title) {
+      // 指定されたタイトルがあれば、その作品だけ表示
+      if ($filterTitle && $filterTitle !== $title) continue;
+
       echo "<div>";
       echo "<p>" . htmlspecialchars($title) . "</p>";
-      echo "<a href='gamen7.php?title=" . urlencode($title) . "'>感想を見る</a>";
+      echo "<a href='gamen7.php?title=" . urlencode($title) . "' class='btn'>感想を見る</a>";
       echo "</div><hr>";
     }
   }
