@@ -19,6 +19,8 @@ try {
     $stmt = $pdo->prepare("INSERT INTO reviews (title, content, rating) VALUES (?, ?, ?)");
     $stmt->execute([$title, $content, $rating]);
 
+    echo "<p>レビューの登録が完了しました。</p>";
+
 } catch (PDOException $e) {
     echo "DB接続・登録エラー: " . htmlspecialchars($e->getMessage());
     exit;
