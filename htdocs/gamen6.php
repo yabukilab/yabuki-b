@@ -11,6 +11,24 @@
       text-decoration: none;
       border-radius: 4px;
     }
+    .card {
+      border: 1px solid #ccc;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+    }
+    .user-icon {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #888;
+      color: #fff;
+      text-align: center;
+      line-height: 36px;
+      margin-right: 8px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -23,28 +41,34 @@
   <h1>投稿された作品一覧</h1>
 
   <?php
-  $titles = [];
+  $titles = []; // [タイトル => 投稿者名]
   $filterTitle = $_GET['title'] ?? null;
 
   if (file_exists('reviews.txt')) {
     $lines = file('reviews.txt', FILE_IGNORE_NEW_LINES);
     foreach ($lines as $line) {
-      list($title, ) = explode("\t", $line, 2);
-      $titles[$title] = true; // 重複排除
+      $parts = explode("\t", $line);
+      if (count($parts) < 3) continue;
+      list($title, $user, $comment) = $parts;
+
+      // 最初の投稿者を表示（または上書きして最新投稿者）
+      $titles[$title] = $user;
     }
   }
 
   if (empty($titles)) {
     echo "<p>まだ作品が投稿されていません。</p>";
   } else {
-    foreach (array_keys($titles) as $title) {
-      // 指定されたタイトルがあれば、その作品だけ表示
+    foreach ($titles as $title => $user) {
       if ($filterTitle && $filterTitle !== $title) continue;
 
-      echo "<div>";
-      echo "<p>" . htmlspecialchars($title) . "</p>";
+      $initial = mb_substr($user, 0, 1);
+
+      echo "<div class='card'>";
+      echo "<div><span class='user-icon'>" . htmlspecialchars($initial) . "</span><strong>" . htmlspecialchars($user) . "</strong> さんの投稿</div>";
+      echo "<p>作品名：<strong>" . htmlspecialchars($title) . "</strong></p>";
       echo "<a href='gamen7.php?title=" . urlencode($title) . "' class='btn'>感想を見る</a>";
-      echo "</div><hr>";
+      echo "</div>";
     }
   }
   ?>
