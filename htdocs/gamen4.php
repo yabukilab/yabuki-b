@@ -20,7 +20,7 @@ function printStars($count) {
 <head>
     <meta charset="UTF-8">
     <title>マイページ</title>
-    <link rel="stylesheet" href="style.css"> <!-- 外部CSS読み込み -->
+    <link rel="stylesheet" href="style.css"> <!-- 外部CSS -->
     <style>
         .profile-header {
             display: flex;
@@ -102,8 +102,28 @@ function printStars($count) {
             background-color: #1c7cd6;
         }
 
-        .back-link {
+        .mypage-button {
+            text-align: center;
             margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #1e90ff;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #1c7cd6;
+        }
+
+        .back-link {
+            margin-top: 20px;
             text-align: left;
         }
 
@@ -145,10 +165,8 @@ function printStars($count) {
         </div>
         <?php endforeach; ?>
 
-        <div class="back-link">
-            <a href="#">← 戻る</a>
+        <div class="mypage-button">
+            <a href="gamen4.php" class="btn">マイページ</a>
         </div>
-    </div>
 
-</body>
-</html>
+        <div class="back-link">
