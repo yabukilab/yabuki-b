@@ -1,27 +1,33 @@
 <?php
-$workId = $_GET['work_id'] ?? null;
+$title = $_GET['title'] ?? '不明な作品';
 
-// 仮レビューリスト（DBの代わり）
-$reviews = [
-  1 => [
-    ['rating' => 5, 'comment' => '最高！', 'name' => '佐藤', 'days' => '昨日'],
-  ],
-  2 => [
-    ['rating' => 3, 'comment' => '普通かな', 'name' => '鈴木', 'days' => '2日前'],
-  ],
-  3 => [
-    ['rating' => 4, 'comment' => '意外と良かった', 'name' => '田中', 'days' => '3日前'],
-  ],
-];
+$reviews = [];
 
-$selectedReviews = $reviews[$workId] ?? [];
+if (file_exists('reviews.txt')) {
+  $lines = file('reviews.txt', FILE_IGNORE_NEW_LINES);
+  foreach ($lines as $line) {
+    list($t, $comment) = explode("\t", $line, 2);
+    if ($t === $title) {
+      $reviews[] = $comment;
+    }
+  }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>他者の感想</title>
+  <title><?= htmlspecialchars($title) ?> の感想</title>
+  <style>
+    .btn {
+      padding: 6px 12px;
+      background-color: #337ab7;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
 
@@ -30,20 +36,14 @@ $selectedReviews = $reviews[$workId] ?? [];
     <a href="gamen4.php" class="btn">マイページ</a>
   </div>
 
-  <h1>作品ID: <?php echo htmlspecialchars($workId); ?> に対する感想</h1>
+  <h1><?= htmlspecialchars($title) ?> の感想一覧</h1>
 
-  <?php if (empty($selectedReviews)): ?>
-    <p>感想はまだありません。</p>
+  <?php if (empty($reviews)): ?>
+    <p>まだ感想がありません。</p>
   <?php else: ?>
-    <?php foreach ($selectedReviews as $r): ?>
+    <?php foreach ($reviews as $c): ?>
       <div>
-        <p>評価: <?php echo str_repeat('★', $r['rating']) . str_repeat('☆', 5 - $r['rating']); ?></p>
-        <p>感想: <?php echo htmlspecialchars($r['comment'], ENT_QUOTES, 'UTF-8'); ?></p>
-        <p>ユーザ: <?php echo htmlspecialchars($r['name']); ?>（<?php echo $r['days']; ?>）</p>
-        <form action="comment.php" method="POST">
-          <input type="hidden" name="reviewId" value="">
-          <input type="submit" value="コメント">
-        </form>
+        <p><?= nl2br(htmlspecialchars($c)) ?></p>
         <hr>
       </div>
     <?php endforeach; ?>
