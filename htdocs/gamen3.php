@@ -174,7 +174,12 @@ if (!empty($_GET['q'])) {
                     ?>
                     <div class="book-card">
                         <img src="<?= htmlspecialchars($image) ?>" alt="Book cover">
-                        <div class="book-title"><?= htmlspecialchars($title) ?></div>
+                        <div class="book-title">
+                            <a href="gamen5.php?title=<?= urlencode($title) ?>" style="text-decoration: none; color: #1e90ff;">
+                              <?= htmlspecialchars($title) ?>
+                             </a>
+                        </div>
+
                     </div>
                 <?php endforeach; ?>
             </div>
