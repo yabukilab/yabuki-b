@@ -56,7 +56,7 @@ if (!empty($_GET['q'])) {
 </head>
 <body>
     <div class="container">
-     <h1>作者名で本を検索</h1>
+     <h1>作者・作品名で本を検索</h1>
      <form method="get" action="gamen3.php">
         <input type="text" id="author" name="q" placeholder="作者名" oninput="fetchSuggestions()" autocomplete="off">
         <button type="submit">検索</button>
