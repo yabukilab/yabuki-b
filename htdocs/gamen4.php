@@ -1,123 +1,154 @@
+<?php
+// ダミーデータ（通常はDBから取得）
+$works = [
+    ['title' => '作品名', 'rating' => 3, 'comment' => '感想'],
+    ['title' => '作品名', 'rating' => 2, 'comment' => '感想'],
+    ['title' => '作品名', 'rating' => 3, 'comment' => '感想']
+];
+
+function printStars($count) {
+    $stars = '';
+    for ($i = 0; $i < 5; $i++) {
+        $stars .= $i < $count ? '★' : '☆';
+    }
+    return $stars;
+}
+?>
+
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>マイページ</title>
+    <link rel="stylesheet" href="style.css"> <!-- 外部CSS読み込み -->
     <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f9f9f9;
-        }
-
-        .header {
-            background: #007bff;
-            color: white;
-            padding: 10px 20px;
+        .profile-header {
             display: flex;
             align-items: center;
+            margin-bottom: 20px;
         }
 
-        .profile {
-            display: flex;
-            align-items: center;
-        }
-
-        .profile img {
-            width: 40px;
-            height: 40px;
+        .avatar {
+            width: 60px;
+            height: 60px;
+            background-color: #888;
+            color: #fff;
             border-radius: 50%;
-            margin-right: 10px;
-            cursor: pointer;
+            text-align: center;
+            line-height: 60px;
+            font-size: 1.4rem;
+            margin-right: 15px;
         }
 
-        .user-name {
-            font-size: 18px;
+        .username {
             font-weight: bold;
-            cursor: pointer;
+            font-size: 1.2rem;
         }
 
-        .name-edit-form {
-            display: none;
+        .subtext {
+            font-size: 0.9rem;
+            color: #666;
         }
 
-        .container {
-            padding: 20px;
-        }
-
-        .card {
-            background: white;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        .work-item {
             display: flex;
-            align-items: flex-start;
-            gap: 15px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 4px rgba(0,0,0,0.1);
         }
 
-        .card img {
-            height: 100px;
+        .thumbnail {
+            width: 70px;
+            height: 70px;
+            background-color: #ddd;
+            margin-right: 15px;
+            border-radius: 5px;
         }
 
-        .card-content {
+        .work-details {
             flex-grow: 1;
         }
 
+        .work-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .stars {
+            color: #f39c12;
+            margin-left: 10px;
+        }
+
+        .comment {
+            margin-top: 5px;
+            color: #555;
+        }
+
+        .edit-button {
+            margin-top: 10px;
+            font-size: 1rem;
+            padding: 6px 12px;
+            border: none;
+            background-color: #1e90ff;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .edit-button:hover {
+            background-color: #1c7cd6;
+        }
+
         .back-link {
-            margin: 10px 20px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .back-link a {
+            color: #1e90ff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <!-- ヘッダー -->
-    <div class="header">
-        <div class="profile">
-            <img src="<?= htmlspecialchars($user['icon']) ?>" alt="アイコン" id="userIcon">
-            <span class="user-name" id="userName"><?= htmlspecialchars($user['name']) ?></span>
-            <form id="editNameForm" class="name-edit-form" method="POST" action="update_name.php">
-                <input type="text" name="new_name" value="<?= htmlspecialchars($user['name']) ?>">
-                <input type="submit" value="保存">
-            </form>
-        </div>
-    </div>
-
     <div class="container">
-        <h2>作品一覧</h2>
+        <div class="profile-header">
+            <div class="avatar">F</div>
+            <div>
+                <div class="username">名前</div>
+                <div class="subtext">mypage</div>
+            </div>
+        </div>
 
-        <?php if (count($comments) === 0): ?>
-            <p>まだ感想が投稿されていません。</p>
-        <?php else: ?>
-            <?php foreach ($comments as $comment): ?>
-                <div class="card">
-                    <img src="<?= htmlspecialchars($comment['thumbnail']) ?>" alt="cover">
-                    <div class="card-content">
-                        <strong><?= htmlspecialchars($comment['title']) ?></strong><br>
-                        著作者：<?= htmlspecialchars($comment['authors']) ?><br>
-                        感想：<?= nl2br(htmlspecialchars($comment['comment'])) ?><br>
-                        投稿日：<?= htmlspecialchars($comment['created_at']) ?><br>
-                        <button>修正</button>
-                    </div>
+        <h1><span class="accent">作品一覧</span></h1>
+
+        <?php foreach ($works as $work): ?>
+        <div class="work-item">
+            <div class="thumbnail"></div>
+            <div class="work-details">
+                <div class="work-title">
+                    <?= htmlspecialchars($work['title']) ?>
+                    <span class="stars"><?= printStars($work['rating']) ?></span>
                 </div>
-            <?php endforeach; ?>
-        <?php endif; ?>
+                <div class="comment"><?= htmlspecialchars($work['comment']) ?></div>
+                <button class="edit-button">修正</button>
+            </div>
+        </div>
+        <?php endforeach; ?>
 
         <div class="back-link">
-            <a href="index.php">← 戻る</a>
+            <a href="#">← 戻る</a>
         </div>
     </div>
 
-    <script>
-        const userName = document.getElementById('userName');
-        const editForm = document.getElementById('editNameForm');
-
-        userName.addEventListener('click', () => {
-            userName.style.display = 'none';
-            editForm.style.display = 'inline';
-        });
-    </script>
 </body>
 </html>
-
