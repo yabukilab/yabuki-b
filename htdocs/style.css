@@ -92,3 +92,31 @@ h1, h2 {
     border-radius: 6px;
     margin-top: 30px;
 }
+
+
+.star-rating {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    text-align: left;
+    margin: 10px 0 20px 0;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: #f5c518;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f5c518;
+}
