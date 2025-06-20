@@ -9,8 +9,8 @@ $rating = $_POST['rating'] ?? null;
 // DB接続情報（例）
 $host = 'localhost';
 $dbname = 'mydb';
-$user = 'ユーザー名';
-$pass = 'パスワード';
+$user = 'testuser';
+$pass = 'pass';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
