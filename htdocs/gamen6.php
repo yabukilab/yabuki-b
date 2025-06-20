@@ -1,27 +1,33 @@
-<div class="section">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>作品ページ</title>
+</head>
+<body>
 
   <!-- マイページボタン -->
   <div class="mypage-button" style="text-align: right; margin-bottom: 20px;">
     <a href="gamen4.php" class="btn">マイページ</a>
   </div>
 
-  <h1>感想を投稿する</h1>
-  <h2>作品タイトル：<?= htmlspecialchars($title) ?></h2>
+  <h1>作品一覧</h1>
 
-  <form action="post.php" method="POST" class="form-wrapper">
-    <input type="hidden" name="title" value="<?= htmlspecialchars($title) ?>">
+  <?php
+  // 仮の作品リスト
+  $works = [
+    ['id' => 1, 'title' => '作品A'],
+    ['id' => 2, 'title' => '作品B'],
+    ['id' => 3, 'title' => '作品C'],
+  ];
 
-    <label for="comment">感想</label>
-    <textarea id="comment" name="comment" rows="10" placeholder="ここに感想を入力してください" required></textarea>
+  foreach ($works as $work) {
+    echo "<div>";
+    echo "<p>{$work['title']}</p>";
+    echo "<a href='gamen7.php?work_id={$work['id']}'>感想を見る</a>";
+    echo "</div><hr>";
+  }
+  ?>
 
-    <label for="rating">評価 (1～5)</label>
-    <input id="rating" name="rating" type="number" min="1" max="5" required>
-
-    <button type="submit" class="btn">投稿</button>
-  </form>
-
-  <form action="index.php" method="GET" style="margin-top: 20px;">
-    <button type="submit" class="btn">他の人の感想を見る</button>
-  </form>
-
-</div>
+</body>
+</html>
