@@ -8,6 +8,8 @@ $title = $_GET['title'] ?? 'タイトル不明';
 <head>
     <meta charset="UTF-8">
     <title>感想投稿</title>
+    <link rel="stylesheet" href="style.css">
+
     <style>
         .btn {
             padding: 6px 12px;
