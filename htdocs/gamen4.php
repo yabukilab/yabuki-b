@@ -136,6 +136,27 @@ function printStars($count) {
         .back-link a:hover {
             text-decoration: underline;
         }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 60px auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+
+        .accent {
+            color: #1e90ff;
+        }
     </style>
 </head>
 <body>
@@ -165,8 +186,14 @@ function printStars($count) {
         </div>
         <?php endforeach; ?>
 
+        <div class="back-link">
+            <a href="#">← 戻る</a>
+        </div>
+
         <div class="mypage-button">
             <a href="gamen4.php" class="btn">マイページ</a>
         </div>
+    </div>
 
-        <div class="back-link">
+</body>
+</html>
