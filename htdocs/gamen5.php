@@ -10,15 +10,7 @@ $title = $_GET['title'] ?? 'タイトル不明';
     <title>感想投稿</title>
     <link rel="stylesheet" href="style.css">
 
-    <style>
-        .btn {
-            padding: 6px 12px;
-            background-color: #337ab7;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-    </style>
+ 
 </head>
 <body>
     <div class="container">
