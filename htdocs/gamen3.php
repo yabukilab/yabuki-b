@@ -1,4 +1,4 @@
-<?php
+<?php 
 $books = [];
 $perPage = 10;
 $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
@@ -6,7 +6,6 @@ $startIndex = ($page - 1) * $perPage;
 $totalItems = 0;
 
 if (!empty($_GET['q'])) {
-    // 検索キーワードに作者名か作品名を含めて検索
     $keyword = $_GET['q'];
     $query = urlencode("inauthor:{$keyword}+OR+intitle:{$keyword}");
     $url = "https://www.googleapis.com/books/v1/volumes?q={$query}&startIndex={$startIndex}&maxResults={$perPage}";
@@ -113,7 +112,6 @@ if (!empty($_GET['q'])) {
             display: inline-block;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin-top: 30px;
             text-align: center;
         }
 
@@ -146,11 +144,19 @@ if (!empty($_GET['q'])) {
         }
 
         .mypage-button {
-            margin-top: 15px;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
         }
     </style>
 </head>
 <body>
+
+<!-- マイページボタンを固定表示 -->
+<div class="mypage-button">
+    <a href="gamen4.php" class="btn">マイページ</a>
+</div>
 
 <div class="section">
     <h1>作者の作品一覧</h1>
@@ -177,14 +183,12 @@ if (!empty($_GET['q'])) {
                         <div class="book-title">
                             <a href="gamen5.php?title=<?= urlencode($title) ?>" style="text-decoration: none; color: #1e90ff;">
                               <?= htmlspecialchars($title) ?>
-                             </a>
+                            </a>
                         </div>
-
                     </div>
                 <?php endforeach; ?>
             </div>
 
-            <!-- ページネーション -->
             <div class="pagination">
                 <?php
                     $prevPage = $page - 1;
@@ -208,11 +212,8 @@ if (!empty($_GET['q'])) {
         <div class="notice-box">検索キーワードが指定されていません。</div>
     <?php endif; ?>
 
-    <a href="gamen2.php" class="btn">← 戻る</a>
-
-    <div class="mypage-button">
-        <a href="gamen4.php" class="btn">マイページ</a>
-    </div>
+    <a href="gamen2.php" class="btn" style="margin-top: 30px;">← 戻る</a>
 </div>
+
 </body>
 </html>
