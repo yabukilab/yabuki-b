@@ -37,7 +37,7 @@
 
 
         <div style="margin-top: 20px;">
-            <a href="gamen5.php" class="btn">感想投稿に戻る</a>
+            <a href="kansou.php" class="btn">感想投稿に戻る</a>
         </div>
     </div>
 </body>
