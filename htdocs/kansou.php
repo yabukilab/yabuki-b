@@ -36,7 +36,7 @@ $title = $_GET['title'] ?? 'タイトル不明';
         </form>
 
         <!-- 他の人の感想を見るボタン（gamen6.php に title を渡す） -->
-        <form action="gamen6.php" method="GET" style="margin-top: 20px;">
+        <form action="tasyanomy page.php" method="GET" style="margin-top: 20px;">
             <input type="hidden" name="title" value="<?= htmlspecialchars($title) ?>">
             <button type="submit" class="btn">他の人の感想を見る</button>
         </form>
@@ -44,7 +44,7 @@ $title = $_GET['title'] ?? 'タイトル不明';
 
     <!-- マイページボタン -->
     <div class="mypage-button" style="text-align: right; margin-top: 20px;">
-        <a href="gamen4.php" class="btn">マイページ</a>
+        <a href="mypage.php" class="btn">マイページ</a>
     </div>
 </body>
 </html>

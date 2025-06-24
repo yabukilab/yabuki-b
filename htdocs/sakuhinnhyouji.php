@@ -181,7 +181,7 @@ if (!empty($_GET['q'])) {
                     <div class="book-card">
                         <img src="<?= htmlspecialchars($image) ?>" alt="Book cover">
                         <div class="book-title">
-                            <a href="gamen5.php?title=<?= urlencode($title) ?>" style="text-decoration: none; color: #1e90ff;">
+                            <a href="kansou.php?title=<?= urlencode($title) ?>" style="text-decoration: none; color: #1e90ff;">
                               <?= htmlspecialchars($title) ?>
                             </a>
                         </div>
@@ -212,7 +212,7 @@ if (!empty($_GET['q'])) {
         <div class="notice-box">検索キーワードが指定されていません。</div>
     <?php endif; ?>
 
-    <a href="gamen2.php" class="btn" style="margin-top: 30px;">← 戻る</a>
+    <a href="kensaku.php" class="btn" style="margin-top: 30px;">← 戻る</a>
 </div>
 
 </body>

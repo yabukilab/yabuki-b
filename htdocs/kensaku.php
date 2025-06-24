@@ -25,7 +25,7 @@ if (!empty($_GET['q'])) {
             const input = document.getElementById("author").value;
             if (input.length < 2) return;
 
-            fetch("gamen2kaeshi.php?q=" + encodeURIComponent(input))
+            fetch("google api.php?q=" + encodeURIComponent(input))
                 .then(response => response.json())
                 .then(data => {
                     const list = document.getElementById("suggestions");
@@ -57,7 +57,7 @@ if (!empty($_GET['q'])) {
 <body>
     <div class="container">
      <h1>作者・作品名で本を検索</h1>
-     <form method="get" action="gamen3.php">
+     <form method="get" action="sakuhinnhyouji.php">
         <input type="text" id="author" name="q" placeholder="作者名" oninput="fetchSuggestions()" autocomplete="off">
         <button type="submit">検索</button>
         <div id="suggestions"></div>

@@ -191,7 +191,7 @@ function printStars($count) {
         </div>
 
         <div class="mypage-button">
-            <a href="gamen4.php" class="btn">マイページ</a>
+            <a href="mypage.php" class="btn">マイページ</a>
         </div>
     </div>
 
