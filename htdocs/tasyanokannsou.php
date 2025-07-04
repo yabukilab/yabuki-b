@@ -1,19 +1,40 @@
+
 <?php
+// セッションスタートが必要なら
+session_start();
+
 $title = $_GET['title'] ?? 'タイトル不明';
 $reviews = [];
 
-if (file_exists('reviews.txt')) {
-  $lines = file('reviews.txt', FILE_IGNORE_NEW_LINES);
-  foreach ($lines as $line) {
-    $parts = explode("\t", $line);
-    if (count($parts) < 3) continue;
-    list($t, $user, $comment) = $parts;
-    if ($t === $title) {
-      $reviews[] = ['user' => $user, 'comment' => $comment];
-    }
-  }
+// DB接続情報
+$host = 'localhost';
+$dbname = 'mydb';
+$user = 'testuser';
+$pass = 'pass';
+
+
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // タイトルに一致する感想を取得
+    $stmt = $pdo->prepare("
+    SELECT users.username, reviews.content
+    FROM reviews
+    JOIN users ON reviews.user_id = users.id
+    WHERE reviews.title = ?
+    ORDER BY reviews.created_at DESC
+    ");
+    $stmt->execute([$title]);
+    $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    die("DB接続エラー: " . htmlspecialchars($e->getMessage()));
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -53,19 +74,20 @@ if (file_exists('reviews.txt')) {
       <?php foreach ($reviews as $r): ?>
         <div class="notice-box">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <a href="gamen7.php?user=<?= urlencode($r['user']) ?>" class="user-icon-link">
-              <div class="user-icon"><?= htmlspecialchars(mb_substr($r['user'], 0, 1)) ?></div>
+            <a href="tasyanomypage.php?user=<?= urlencode($r['username']) ?>" class="user-icon-link">
+              <div class="user-icon"><?= htmlspecialchars(mb_substr($r['username'], 0, 1)) ?></div>
             </a>
+
             <div>
-              <strong><?= htmlspecialchars($r['user']) ?></strong> さんの感想：
-              <p style="margin-top: 6px;"><?= nl2br(htmlspecialchars($r['comment'])) ?></p>
+              <strong><?= htmlspecialchars($r['username']) ?></strong> さんの感想：
+              <p style="margin-top: 6px;"><?= nl2br(htmlspecialchars($r['content'])) ?></p>
             </div>
           </div>
         </div><br>
       <?php endforeach; ?>
     <?php endif; ?>
 
-    <a href="gamen5.php?title=<?= urlencode($title) ?>" class="btn" style="margin-top: 20px;">← 感想を投稿する</a>
+    <a href="kannsou.php?title=<?= urlencode($title) ?>" class="btn" style="margin-top: 20px;">← 感想を投稿する</a>
   </div>
 
 </body>

@@ -1,4 +1,15 @@
 <?php
+
+session_start();
+
+// ログインチェック
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.php');
+    exit;
+}
+
+
+
 $books = [];
 
 if (!empty($_GET['q'])) {
@@ -58,7 +69,7 @@ if (!empty($_GET['q'])) {
     <div class="container">
      <h1>作者・作品名で本を検索</h1>
      <form method="get" action="sakuhinnhyouji.php">
-        <input type="text" id="author" name="q" placeholder="作者名" oninput="fetchSuggestions()" autocomplete="off">
+        <input type="text" id="author" name="q" placeholder="作者・作品名" oninput="fetchSuggestions()" autocomplete="off">
         <button type="submit">検索</button>
         <div id="suggestions"></div>
      </form>

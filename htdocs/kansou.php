@@ -1,6 +1,21 @@
 <?php
 session_start();
-$title = $_GET['title'] ?? 'タイトル不明';
+
+if (!isset($_SESSION['user_id'])) {
+    die('ログインしていません。');
+}
+
+$user_id = $_SESSION['user_id'];
+// 以下、投稿処理
+$title = '';
+if (isset($_GET['title'])) {
+    $title = $_GET['title'];
+} elseif (isset($_POST['title'])) {
+    $title = $_POST['title'];
+} else {
+    $title = 'タイトル不明';  // タイトルがない場合のデフォルト
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -35,8 +50,8 @@ $title = $_GET['title'] ?? 'タイトル不明';
             <button type="submit" class="btn">投稿</button>
         </form>
 
-        <!-- 他の人の感想を見るボタン（gamen6.php に title を渡す） -->
-        <form action="tasyanomy page.php" method="GET" style="margin-top: 20px;">
+        <!-- 他の人の感想を見るボタン（tasyanokannsou.php に title を渡す） -->
+        <form action="tasyanokannsou.php" method="GET" style="margin-top: 20px;">
             <input type="hidden" name="title" value="<?= htmlspecialchars($title) ?>">
             <button type="submit" class="btn">他の人の感想を見る</button>
         </form>

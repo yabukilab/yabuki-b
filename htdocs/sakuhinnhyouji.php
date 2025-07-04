@@ -8,7 +8,7 @@ $totalItems = 0;
 if (!empty($_GET['q'])) {
     $keyword = $_GET['q'];
     $query = urlencode("inauthor:{$keyword}+OR+intitle:{$keyword}");
-    $url = "https://www.googleapis.com/books/v1/volumes?q={$query}&startIndex={$startIndex}&maxResults={$perPage}";
+    $url = "https://www.googleapis.com/books/v1/volumes?q={$query}&startIndex={$startIndex}&maxResults={$perPage}&orderBy=newest";
 
     $json = @file_get_contents($url);
     $data = json_decode($json, true);
@@ -155,7 +155,7 @@ if (!empty($_GET['q'])) {
 
 <!-- マイページボタンを固定表示 -->
 <div class="mypage-button">
-    <a href="gamen4.php" class="btn">マイページ</a>
+    <a href="mypage.php" class="btn">マイページ</a>
 </div>
 
 <div class="section">
@@ -181,7 +181,7 @@ if (!empty($_GET['q'])) {
                     <div class="book-card">
                         <img src="<?= htmlspecialchars($image) ?>" alt="Book cover">
                         <div class="book-title">
-                            <a href="kansou.php?title=<?= urlencode($title) ?>" style="text-decoration: none; color: #1e90ff;">
+                            <a href="kannsou.php?title=<?= urlencode($title) ?>" style="text-decoration: none; color: #1e90ff;">
                               <?= htmlspecialchars($title) ?>
                             </a>
                         </div>
