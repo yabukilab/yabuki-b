@@ -1,15 +1,41 @@
-<?php
-
+<?php 
 session_start();
 
-// ログインチェック
+// ログイン処理（POST送信された場合のみ）
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=bookapp;charset=utf8', 'root', '');
+        $stmt = $pdo->prepare("SELECT id FROM users WHERE email = :email AND password = :password");
+        $stmt->execute([
+            ':email' => $email,
+            ':password' => $password // 本番ではハッシュを使うべき
+        ]);
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
+            $_SESSION['user_id'] = $user['id'];
+        } else {
+            echo "メールアドレスまたはパスワードが間違っています。";
+            exit;
+        }
+
+    } catch (PDOException $e) {
+        echo "データベースエラー: " . $e->getMessage();
+        exit;
+    }
+}
+
+// セッション確認（未ログインならindexへ）
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit;
 }
 
-
-
+// 書籍検索処理（GET）
 $books = [];
 
 if (!empty($_GET['q'])) {
@@ -36,7 +62,7 @@ if (!empty($_GET['q'])) {
             const input = document.getElementById("author").value;
             if (input.length < 2) return;
 
-            fetch("google api.php?q=" + encodeURIComponent(input))
+            fetch("google_api.php?q=" + encodeURIComponent(input))
                 .then(response => response.json())
                 .then(data => {
                     const list = document.getElementById("suggestions");
@@ -51,6 +77,9 @@ if (!empty($_GET['q'])) {
                         };
                         list.appendChild(item);
                     });
+                })
+                .catch(err => {
+                    console.error("サジェスト取得エラー:", err);
                 });
         }
     </script>
@@ -67,19 +96,18 @@ if (!empty($_GET['q'])) {
 </head>
 <body>
     <div class="container">
-     <h1>作者・作品名で本を検索</h1>
-     <form method="get" action="sakuhinnhyouji.php">
-        <input type="text" id="author" name="q" placeholder="作者・作品名" oninput="fetchSuggestions()" autocomplete="off">
-        <button type="submit">検索</button>
-        <div id="suggestions"></div>
-     </form>
+        <h1>作者・作品名で本を検索</h1>
+        <form method="get" action="sakuhinnhyouji.php">
+            <input type="text" id="author" name="q" placeholder="作者・作品名" oninput="fetchSuggestions()" autocomplete="off">
+            <button type="submit">検索</button>
+            <div id="suggestions"></div>
+        </form>
     </div>
 
     <div class="notes">
         <h2>― 注意事項 ―</h2>
         <ol>
             <li>検索を行う際、ローマ字入力をすると上手く検索できない場合があります。</li>
-
         </ol>
     </div>
 </body>
