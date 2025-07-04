@@ -1,11 +1,7 @@
 <?php 
 session_start();
 
-// ログイン処理（POST送信された場合のみ）
-if (!isset($_SESSION['user_id'])) {
-    header('Location: index.php');
-    exit;
-}
+
 
 
 
@@ -54,6 +50,7 @@ if (!empty($_GET['q'])) {
                 })
         }
     </script>
+<style>
     <style>
         #suggestions div {
             background: #eee;
