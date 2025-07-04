@@ -41,7 +41,7 @@ if (file_exists('reviews.txt')) {
 <body>
 
   <div class="mypage-button">
-    <a href="gamen4.php" class="btn">マイページ</a>
+    <a href="mypage.php" class="btn">マイページ</a>
   </div>
 
   <div class="section">
