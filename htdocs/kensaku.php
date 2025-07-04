@@ -2,38 +2,12 @@
 session_start();
 
 // ログイン処理（POST送信された場合のみ）
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-
-    try {
-        $pdo = new PDO('mysql:host=localhost;dbname=bookapp;charset=utf8', 'root', '');
-        $stmt = $pdo->prepare("SELECT id FROM users WHERE email = :email AND password = :password");
-        $stmt->execute([
-            ':email' => $email,
-            ':password' => $password // 本番ではハッシュを使うべき
-        ]);
-
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user) {
-            $_SESSION['user_id'] = $user['id'];
-        } else {
-            echo "メールアドレスまたはパスワードが間違っています。";
-            exit;
-        }
-
-    } catch (PDOException $e) {
-        echo "データベースエラー: " . $e->getMessage();
-        exit;
-    }
-}
-
-// セッション確認（未ログインならindexへ）
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit;
 }
+
+
 
 // 書籍検索処理（GET）
 $books = [];
@@ -62,7 +36,7 @@ if (!empty($_GET['q'])) {
             const input = document.getElementById("author").value;
             if (input.length < 2) return;
 
-            fetch("google_api.php?q=" + encodeURIComponent(input))
+            fetch("googleapi.php?q=" + encodeURIComponent(input))
                 .then(response => response.json())
                 .then(data => {
                     const list = document.getElementById("suggestions");
@@ -78,9 +52,6 @@ if (!empty($_GET['q'])) {
                         list.appendChild(item);
                     });
                 })
-                .catch(err => {
-                    console.error("サジェスト取得エラー:", err);
-                });
         }
     </script>
     <style>
