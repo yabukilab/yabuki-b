@@ -1,7 +1,10 @@
+
 <?php
-// ここでセッション開始など必要に応じて追加可能
 session_start();
+
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -9,10 +12,6 @@ session_start();
     <meta charset="UTF-8">
     <title>読書記録交流アプリ</title>
     <link rel="stylesheet" href="style.css">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
 </head>
 <body>
     <div class="container">
@@ -28,14 +27,17 @@ session_start();
 
             <button type="submit">ログイン</button>
         </form>
+    
+
     </div>
 
     <div class="notes">
-        <h2>― 注意事項 ―</h2>
+        <h2>― 実装にあたっての注意事項 ―</h2>
         <ol>
-            <li>IDは36桁パスワードは18桁まで入力可能です。</li>
-            <li>Enterキーの押すことでもログインボタンの役割を果たします。</li>
-            
+            <li>IDは36桁まで入力可能とする。</li>
+            <li>パスワードは18桁まで入力可能として文字は「＊」で表示する。</li>
+            <li>Enterキーの押下にてログインボタンの押下と同様の動作を行う。</li>
+            <li>各入力枠に対してSQLインジェクションを防止する内部機構を講じる。</li>
         </ol>
     </div>
 </body>
