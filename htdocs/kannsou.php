@@ -1,9 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
-    die('ログインしていません。');
-}
+
 
 $user_id = $_SESSION['user_id'];
 // 以下、投稿処理
