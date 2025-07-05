@@ -65,7 +65,7 @@ if (!empty($_GET['q'])) {
 <body>
     <div class="container">
         <h1>作者・作品名で本を検索</h1>
-        <form method="get" action="sakuhinnhyouji.php">
+        <form method="get" action="kensaku.php">
             <input type="text" id="author" name="q" placeholder="作者・作品名" oninput="fetchSuggestions()" autocomplete="off">
             <button type="submit">検索</button>
             <div id="suggestions"></div>
