@@ -1,8 +1,12 @@
-<?php 
+
+<?php
 session_start();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-
-
+var_dump($_POST);
+var_dump($_SESSION);
+exit;
 
 
 // 書籍検索処理（GET）
