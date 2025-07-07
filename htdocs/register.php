@@ -43,7 +43,7 @@ if ($stmt->fetchColumn() > 0) {
 
 $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
 $stmt = $pdo->prepare($sql);
-$result = $stmt->execute([$userId, $passwordHash]);
+$result = $stmt->execute([$userId, $email, $passwordHash]);
 
 if ($result) {
     $_SESSION['user_id'] = $pdo->lastInsertId();  // auto_increment ID
