@@ -1,5 +1,6 @@
 <?php
 session_start();
+var_dump($_POST);
 require_once 'db.php';  // DB接続（$db 変数）
 
 $email = $_POST['email'] ?? '';
