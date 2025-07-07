@@ -2,23 +2,48 @@
 session_start();
 require_once 'db.php';
 
+// ログイン処理（POSTされたらログイン試行）
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'], $_POST['password'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    try {
+        $stmt = $db->prepare("SELECT id, username, password FROM users WHERE email = ?");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user && password_verify($password, $user['password'])) {
+            // ログイン成功 → セッションに保存
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+        } else {
+            // ログイン失敗
+            header("Location: index.php?error=1");
+            exit;
+        }
+    } catch (PDOException $e) {
+        die("ログイン処理エラー: " . htmlspecialchars($e->getMessage()));
+    }
+}
+
+// ログイン済みでなければトップへ戻す
 if (!isset($_SESSION['user_id'])) {
-  header('Location: index.php');
-  exit;
+    header("Location: index.php");
+    exit;
 }
 
 $books = [];
 
 if (!empty($_GET['q'])) {
-  $query = urlencode($_GET['q']);
-  $url = "https://www.googleapis.com/books/v1/volumes?q={$query}";
+    $query = urlencode($_GET['q']);
+    $url = "https://www.googleapis.com/books/v1/volumes?q={$query}";
 
-  $json = file_get_contents($url);
-  $data = json_decode($json, true);
+    $json = file_get_contents($url);
+    $data = json_decode($json, true);
 
-  if (!empty($data['items'])) {
-    $books = $data['items'];
-  }
+    if (!empty($data['items'])) {
+        $books = $data['items'];
+    }
 }
 ?>
 

@@ -18,6 +18,4 @@ if ($content === '') {
   $errorMessage = "感想は必ず入力してください。";
 } elseif ($rating !== null && ($rating < 1 || $rating > 5)) {
   $errorMessage = "評価は1～5の整数で入力してください。";
-} else {
-  try {
-    $stmt =
+} 
