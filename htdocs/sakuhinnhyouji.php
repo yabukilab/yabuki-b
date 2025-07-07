@@ -32,7 +32,7 @@ if (!empty($_GET['q'])) {
 </head>
 <body>
   <div class="container">
-    <h1>「<?= h($title) ?>」の検索結果</h1>
+    <h1>検索結果</h1>
     <!-- ここにAPI結果や検索結果の表示を記述 -->
     <?php if (!empty($_GET['q'])): ?>
         <div class="author-info">
