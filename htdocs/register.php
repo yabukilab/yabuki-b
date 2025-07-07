@@ -40,7 +40,8 @@ if ($stmt->fetchColumn() > 0) {
 }
 
 // 登録処理
-$sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+
+$sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
 $stmt = $pdo->prepare($sql);
 $result = $stmt->execute([$userId, $passwordHash]);
 
