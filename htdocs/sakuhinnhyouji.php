@@ -31,7 +31,7 @@ if (!empty($_GET['q'])) {
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
+  <div class="section">
     <h1>検索結果</h1>
     <!-- ここにAPI結果や検索結果の表示を記述 -->
     <?php if (!empty($_GET['q'])): ?>
@@ -54,7 +54,7 @@ if (!empty($_GET['q'])) {
                     <div class="book-card">
                         <img src="<?= htmlspecialchars($image) ?>" alt="Book cover">
                         <div class="book-title">
-                            <a href="kannsou.php?title=<?= urlencode($title) ?>" style="text-decoration: none; color: #1e90ff;">
+                            <a href="kannsou.php?title=<?= urlencode($title) ?>" >
                               <?= htmlspecialchars($title) ?>
                             </a>
                         </div>
