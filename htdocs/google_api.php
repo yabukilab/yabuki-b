@@ -32,3 +32,4 @@ if (!empty($data['items'])) {
 
 $authors = array_unique($authors);
 echo json_encode(array_slice(array_values($authors), 0, 5));
+?>
