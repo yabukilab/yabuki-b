@@ -21,6 +21,7 @@ try {
 
 // POSTデータを取得
 $userId = $_POST['userid']; 
+$email = $_POST['email'] ?? '';
 $password = $_POST['password'];
 
 // 入力チェック（サーバー側でも）
