@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once 'db.php';
+require_once 'db.php';  // ← ここで $db が使えるようになる
 
-// ログイン処理（POSTされたらログイン試行）
+// ログイン処理（POSTされていたら実行）
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'], $_POST['password'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -17,20 +17,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'], $_POST['pass
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
         } else {
-            // ログイン失敗
             header("Location: index.php?error=1");
             exit;
         }
     } catch (PDOException $e) {
-        die("ログイン処理エラー: " . htmlspecialchars($e->getMessage()));
+        die("ログイン処理エラー: " . h($e->getMessage()));
     }
 }
 
-// ログイン済みでなければトップへ戻す
+// ログインしていなければindexに戻す
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit;
 }
+
+// 以降：検索処理（省略）
 
 $books = [];
 
