@@ -73,4 +73,4 @@ CREATE TABLE reviews (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-echo password_hash('your_password_here', PASSWORD_DEFAULT);
+
