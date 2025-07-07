@@ -1,195 +1,168 @@
-/* 共通レイアウト */
+/* 全体の基本スタイル */
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 0;
-}
-
-/* セクション（中央寄せ） */
-.section {
-    width: 90%;
-    max-width: 600px;
-    margin: 60px auto;
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
 }
 
 .container {
-    width: 90%;
-    max-width: 600px;
-    margin: 40px auto; /* ← 横方向中央揃え */
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  width: 90%;
+  max-width: 720px;
+  margin: 30px auto;
+  background-color: #fff;
+  padding: 20px 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
 }
 
-
-/* タイトル */
-h1, h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 30px;
+/* 見出し */
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #1e90ff;
 }
 
 .accent {
-    color: #1e90ff;
+  color: #1e90ff;
 }
 
-/* 汎用フォーム */
-.form-wrapper {
-    display: flex;
-    flex-direction: column;
+/* フォーム */
+form {
+  margin-top: 20px;
 }
 
-.form-wrapper input[type="text"],
-.form-wrapper input[type="email"],
-.form-wrapper input[type="password"],
-.form-wrapper textarea {
-    font-size: 1rem;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    transition: all 0.3s;
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
-.form-wrapper input:focus,
-.form-wrapper textarea:focus {
-    border-color: #1e90ff;
-    box-shadow: 0 0 4px rgba(30,144,255,0.4);
-    outline: none;
+textarea {
+  resize: vertical;
 }
 
-
-
-/* 左上に固定表示するマイページボタン */
-.mypage-button {
-    position: fixed;
-    top: 20px;
-    left: 20px;  /* ← right: 20px を left: 20px に変更 */
-    z-index: 999;
+/* ボタン */
+button, .btn {
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
 }
 
-
-
-
-
-/* 汎用ボタン */
-.btn {
-    font-size: 1.1rem;
-    padding: 12px;
-    border-radius: 8px;
-    background-color: #1e90ff;
-    color: white;
-    border: none;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
+button:hover, .btn:hover {
+  background-color: #187bcd;
 }
 
-.btn:hover {
-    background-color: #1c7cd6;
+/* ログインフォーム */
+.login-form label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
 }
 
-/* 補足・通知エリア */
-.notice-box {
-    background-color: #eaf6ff;
-    padding: 20px;
-    border-left: 5px solid #1e90ff;
-    border-radius: 6px;
-    margin-top: 30px;
-}
-
-
-.star-rating {
-    direction: rtl;
-    unicode-bidi: bidi-override;
-    text-align: left;
-    margin: 10px 0 20px 0;
-}
-
+/* 感想投稿の星評価 */
 .star-rating input[type="radio"] {
-    display: none;
+  display: none;
 }
 
 .star-rating label {
-    font-size: 2rem;
-    color: #ccc;
-    cursor: pointer;
-    transition: color 0.2s;
+  font-size: 1.5rem;
+  color: #ccc;
+  cursor: pointer;
 }
 
 .star-rating input[type="radio"]:checked ~ label {
-    color: #f5c518;
+  color: gold;
 }
 
 .star-rating label:hover,
 .star-rating label:hover ~ label {
-    color: #f5c518;
+  color: gold;
 }
 
-.profile-header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 30px;
-}
-
-.avatar {
-  background-color: #1e90ff;
-  color: white;
-  font-weight: bold;
-  font-size: 28px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
-}
-
-.username {
-  font-weight: 700;
-  font-size: 20px;
-  color: #333;
-  margin-bottom: 4px;
-}
-
+/* 投稿リスト */
 .work-item {
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   display: flex;
-  flex-direction: column;
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
 }
 
+.work-details {
+  flex: 1;
+  padding-left: 10px;
+}
 
 .work-title {
-  font-size: 18px;
   font-weight: bold;
-  color: #333;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
+  font-size: 1.2rem;
+  margin-bottom: 6px;
 }
 
 .stars {
-  color: #f5c518;
-  font-size: 16px;
+  color: gold;
+  margin-left: 8px;
 }
 
-
 .comment {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #444;
   white-space: pre-wrap;
+  line-height: 1.4;
+}
+
+/* ユーザーアイコン */
+.user-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #1e90ff;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* ノーティスボックス */
+.notice-box {
+  background-color: #f1f8ff;
+  padding: 12px 16px;
+  border-left: 4px solid #1e90ff;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+/* マイページボタン */
+.mypage-button {
+  text-align: right;
+  margin-top: 20px;
+}
+
+/* レスポンシブ */
+@media (max-width: 600px) {
+  .container {
+    width: 95%;
+    padding: 15px 20px;
+  }
+
+  .work-item {
+    flex-direction: column;
+  }
+
+  .work-details {
+    padding-left: 0;
+  }
 }
