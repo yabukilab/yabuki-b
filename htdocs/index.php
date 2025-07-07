@@ -13,7 +13,7 @@ session_start();
   <div class="container">
     <h1>読書記録交流<span class="accent">アプリ</span></h1>
 
-    <form class="login-form" action="kensaku.php" method="post">
+    <form class="login-form" action="login.php" method="post">
       <label for="email">Email</label>
       <input type="email" id="email" name="email" maxlength="36" required>
 
