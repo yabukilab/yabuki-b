@@ -14,8 +14,9 @@
       <button class="btn" onclick="location.href='touroku.php'">新規登録</button>
       <button class="btn" onclick="location.href='login.php'">ログイン</button>
     </main>
+  </diV>
 <body>
-
+</html>
 
 
 

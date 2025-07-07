@@ -59,3 +59,6 @@ try {
 <footer>© 2025 yabuki lab</footer> 
 </body>
 </html>
+
+
+
