@@ -20,15 +20,15 @@ try {
 
 // フォーム送信時
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $userid = $_POST["userid"] ?? "";
+    $email = $_POST["email"] ?? "";
     $password = $_POST["password"] ?? "";
 
     // データベースからユーザー情報を取得
     $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
-    $stmt->execute([$userid]);
+    $stmt->execute([$email]);
     $user = $stmt->fetch();
 
-    if ($user && password_verify($password, $user["password_hash"])) {
+    if ($user && password_verify($password, $user["password"])) {
         $_SESSION["user_id"] = $user["id"]; // セッションに保存（必要なら）
         $_SESSION["username"] = $user["username"];
 
