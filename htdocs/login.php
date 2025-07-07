@@ -1,32 +1,42 @@
+
 <?php
-session_start();
-var_dump($_POST);
-require_once 'db.php';  // DB接続（$db 変数）
+session_start(); // ← セッション開始（必要なら）
+$error = "";
+$success = false;
 
-$email = $_POST['email'] ?? '';
-$password = $_POST['password'] ?? '';
+// DB接続情報（Docker向け例）
+$dbServer = '127.0.0.1';
+$dbUser = isset($_SERVER['MYSQL_USER'])     ? $_SERVER['MYSQL_USER']     : 'testuser';
+$dbPass = isset($_SERVER['MYSQL_PASSWORD']) ? $_SERVER['MYSQL_PASSWORD'] : 'pass';
+$dbName = isset($_SERVER['MYSQL_DB'])       ? $_SERVER['MYSQL_DB']       : 'mydb';
 
-if ($email === '' || $password === '') {
-    header('Location: index.php?error=1');
-    exit;
-}
+$dsn = "mysql:host=$dbServer;dbname=$dbName;charset=utf8";
 
 try {
-    $stmt = $db->prepare('SELECT * FROM users WHERE email = ?');
-    $stmt->execute([$email]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
-        header('Location: kensaku.php');
-        exit;
-    } else {
-        header('Location: index.php?error=1');
-        exit;
-    }
-
+    $pdo = new PDO($dsn, $dbUser, $dbPass);
 } catch (PDOException $e) {
-    echo "ログイン処理エラー: " . htmlspecialchars($e->getMessage());
-    exit;
+    die("データベース接続失敗: " . $e->getMessage());
 }
+
+// フォーム送信時
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $userid = $_POST["userid"] ?? "";
+    $password = $_POST["password"] ?? "";
+
+    // データベースからユーザー情報を取得
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->execute([$userid]);
+    $user = $stmt->fetch();
+
+    if ($user && password_verify($password, $user["password_hash"])) {
+        $_SESSION["user_id"] = $user["id"]; // セッションに保存（必要なら）
+        $_SESSION["username"] = $user["username"];
+
+        // ログイン成功 → 検索画面へリダイレクト
+        header("Location: kensaku.php"); // ← ここを変更してもOK
+        exit();
+    } else {
+        $error = "※IDまたはパスワードが正しくありません";
+    }
+}
+?>
