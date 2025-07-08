@@ -27,7 +27,7 @@ if (!empty($_GET['q'])) {
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title><?= h($title) ?> の検索結果</title>
+  <title>検索結果</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
