@@ -123,6 +123,27 @@ button:hover, .btn:hover {
   line-height: 1.4;
 }
 
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.book-card {
+  width: 120px;
+  text-align: center;
+}
+
+.book-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.book-title {
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
 /* ユーザーアイコン */
 .user-icon {
   width: 40px;
@@ -168,26 +189,6 @@ button:hover, .btn:hover {
 
 
 
-  .book-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
 
-.book-card {
-  width: 120px;
-  text-align: center;
-}
-
-.book-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
-.book-title {
-  margin-top: 8px;
-  font-size: 0.9rem;
-}
 
 }
