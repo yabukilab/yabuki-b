@@ -25,7 +25,7 @@ $email = $_POST['email'] ?? '';
 $password = $_POST['password'];
 
 // 入力チェック（サーバー側でも）
-if (empty($email) || empty($password)) {
+if (empty($username) || empty($email) || empty($password)) {
     exit('IDまたはパスワードが未入力です');
 }
 
@@ -42,7 +42,7 @@ if ($stmt->fetchColumn() > 0) {
 
 // 登録処理
 
-$sql = "INSERT INTO users (email, password) VALUES (?, ?, ?)";
+$sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
 $stmt = $pdo->prepare($sql);
 $result = $stmt->execute([$username, $email, $passwordHash]);
 
