@@ -173,6 +173,12 @@ button:hover, .btn:hover {
   margin-top: 20px;
 }
 
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 /* レスポンシブ */
 @media (max-width: 600px) {
   .container {

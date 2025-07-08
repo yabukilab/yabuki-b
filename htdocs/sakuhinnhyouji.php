@@ -70,15 +70,15 @@ if (!empty($_GET['q'])) {
                     $hasNext = $startIndex + $perPage < $totalItems;
                 ?>
                 <?php if ($page > 1): ?>
-                    <a href="?q=<?= urlencode($_GET['q']) ?>&page=<?= $prevPage ?>">← 前へ</a>
+                    <a href="?q=<?= urlencode($_GET['q']) ?>&page=<?= $prevPage ?>" class="btn">← 前へ</a>
                 <?php else: ?>
-                    <a class="disabled">← 前へ</a>
+                    <a class="btn disabled">← 前へ</a>
                 <?php endif; ?>
 
                 <?php if ($hasNext): ?>
-                    <a href="?q=<?= urlencode($_GET['q']) ?>&page=<?= $nextPage ?>">次へ →</a>
+                    <a href="?q=<?= urlencode($_GET['q']) ?>&page=<?= $nextPage ?>" class="btn">次へ →</a>
                 <?php else: ?>
-                    <a class="disabled">次へ →</a>
+                    <a class="btn disabled">次へ →</a>
                 <?php endif; ?>
             </div>
         <?php endif; ?>
@@ -91,3 +91,4 @@ if (!empty($_GET['q'])) {
   </div>
 </body>
 </html>
+
