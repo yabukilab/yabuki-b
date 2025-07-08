@@ -6,6 +6,7 @@ $perPage = 10;
 $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
 $startIndex = ($page - 1) * $perPage;
 $totalItems = 0;
+$title = $_GET['q'] ?? '検索結果';
 
 if (!empty($_GET['q'])) {
     $keyword = $_GET['q'];
