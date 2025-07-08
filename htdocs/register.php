@@ -25,7 +25,7 @@ $email = $_POST['email'] ?? '';
 $password = $_POST['password'];
 
 // 入力チェック（サーバー側でも）
-if (empty($userId) || empty($password)) {
+if (empty($email) || empty($password)) {
     exit('IDまたはパスワードが未入力です');
 }
 
