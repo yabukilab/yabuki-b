@@ -33,22 +33,22 @@ if (empty($email) || empty($password)) {
 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
 // 重複チェック（ユーザーIDが既に存在しないか）
-$sql = "SELECT COUNT(*) FROM users WHERE username = ?";
+$sql = "SELECT COUNT(*) FROM users WHERE email = ?";
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$userId]);
+$stmt->execute([$email]);
 if ($stmt->fetchColumn() > 0) {
     exit('このIDはすでに使用されています');
 }
 
 // 登録処理
 
-$sql = "INSERT INTO users (mail, password) VALUES (?, ?)";
+$sql = "INSERT INTO users (email, password) VALUES (?, ?)";
 $stmt = $pdo->prepare($sql);
-$result = $stmt->execute([$userId, $email, $passwordHash]);
+$result = $stmt->execute([$email, $passwordHash]);
 
 if ($result) {
     $_SESSION['user_id'] = $pdo->lastInsertId();  // auto_increment ID
-    $_SESSION['email'] = $userId;              // 入力されたユーザー名
+    $_SESSION['email'] = $email;              // 入力されたユーザー名
 
     header("Location: kensaku.php");               // ログイン後の画面へ
     exit();
