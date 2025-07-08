@@ -20,7 +20,7 @@ try {
 }
 
 // POSTデータを取得
-$userId = $_POST['userid']; 
+
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'];
 
@@ -42,13 +42,13 @@ if ($stmt->fetchColumn() > 0) {
 
 // 登録処理
 
-$sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+$sql = "INSERT INTO users (mail, password) VALUES (?, ?)";
 $stmt = $pdo->prepare($sql);
 $result = $stmt->execute([$userId, $email, $passwordHash]);
 
 if ($result) {
     $_SESSION['user_id'] = $pdo->lastInsertId();  // auto_increment ID
-    $_SESSION['username'] = $userId;              // 入力されたユーザー名
+    $_SESSION['email'] = $userId;              // 入力されたユーザー名
 
     header("Location: kensaku.php");               // ログイン後の画面へ
     exit();

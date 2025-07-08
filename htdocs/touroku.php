@@ -46,7 +46,7 @@ try {
     <?php else: ?>
       <h2>新規登録</h2>
       <form action="register.php" method="post">
-        <input type="text" name="userid" placeholder="email（36文字まで）" maxlength="36" required value="<?= htmlspecialchars($userid ?? '') ?>" />
+        <input type="email" name="email" placeholder="Email（36文字まで）" maxlength="36" required value="<?= htmlspecialchars($userid ?? '') ?>" />
         <input type="password" name="password" placeholder="パスワード（18文字まで）" maxlength="18" required />
         <?php if (!empty($error)): ?>
           <div class="error"><?= htmlspecialchars($error) ?></div>
