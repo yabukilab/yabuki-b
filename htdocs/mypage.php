@@ -8,8 +8,8 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$user = 'testuser';
-$pass = 'pass';
+
+$username = $_SESSION['username'] ?? '';  
 
 
 // DB接続設定
