@@ -169,8 +169,8 @@ button:hover, .btn:hover {
 
 /* マイページボタン */
 .mypage-button {
-  text-align: right;
-  margin-top: 20px;
+  text-align: left;
+  margin-top: 20px 0 0 20px;
 }
 
 
