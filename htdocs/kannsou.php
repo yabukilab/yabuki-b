@@ -27,13 +27,18 @@ if (isset($_GET['title'])) {
 
  
 </head>
+
+
 <body>
+
+    <div class="mypage-button">
+        <a href="mypage.php" class="btn">マイページ</a>
+    </div>
+
     <div class="container">
         <h1>感想を投稿する</h1>
         <h2>作品タイトル：<?= htmlspecialchars($title) ?></h2>
-          <div class="mypage-button">
-              <a href="mypage.php" class="btn">マイページ</a>
-           </div>
+
 
 
         <form action="submit.php" method="POST">
