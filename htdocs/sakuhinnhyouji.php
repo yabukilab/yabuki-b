@@ -37,7 +37,7 @@ if (!empty($_GET['q'])) {
     <!-- ここにAPI結果や検索結果の表示を記述 -->
     <?php if (!empty($_GET['q'])): ?>
         <div class="author-info">
-            <div class="author-icon"><?= htmlspecialchars(mb_substr($_GET['q'], 0, 1)) ?></div>
+            
             <div>
                 <div><strong>検索キーワード:</strong> <span class="accent"><?= htmlspecialchars($_GET['q']) ?></span></div>
             </div>
