@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <input type="text" id="username" name="username" maxlength="36" required>
 
       <label for="password">パスワード</label>
-      <input type="password" id="password" name="password" maxlength="18" required>
+      <input type="password" id="password" name="password" maxlength="20" required>
 
       <button type="submit">ログイン</button>
     </form>
