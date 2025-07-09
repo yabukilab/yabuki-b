@@ -77,8 +77,9 @@ button:hover, .btn:hover {
 
 /* 感想投稿の星評価 */
 .star-rating {
-   display: flex;
-   flex-direction: row;
+    unicode-bidi: bidi-override;
+    text-align: left;
+    margin: 10px 0 20px 0;
 }
 
 .star-rating input[type="radio"] {
@@ -92,15 +93,16 @@ button:hover, .btn:hover {
     transition: color 0.2s;
 }
 
-.star-rating input[type="radio"]:checked + label,
-.star-rating input[type="radio"]:checked +label ~ label {
+.star-rating input[type="radio"]:checked ~ label {
     color: #f5c518;
 }
 
+/* ホバー時（視覚的フィードバック） */
 .star-rating label:hover,
 .star-rating label:hover ~ label {
     color: #f5c518;
 }
+
 
 /* 投稿リスト */
 .work-item {

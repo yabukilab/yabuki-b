@@ -47,12 +47,22 @@ if (isset($_GET['title'])) {
 
             <label for="rating">評価</label>
             <div class="star-rating">
+<<<<<<< HEAD
                  <input type="radio" id="star1" name="rating" value="1" /><label for="star1">★</label>
                  <input type="radio" id="star2" name="rating" value="2" /><label for="star2">★</label>
                  <input type="radio" id="star3" name="rating" value="3" /><label for="star3">★</label>
                  <input type="radio" id="star4" name="rating" value="4" /><label for="star4">★</label>
                  <input type="radio" id="star5" name="rating" value="5" /><label for="star5">★</label>
             </div>
+=======
+    <input type="radio" id="star1" name="rating" value="1" /><label for="star1">★</label>
+    <input type="radio" id="star2" name="rating" value="2" /><label for="star2">★</label>
+    <input type="radio" id="star3" name="rating" value="3" /><label for="star3">★</label>
+    <input type="radio" id="star4" name="rating" value="4" /><label for="star4">★</label>
+    <input type="radio" id="star5" name="rating" value="5" /><label for="star5">★</label>
+</div>
+
+>>>>>>> 6c7855bef0869b01f31d696675320af94aa09fe9
             <label for="content">感想</label><br>
             <textarea id="content" name="content" rows="6" cols="50" placeholder="ここに感想を入力してください" required></textarea><br><br>
             <button type="submit" class="btn">投稿</button>
