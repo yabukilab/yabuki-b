@@ -42,7 +42,6 @@ function printStars($count) {
 <body>
     <div class="container">
         <div class="profile-header">
-            <div class="avatar"><?= htmlspecialchars(mb_substr($username, 0, 1)) ?></div>
             <div>
                 <div class="username"><?= htmlspecialchars($username) ?></div>
             </div>
