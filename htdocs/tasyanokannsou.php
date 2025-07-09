@@ -5,16 +5,18 @@ require_once 'db.php';  // ここで $db が使えるようになる
 $title = $_GET['title'] ?? 'タイトル不明';
 $reviews = [];
 
+$user_id = $_SESSION['user_id'] ?? null;  
 try {
-    // db.php で定義された $db を使用する
+    // 自分の感想を除外して他人の感想だけ取得
     $stmt = $db->prepare("
         SELECT users.username, reviews.content
         FROM reviews
         JOIN users ON reviews.user_id = users.id
         WHERE reviews.title = ?
+          AND reviews.user_id != ?
         ORDER BY reviews.created_at DESC
     ");
-    $stmt->execute([$title]);
+    $stmt->execute([$title, $user_id]);
     $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
