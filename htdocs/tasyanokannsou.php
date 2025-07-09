@@ -6,12 +6,7 @@ session_start();
 $title = $_GET['title'] ?? 'タイトル不明';
 $reviews = [];
 
-// DB接続情報
-$host = 'localhost';
-$dbname = 'mydb';
-$user = 'testuser';
-$pass = 'pass';
-
+require_once 'db.php';
 
 
 try {

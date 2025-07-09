@@ -13,10 +13,7 @@ $username = $_SESSION['username'] ?? '';
 
 
 // DB接続設定
-$host = 'localhost';
-$dbname = 'mydb';
-$user = 'testuser';
-$pass = 'pass';
+require_once 'db.php';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
