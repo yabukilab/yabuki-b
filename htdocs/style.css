@@ -176,9 +176,14 @@ button:hover, .btn:hover {
 
 /* マイページボタン */
 .mypage-button {
-  text-align: left;
-  margin-top: 20px 0 0 20px;
+    margin: 20px; /* ← ここで全体に余白を追加 */
 }
+
+.mypage-button .btn {
+    padding: 8px 16px;
+    font-size: 1rem;
+}
+
 
 
 .disabled {

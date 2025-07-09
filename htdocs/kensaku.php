@@ -66,6 +66,9 @@ if (!empty($_GET['q'])) {
   </style>
 </head>
 <body>
+  <div class="mypage-button">
+      <a href="mypage.php" class="btn">マイページ</a>
+  </div>
   <div class="container">
     <h1>作者・作品名で本を検索</h1>
     <form method="get" action="sakuhinnhyouji.php">
