@@ -77,29 +77,29 @@ button:hover, .btn:hover {
 
 /* 感想投稿の星評価 */
 .star-rating {
-    direction: rtl;
-    unicode-bidi: bidi-override;
-    text-align: left;
-    margin: 10px 0 20px 0;
+    display: flex;
+    flex-direction: row;
 }
 
-.star-rating input[type="radio"] {
-  display: none;
+.star-rating input {
+    display: none;
 }
 
 .star-rating label {
-  font-size: 1.5rem;
-  color: #ccc;
-  cursor: pointer;
-}
-
-.star-rating input[type="radio"]:checked ~ label {
-  color: gold;
+    font-size: 2em;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
 }
 
 .star-rating label:hover,
 .star-rating label:hover ~ label {
-  color: gold;
+    color: gold;
+}
+
+.star-rating input:checked + label,
+.star-rating input:checked + label ~ label {
+    color: gold;
 }
 
 /* 投稿リスト */
