@@ -2,6 +2,8 @@
 <?php
 // セッションスタートが必要なら
 session_start();
+require_once 'db.php';
+
 
 $title = $_GET['title'] ?? 'タイトル不明';
 $reviews = [];
@@ -13,7 +15,7 @@ $dbName = isset($_SERVER['MYSQL_DB'])       ? $_SERVER['MYSQL_DB']       : 'mydb
 
 $dsn = "mysql:host={$dbServer};dbname={$dbName};charset=utf8";
 
-require_once 'db.php';
+
 
 try {
     $pdo = new PDO($dsn, $dbUser, $dbPass, [

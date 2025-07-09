@@ -1,51 +1,26 @@
 <?php
 session_start();
 
-$dbServer = '127.0.0.1';
-$dbUser = isset($_SERVER['MYSQL_USER'])     ? $_SERVER['MYSQL_USER']     : 'testuser';
-$dbPass = isset($_SERVER['MYSQL_PASSWORD']) ? $_SERVER['MYSQL_PASSWORD'] : 'pass';
-$dbName = isset($_SERVER['MYSQL_DB'])       ? $_SERVER['MYSQL_DB']       : 'mydb';
-
-$dsn = "mysql:host={$dbServer};dbname={$dbName};charset=utf8";
-
-require_once 'db.php';
-
-try {
-    $pdo = new PDO($dsn, $dbUser, $dbPass, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false,
-    ]);
-} catch (PDOException $e) {
-    exit('データベース接続エラー: ' . htmlspecialchars($e->getMessage()));
-}
-
+// ログインしていなければログインページなどへリダイレクト
 if (!isset($_SESSION['user_id'])) {
-    // ログインしていなければログインページなどへリダイレクト
     header('Location: index.php');
     exit;
 }
 
+// セッション変数からユーザー情報を取得
+$user_id = $_SESSION['user_id'];
+$username = $_SESSION['username'] ?? '';
 
-$username = $_SESSION['username'] ?? '';  
-
-
-// DB接続設定
+// DB接続（db.php から $pdo を読み込む）
 require_once 'db.php';
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     // 自分のレビューのみ取得
     $stmt = $pdo->prepare("SELECT title, rating, content FROM reviews WHERE user_id = ? ORDER BY created_at DESC");
     $stmt->execute([$user_id]);
     $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    
-
 } catch (PDOException $e) {
-    die("DB接続エラー: " . htmlspecialchars($e->getMessage()));
+    die("レビュー取得エラー: " . htmlspecialchars($e->getMessage()));
 }
 
 // 星表示関数
@@ -57,8 +32,6 @@ function printStars($count) {
     return $stars;
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -67,18 +40,17 @@ function printStars($count) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="container">
         <div class="profile-header">
             <div class="avatar"><?= htmlspecialchars(mb_substr($username, 0, 1)) ?></div>
             <div>
                 <div class="username"><?= htmlspecialchars($username) ?></div>
             </div>
-         </div>
+        </div>
 
         <h1><span class="accent">投稿した作品一覧</span></h1>
 
-        <?php if (count($reviews) === 0): ?>
+        <?php if (empty($reviews)): ?>
             <p>まだ感想は投稿されていません。</p>
         <?php else: ?>
             <?php foreach ($reviews as $review): ?>
@@ -90,16 +62,14 @@ function printStars($count) {
                              <span class="stars"><?= printStars((int)$review['rating']) ?></span>
                         </div>
                         <div class="comment"><?= nl2br(htmlspecialchars($review['content'])) ?></div>
-
                     </div>
                 </div>
-             <?php endforeach; ?>
+            <?php endforeach; ?>
         <?php endif; ?>
 
-         <div class="back-link">
-             <a href="kensaku.php">← トップページへ</a>
-         </div>
+        <div class="back-link">
+            <a href="kensaku.php">← トップページへ</a>
+        </div>
     </div>
-
 </body>
 </html>
