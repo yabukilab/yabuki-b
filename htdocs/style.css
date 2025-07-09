@@ -78,7 +78,7 @@ button:hover, .btn:hover {
 /* 感想投稿の星評価 */
 .star-rating {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
 }
 
 .star-rating input {
@@ -98,7 +98,7 @@ button:hover, .btn:hover {
 }
 
 .star-rating input:checked + label,
-.star-rating input:checked ~ label {
+.star-rating input:checked + label ~ label {
     color: gold;
 }
 
