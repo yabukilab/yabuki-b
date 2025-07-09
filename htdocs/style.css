@@ -186,6 +186,39 @@ button:hover, .btn:hover {
 
 
 
+/* 投稿ごとのアクションボタン */
+.review-actions {
+  margin-top: 8px;
+}
+
+/* 基本ボタンスタイル */
+.review-actions .btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-right: 8px;
+  background-color: #1e90ff;
+  color: white;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.review-actions .btn:hover {
+  background-color: #187bcd;
+}
+
+/* 削除ボタンは赤系に強調 */
+.review-actions .btn-danger {
+  background-color: #dc3545;
+}
+
+.review-actions .btn-danger:hover {
+  background-color: #a71d2a;
+}
+
+
 .disabled {
   opacity: 0.5;
   pointer-events: none;

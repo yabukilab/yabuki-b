@@ -61,6 +61,13 @@ function printStars($count) {
                              <span class="stars"><?= printStars((int)$review['rating']) ?></span>
                         </div>
                         <div class="comment"><?= nl2br(htmlspecialchars($review['content'])) ?></div>
+
+                        <div class="review-actions" style="margin-top: 8px;">
+                            <a href="edit_review.php?id=<?= urlencode($review['id']) ?>" class="btn">修正</a>
+                            <a href="delete_review.php?id=<?= urlencode($review['id']) ?>" 
+                               class="btn btn-danger" 
+                               onclick="return confirm('本当に削除しますか？');">削除</a>
+                         </div>
                     </div>
                 </div>
             <?php endforeach; ?>
