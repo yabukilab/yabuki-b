@@ -8,6 +8,8 @@ $dbName = isset($_SERVER['MYSQL_DB'])       ? $_SERVER['MYSQL_DB']       : 'mydb
 
 $dsn = "mysql:host={$dbServer};dbname={$dbName};charset=utf8";
 
+require_once 'db.php';
+
 try {
     $pdo = new PDO($dsn, $dbUser, $dbPass, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
