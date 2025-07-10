@@ -9,7 +9,7 @@ $totalItems = 0;
 $title = $_GET['q'] ?? '検索結果';
 
 if (!empty($_GET['q'])) {
-    $keyword = $_GET['q'];
+    $keyword = $_GET['q']??'';
     $query = urlencode("inauthor:{$keyword}+OR+intitle:{$keyword}");
     $url = "https://www.googleapis.com/books/v1/volumes?q={$query}&startIndex={$startIndex}&maxResults={$perPage}&orderBy=newest";
 
