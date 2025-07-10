@@ -86,7 +86,10 @@ if (!empty($_GET['q'])) {
         <div class="notice-box">検索キーワードが指定されていません。</div>
     <?php endif; ?>
 
-    <a href="kensaku.php" class="btn" style="margin-top: 30px;">← 戻る</a>
+     <a href="kannsou.php?title=<?= urlencode($title) ?>&q=<?= urlencode($_GET['q']) ?>">
+     <?= htmlspecialchars($title) ?>
+     </a>
+
 
   </div>
 </body>
