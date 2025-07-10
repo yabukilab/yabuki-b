@@ -55,14 +55,11 @@ $keyword = $_GET['q'] ?? '';
             <button type="submit" class="btn">他の人の感想を見る</button>
         </form>
 
-        <!-- 作品一覧に戻るボタン -->
-        <?php if (!empty($keyword)): ?>
-            <!-- ボタンを表示 -->
-            <form action="sakuhinnhyouji.php" method="GET" style="margin-top: 20px;">
-                <input type="hidden" name="q" value="<?= htmlspecialchars($keyword) ?>">
-                <button type="submit" class="btn">← 作品一覧に戻る</button>
-            </form>
-        <?php endif; ?>
+        <!-- 作品一覧に戻るボタン（常に表示） -->
+        <form action="sakuhinnhyouji.php" method="GET" style="margin-top: 20px;">
+            <input type="hidden" name="q" value="<?= htmlspecialchars($keyword) ?>">
+            <button type="submit" class="btn">← 作品一覧に戻る</button>
+        </form>
     </div>
 
 </body>
