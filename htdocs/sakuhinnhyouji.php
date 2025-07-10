@@ -35,7 +35,8 @@ if (!empty($_GET['q'])) {
   <div class="section">
     <h1>検索結果</h1>
     <!-- ここにAPI結果や検索結果の表示を記述 -->
-    <?php if (!empty($_GET['q'])): ?>
+    <?php if (isset($_GET['q']) && trim($_GET['q']) !== ''): ?>
+
         <div class="author-info">
             
             <div>
@@ -55,9 +56,9 @@ if (!empty($_GET['q'])) {
                     <div class="book-card">
                         <img src="<?= htmlspecialchars($image) ?>" alt="Book cover">
                         <div class="book-title">
-                            <a href="kannsou.php?title=<?= urlencode($title) ?>" >
-                              <?= htmlspecialchars($title) ?>
-                            </a>
+                           <a href="kannsou.php?title=<?= urlencode($title) ?>&q=<?= urlencode($_GET['q']) ?>">
+                            <?= htmlspecialchars($title) ?>
+                           </a>
                         </div>
                     </div>
                 <?php endforeach; ?>
