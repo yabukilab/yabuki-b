@@ -78,7 +78,9 @@ button:hover, .btn:hover {
 /* 感想投稿の星評価 */
 .star-rating {
   display: flex;
-  flex-direction: row; /* 左から右 */
+  flex-direction: row-reverse; /* 左から右 */
+  justify-content: flex-start;
+  direction: rtl;
 }
 
 .star-rating input[type="radio"] {
@@ -90,6 +92,7 @@ button:hover, .btn:hover {
     color: #ccc;
     cursor: pointer;
     transition: color 0.2s;
+    direction: ltr;
 }
 
 .star-rating input[type="radio"]:checked + label,
