@@ -1,27 +1,10 @@
 <?php
 session_start();
-require_once 'db.php';  // ← ここで $db が使えるようになる
+require_once 'db.php';
 
 if (!isset($_SESSION['user_id'])) {
   header('Location: index.php');
   exit;
-}
-
-
-// 以降：検索処理（省略）
-
-$books = [];
-
-if (!empty($_GET['q'])) {
-    $query = urlencode($_GET['q']);
-    $url = "https://www.googleapis.com/books/v1/volumes?q={$query}";
-
-    $json = file_get_contents($url);
-    $data = json_decode($json, true);
-
-    if (!empty($data['items'])) {
-        $books = $data['items'];
-    }
 }
 ?>
 
