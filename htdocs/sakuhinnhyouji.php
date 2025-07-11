@@ -53,6 +53,11 @@ if (!empty($_GET['q'])) {
   <div class="section">
     <h1>検索結果</h1>
 
+    <!-- ▼ 検索画面に戻るボタン -->
+    <div>
+      <a href="index.php" class="btn">← 検索画面に戻る</a>
+    </div>
+
     <?php if (isset($_GET['q']) && trim($_GET['q']) !== ''): ?>
       <div class="author-info">
         <div>
