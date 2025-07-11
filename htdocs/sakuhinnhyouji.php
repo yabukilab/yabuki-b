@@ -10,16 +10,18 @@ $totalItems = 0;
 $title = $_GET['q'] ?? '検索結果';
 
 if (!empty($_GET['q'])) {
-    $keyword = $_GET['q'];
-    $query = urlencode("inauthor:{$keyword}+OR+intitle:{$keyword}");
-    $url = "https://www.googleapis.com/books/v1/volumes?q={$query}&startIndex={$startIndex}&maxResults={$perPage}&orderBy=newest";
+    $keyword = trim($_GET['q']);
+    if ($keyword !== '') {
+        $query = urlencode("inauthor:{$keyword}+OR+intitle:{$keyword}");
+        $url = "https://www.googleapis.com/books/v1/volumes?q={$query}&startIndex={$startIndex}&maxResults={$perPage}&orderBy=newest";
 
-    $json = @file_get_contents($url);
-    $data = json_decode($json, true);
+        $json = @file_get_contents($url);
+        $data = json_decode($json, true);
 
-    if (!empty($data['items'])) {
-        $books = $data['items'];
-        $totalItems = $data['totalItems'] ?? 0;
+        if (!empty($data['items'])) {
+            $books = $data['items'];
+            $totalItems = $data['totalItems'] ?? 0;
+        }
     }
 }
 ?>
@@ -47,9 +49,51 @@ if (!empty($_GET['q'])) {
       pointer-events: none;
       color: #666;
     }
-    .center {
-      text-align: center;
+    /* .center クラスは使わずに左寄せに */
+    .pagination {
+      text-align: left;
       margin-top: 20px;
+    }
+    .author-info {
+      margin-bottom: 10px;
+    }
+    .accent {
+      color: #007bff;
+    }
+    .notice-box {
+      padding: 10px;
+      background-color: #f8d7da;
+      color: #721c24;
+      border-radius: 4px;
+      margin-top: 15px;
+    }
+    .book-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .book-card {
+      width: 120px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 8px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    .book-card img {
+      width: 60px;
+      height: 90px;
+      object-fit: cover;
+      margin-bottom: 8px;
+    }
+    .book-title a {
+      font-size: 14px;
+      color: #333;
+      text-decoration: none;
+    }
+    .book-title a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -66,6 +110,9 @@ if (!empty($_GET['q'])) {
       <?php if (empty($books)): ?>
         <div class="notice-box">作品が見つかりませんでした。</div>
       <?php else: ?>
+        <div>
+          <div>検索結果 <?= $totalItems ?> 件中 <?= count($books) ?> 件表示</div>
+        </div>
         <div class="book-list">
           <?php foreach ($books as $book): ?>
             <?php
@@ -73,7 +120,7 @@ if (!empty($_GET['q'])) {
               $image = $book['volumeInfo']['imageLinks']['thumbnail'] ?? 'https://via.placeholder.com/60x90?text=No+Image';
             ?>
             <div class="book-card">
-              <img src="<?= htmlspecialchars($image) ?>" alt="Book cover">
+              <img src="<?= htmlspecialchars($image) ?>" alt="<?= htmlspecialchars($title) ?> の表紙">
               <div class="book-title">
                 <a href="kannsou.php?title=<?= urlencode($title) ?>&q=<?= urlencode($_GET['q']) ?>">
                   <?= htmlspecialchars($title) ?>
@@ -84,7 +131,7 @@ if (!empty($_GET['q'])) {
         </div>
 
         <!-- ▼ ページネーション -->
-        <div class="pagination center">
+        <div class="pagination">
           <?php
             $prevPage = $page - 1;
             $nextPage = $page + 1;
@@ -103,8 +150,8 @@ if (!empty($_GET['q'])) {
           <?php endif; ?>
         </div>
 
-        <!-- ▼ 検索画面に戻るボタン（ページネーションの下） -->
-        <div class="center">
+        <!-- ▼ 検索画面に戻るボタン -->
+        <div style="margin-top: 10px;">
           <a href="kensaku.php" class="btn">検索画面に戻る</a>
         </div>
 
