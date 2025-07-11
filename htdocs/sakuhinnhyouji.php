@@ -30,24 +30,6 @@ if (!empty($_GET['q'])) {
   <meta charset="UTF-8">
   <title><?= htmlspecialchars($title) ?> の検索結果</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .btn {
-      display: inline-block;
-      padding: 6px 12px;
-      margin: 5px 4px;
-      font-size: 14px;
-      text-align: center;
-      color: #fff;
-      background-color: #007bff;
-      border-radius: 4px;
-      text-decoration: none;
-    }
-    .btn.disabled {
-      background-color: #ccc;
-      pointer-events: none;
-      color: #666;
-    }
-  </style>
 </head>
 <body>
   <div class="section">
@@ -55,9 +37,7 @@ if (!empty($_GET['q'])) {
 
     <?php if (isset($_GET['q']) && trim($_GET['q']) !== ''): ?>
       <div class="author-info">
-        <div>
-          <strong>検索キーワード:</strong> <span class="accent"><?= htmlspecialchars($_GET['q']) ?></span>
-        </div>
+        <div><strong>検索キーワード:</strong> <span class="accent"><?= htmlspecialchars($_GET['q']) ?></span></div>
       </div>
 
       <?php if (empty($books)): ?>
@@ -89,19 +69,24 @@ if (!empty($_GET['q'])) {
           <?php if ($page > 1): ?>
             <a href="?q=<?= urlencode($_GET['q']) ?>&page=<?= $prevPage ?>" class="btn">← 前へ</a>
           <?php else: ?>
-            <span class="btn disabled">← 前へ</span>
+            <a class="btn disabled">← 前へ</a>
           <?php endif; ?>
 
           <?php if ($hasNext): ?>
             <a href="?q=<?= urlencode($_GET['q']) ?>&page=<?= $nextPage ?>" class="btn">次へ →</a>
           <?php else: ?>
-            <span class="btn disabled">次へ →</span>
+            <a class="btn disabled">次へ →</a>
           <?php endif; ?>
         </div>
       <?php endif; ?>
     <?php else: ?>
       <div class="notice-box">検索キーワードが指定されていません。</div>
     <?php endif; ?>
+
+    <!-- ✅ 検索画面に戻るボタン -->
+    <div style="margin-top: 20px;">
+      <a href="search_form.php" class="btn">← 検索画面に戻る</a>
+    </div>
   </div>
 </body>
 </html>
