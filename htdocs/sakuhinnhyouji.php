@@ -47,22 +47,20 @@ if (!empty($_GET['q'])) {
       pointer-events: none;
       color: #666;
     }
+    .center {
+      text-align: center;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
   <div class="section">
     <h1>検索結果</h1>
 
-    <!-- ▼ 検索画面に戻るボタン -->
-    <div>
-      <a href="index.php" class="btn">← 検索画面に戻る</a>
-    </div>
-
     <?php if (isset($_GET['q']) && trim($_GET['q']) !== ''): ?>
       <div class="author-info">
-        <div>
-          <strong>検索キーワード:</strong> <span class="accent"><?= htmlspecialchars($_GET['q']) ?></span>
-        </div>
+        <strong>検索キーワード:</strong>
+        <span class="accent"><?= htmlspecialchars($_GET['q']) ?></span>
       </div>
 
       <?php if (empty($books)): ?>
@@ -85,7 +83,8 @@ if (!empty($_GET['q'])) {
           <?php endforeach; ?>
         </div>
 
-        <div class="pagination">
+        <!-- ▼ ページネーション -->
+        <div class="pagination center">
           <?php
             $prevPage = $page - 1;
             $nextPage = $page + 1;
@@ -103,6 +102,12 @@ if (!empty($_GET['q'])) {
             <span class="btn disabled">次へ →</span>
           <?php endif; ?>
         </div>
+
+        <!-- ▼ 検索画面に戻るボタン（ページネーションの下） -->
+        <div class="center">
+          <a href="search_form.php" class="btn">検索画面に戻る</a>
+        </div>
+
       <?php endif; ?>
     <?php else: ?>
       <div class="notice-box">検索キーワードが指定されていません。</div>
