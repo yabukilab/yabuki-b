@@ -105,7 +105,7 @@ if (!empty($_GET['q'])) {
 
         <!-- ▼ 検索画面に戻るボタン（ページネーションの下） -->
         <div class="center">
-          <a href="search_form.php" class="btn">検索画面に戻る</a>
+          <a href="kensaku.php" class="btn">検索画面に戻る</a>
         </div>
 
       <?php endif; ?>
